@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/03 12:47:39 by oexall           ###   ########.fr        #
+#    Updated: 2016/08/03 13:14:32 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME= asm
 
 CC= gcc -o
 CFLAGS= -Wall -Werror -Wextra
-LIBFT= -L ./libft/ -lft
+LIBFT= -L ../libft/ -lft
 
-SRC=	assembler.c \
+SRC=	assembler.c ft_err.c ft_filecheck.c\
 
 		
 
@@ -25,8 +25,8 @@ all: $(NAME)
 $(NAME):
 	@clear
 	@echo "\x1b[31m\t-----Compiling Libft\x1b[0m"
-	@make -C libft fclean
-	@make -C libft
+	@make -C ../libft fclean
+	@make -C ../libft
 	@echo "\x1b[34m\t+++++Done Compiling Libft\x1b[0m"
 	@echo "\x1b[31m\t-----Compiling $(NAME)\x1b[0m"
 	@$(CC) $(NAME) $(CFLAGS) $(SRC) $(LIBFT)
