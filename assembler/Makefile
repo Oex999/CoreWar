@@ -6,17 +6,17 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/02 15:38:05 by ghavenga         ###   ########.fr        #
+#    Updated: 2016/08/03 12:47:39 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= assembler
+NAME= asm
 
 CC= gcc -o
 CFLAGS= -Wall -Werror -Wextra
 LIBFT= -L ./libft/ -lft
 
-SRC=	assembler/assembler.c \
+SRC=	assembler.c \
 
 		
 
