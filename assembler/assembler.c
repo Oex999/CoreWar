@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 12:49:16 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/03 13:17:02 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/03 17:00:26 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		main(int argc, char **argv)
 	{
 		if (!ft_checkfile(argv[i]))
 			return (ft_err("Invalid file extension.\nUsage: [File].s"));
+		ft_putendl(argv[i]); //DEBUG
 		i++;
 	}
 	return (0);
