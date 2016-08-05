@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filecheck.c                                     :+:      :+:    :+:   */
+/*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/03 13:06:54 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/03 13:13:38 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/05 12:48:28 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#ifndef ASM_H
+# define ASM_H
 
-int		ft_checkfile(char *file)
-{
-	int	res;
+# include <libft.h>
 
-	res = 1;
-	if (ft_strncmp(ft_strrchr(file, '.'), ".s", 2) != 0)
-		return (0);
-	return (res);
-}
+int		ft_err(char *str);
+int		ft_checkfile(char *file);
+
+#endif

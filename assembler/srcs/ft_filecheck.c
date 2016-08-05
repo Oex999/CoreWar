@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_err.c                                           :+:      :+:    :+:   */
+/*   ft_filecheck.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/03 13:01:40 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/03 13:02:47 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/03 13:06:54 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/05 12:49:26 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include <asm.h>
 
-int		ft_err(char *str)
+int		ft_checkfile(char *file)
 {
-	ft_putstr("asm: ");
-	ft_putendl(str);
-	return (0);
+	int	res;
+
+	res = 1;
+	if (ft_strncmp(ft_strrchr(file, '.'), ".s", 2) != 0)
+		return (0);
+	return (res);
 }

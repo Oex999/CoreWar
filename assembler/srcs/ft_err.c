@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   ft_err.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/03 13:15:36 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/03 13:01:40 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/05 12:49:16 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include <asm.h>
 
-# include "../libft/libft.h"
-
-int		ft_err(char *str);
-int		ft_checkfile(char *file);
-
-#endif
+int		ft_err(char *str)
+{
+	ft_putstr("asm: ");
+	ft_putendl(str);
+	return (0);
+}

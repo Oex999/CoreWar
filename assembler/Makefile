@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/03 13:14:32 by oexall           ###   ########.fr        #
+#    Updated: 2016/08/05 12:48:44 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,10 @@ NAME= asm
 CC= gcc -o
 CFLAGS= -Wall -Werror -Wextra
 LIBFT= -L ../libft/ -lft
+HEADER= -I ./include -I ../libft
 
-SRC=	assembler.c ft_err.c ft_filecheck.c\
+SP= ./srcs/
+SRC=	$(SP)assembler.c $(SP)ft_err.c $(SP)ft_filecheck.c\
 
 		
 
@@ -29,14 +31,14 @@ $(NAME):
 	@make -C ../libft
 	@echo "\x1b[34m\t+++++Done Compiling Libft\x1b[0m"
 	@echo "\x1b[31m\t-----Compiling $(NAME)\x1b[0m"
-	@$(CC) $(NAME) $(CFLAGS) $(SRC) $(LIBFT)
+	@$(CC) $(NAME) $(CFLAGS) $(SRC) $(LIBFT) $(HEADER)
 	@echo "\x1b[34m\t+++++Done Compiling $(NAME)\x1b[0m"
 	@echo "\x1b[32m\t+++++Completed All Compiling\x1b[0m"
 
 quick:
 	@clear
 	@echo "\x1b[31m\t-----Compiling $(NAME)\x1b[0m"
-	@$(CC) $(NAME) $(CFLAGS) $(SRC) $(LIBFT)
+	@$(CC) $(NAME) $(CFLAGS) $(SRC) $(LIBFT) $(HEADER)
 	@echo "\x1b[32m\t+++++Done Compiling $(NAME)\x1b[0m"
 
 clean:
