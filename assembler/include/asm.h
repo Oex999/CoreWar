@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/08 10:05:45 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/08 12:18:21 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef enum		e_aliases
 	NAME = 0,
 	COMMENT = 1,
 	LABEL = 2,
-	CMD = 3
+	CMD = 3,
 }					t_aliases;
 
 typedef struct		s_input
@@ -40,6 +40,6 @@ void				ft_input_free(t_input **input);
 
 int					ft_err(char *str);
 int					ft_check_file(char *file);
-int					ft_get_alias(char *str);
-int					ft_read_file(char *file, t_input *input);
+int					ft_get_alias(char *str, t_input **input);
+int					ft_read_file(char *file, t_input **input);
 #endif

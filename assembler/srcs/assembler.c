@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 12:49:16 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/08 10:06:21 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/08 13:08:03 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,19 @@ int		main(int argc, char **argv)
 		input = NULL;
 		if (!(ft_check_file(argv[i])))
 			break ;
-		if (!(ft_read_file(argv[i], input)))
+		if (!(ft_read_file(argv[i], &input)))
 			break ;
 		ft_err(argv[i]);
+		//DEBUG DEBUG DEBUG
+		t_input	*tmp = input;
+		while (tmp != NULL)
+		{
+			ft_putnbr(ft_strlen(tmp->line));
+			ft_putstr("\nLINE: ");
+			ft_putendl(tmp->line);
+			tmp = tmp->next;
+		}
+		//END   END   END
 		ft_input_free(&input);
 		i++;
 	}
