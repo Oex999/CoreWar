@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filecheck.c                                     :+:      :+:    :+:   */
+/*   ft_input_new.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
+/*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/03 13:06:54 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/05 12:49:26 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/08 08:47:52 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/08 08:50:39 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-int		ft_checkfile(char *file)
+t_input	*ft_new_elem(char *line, int alias)
 {
-	int	res;
+	t_input	*tmp;
 
-	res = 1;
-	if (ft_strncmp(ft_strrchr(file, '.'), ".s", 2) != 0)
-		return (0);
-	return (res);
+	tmp = (t_input *)malloc(sizeof(t_input));
+	if (tmp)
+	{
+		tmp->line = ft_strdup(line);
+		tmp->alias = alias;
+		tmp->prev = NULL;
+		tmp->next = NULL;
+	}
+	else
+		return (NULL);
+	return (tmp);
 }

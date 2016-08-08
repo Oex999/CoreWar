@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:01:40 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/05 12:49:16 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/08 08:12:32 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_err(char *str)
 {
-	ft_putstr("asm: ");
-	ft_putendl(str);
+	ft_putstr_fd("asm: ", 2);
+	ft_putendl_fd(str, 2);
 	return (0);
 }

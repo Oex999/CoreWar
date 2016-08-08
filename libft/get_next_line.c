@@ -6,91 +6,58 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/21 13:06:12 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/07/20 15:38:46 by ghavenga         ###   ########.fr       */
+/*   Updated: 2016/08/08 10:27:47 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "get_next_line.h"
 
-static t_buff	read_buffer(const int fd, t_buff b)
+static int		read_line(int const fd, char **stock)
 {
-	long int			k;
+	char	*buff;
+	int		ret;
+	char	*temp;
 
-	b.buf_pos = 0;
-	k = -1;
-	b.buf_init = 1;
-	b.eof = read(fd, b.buff, BUFF_SIZE);
-	if (b.eof < BUFF_SIZE && b.eof > 0)
-	{
-		k = b.eof - 1;
-		while (k++ <= BUFF_SIZE)
-			b.buff[k] = '\0';
-	}
-	return (b);
-}
-
-static char		*re_malloc(char *line, size_t size)
-{
-	char			*tmp;
-
-	tmp = ft_strnew(size + L_LEN);
-	if (size > 0)
-	{
-		tmp = ft_strcpy(tmp, line);
-		free(line);
-	}
-	return (tmp);
-}
-
-static t_buff	get_line(const int fd, char **line, t_buff b)
-{
-	unsigned int	line_pos;
-	char			*l;
-
-	line_pos = 0;
-	if (b.buf_init == 0 || b.buf_pos >= BUFF_SIZE || b.eof < 0)
-		b = read_buffer(fd, b);
-	while (b.buff[b.buf_pos] != '\n' && b.buf_pos < b.eof && b.eof > -1)
-	{
-		if (((line_pos + 1) % L_LEN == 0) || line_pos == 0)
-			l = re_malloc(l, line_pos);
-		l[line_pos] = b.buff[b.buf_pos];
-		line_pos++;
-		b.buf_pos++;
-		if (b.buf_pos >= BUFF_SIZE)
-			b = read_buffer(fd, b);
-	}
-	if ((b.eof < BUFF_SIZE && b.eof != -1) && (b.eof <= b.buf_pos))
-		b.eof = -2;
-	b.buf_pos++;
-	if (line_pos == 0)
-		*line = 0;
-	else
-		*line = l;
-	return (b);
-}
-
-static int		get_buff(const int fd, char **line)
-{
-	static t_buff	arr[NUM_FILES];
-
-	if (fd < 0 || fd >= NUM_FILES)
+	if (!(buff = ft_strnew(sizeof(*buff) * (BUFF_SIZE + 1))))
 		return (-1);
-	arr[fd] = get_line(fd, line, arr[fd]);
-	return (arr[fd].eof);
+	ret = read(fd, buff, BUFF_SIZE);
+	if (ret > 0)
+	{
+		buff[ret] = '\0';
+		temp = ft_strjoin(*stock, buff);
+		free(*stock);
+		*stock = temp;
+	}
+	free(buff);
+	return (ret);
 }
 
-int				get_next_line(const int fd, char **line)
+int				get_next_line(int const fd, char **line)
 {
-	long int	eof;
+	static char			*str = NULL;
+	char				*bn;
+	int					ret;
 
-	if (BUFF_SIZE > MAX_BUFF || BUFF_SIZE < 1)
+	if ((!str && (str = ft_strnew(sizeof(*str))) == NULL) || !line
+			|| fd < 0 || BUFF_SIZE < 0)
 		return (-1);
-	eof = get_buff(fd, line);
-	if (eof == -1)
-		return (-1);
-	if (eof == -2)
-		return (0);
+	bn = ft_strchr(str, '\n');
+	while (bn == NULL)
+	{
+		ret = read_line(fd, &str);
+		if (ret == 0)
+		{
+			if (ft_strlen(str) == 0)
+				return (0);
+			str = ft_strjoin(str, "\n");
+		}
+		if (ret < 0)
+			return (-1);
+		else
+			bn = ft_strchr(str, '\n');
+	}
+	*line = ft_strsub(str, 0, ft_strlen(str) - ft_strlen(bn));
+	str = ft_strdup(bn + 1);
 	return (1);
 }
