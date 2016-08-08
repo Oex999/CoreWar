@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/08 10:05:18 by oexall           ###   ########.fr        #
+#    Updated: 2016/08/08 13:16:46 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,20 +27,20 @@ all: $(NAME)
 
 $(NAME):
 	@clear
-	@echo "\x1b[31m\t-----Compiling Libft\x1b[0m"
+	@echo "\x1b[31m-----Compiling Libft\x1b[0m"
 	@make -C ../libft fclean
 	@make -C ../libft
-	@echo "\x1b[34m\t+++++Done Compiling Libft\x1b[0m"
-	@echo "\x1b[31m\t-----Compiling $(NAME)\x1b[0m"
+	@echo "\x1b[34m+++++Done Compiling Libft\x1b[0m"
+	@echo "\x1b[31m-----Compiling $(NAME)\x1b[0m"
 	@$(CC) $(NAME) $(CFLAGS) $(SRC) $(LIBFT) $(HEADER)
-	@echo "\x1b[34m\t+++++Done Compiling $(NAME)\x1b[0m"
-	@echo "\x1b[32m\t+++++Completed All Compiling\x1b[0m"
+	@echo "\x1b[34m+++++Done Compiling $(NAME)\x1b[0m"
+	@echo "\x1b[32m+++++Completed All Compiling\x1b[0m"
 
 quick:
 	@clear
-	@echo "\x1b[31m\t-----Compiling $(NAME)\x1b[0m"
+	@echo "\x1b[31m-----Compiling $(NAME)\x1b[0m"
 	@$(CC) $(NAME) $(CFLAGS) $(SRC) $(LIBFT) $(HEADER)
-	@echo "\x1b[32m\t+++++Done Compiling $(NAME)\x1b[0m"
+	@echo "\x1b[32m+++++Done Compiling $(NAME)\x1b[0m"
 
 clean:
 	@rm $(NAME)

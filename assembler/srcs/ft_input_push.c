@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 08:53:50 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/08 11:43:05 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/08 13:37:14 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_input_push_back(t_input **begin, char *line, int alias)
 	t_input	*list;
 
 	list = *begin;
-	if (line && list)
+	if (list)
 	{
 		while (list->next)
 			list = list->next;

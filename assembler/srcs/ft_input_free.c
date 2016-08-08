@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 10:04:12 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/08 10:08:57 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/08 13:46:47 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@ void	ft_input_free(t_input **input)
 	list = *input;
 	if (list)
 	{
-		while (list)
+		while (list != NULL)
 		{
 			tmp = list;
-			list = tmp->next;
+			list = list->next;
 			tmp->next = NULL;
 			tmp->prev = NULL;
-			if (list->line)
-				free(list->line);
-			list->alias = 0;
+			free(tmp->line);
 			free(tmp);
 		}
 	}
