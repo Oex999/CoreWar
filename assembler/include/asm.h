@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/08 13:12:42 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/08 14:58:14 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef enum		e_aliases
 {
-	UNKOWN = -1,
+	UNKNOWN = -1,
 	NAME = 0,
 	COMMENT = 1,
 	LABEL = 2,

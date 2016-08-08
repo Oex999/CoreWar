@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 08:27:09 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/08 13:51:02 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/08 15:32:18 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,33 @@ static void	ft_deltab(char **tab)
 	}
 }
 
+int			ft_is_cmd(char *str)
+{
+	int	i;
+
+	i = -1;
+	(void)str;
+	while (++i < 16)
+		if (ft_strncmp(str, g_op_tab[i].name, ft_strlen(g_op_tab[i].name)) == 0)
+			return (i);
+	return (-1);
+}
+
 int			ft_get_alias(char *str)
 {
-	if (ft_strncmp(str, ".name", 5) == 0)
-		return (0);
-	if (ft_strncmp(str, ".comment", 8) == 0)
-		return (1);
-	return (-1);
+	ft_putstr("DEBUG LINE:");
+	ft_putendl(str);
+	if (ft_strncmp(str, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)) == 0)
+		return (NAME);
+	else if (ft_strncmp(str, COMMENT_CMD_STRING,
+			ft_strlen(COMMENT_CMD_STRING)) == 0)
+		return (COMMENT);
+	else if (str[ft_strlen(str) - 1] == LABEL_CHAR
+			&& str[ft_strlen(str)] == '\0')
+		return (LABEL);
+	else if (ft_is_cmd(str) > -1)
+		return (CMD);
+	return (UNKNOWN);
 }
 
 int			ft_read_file(char *file, t_input **input)
@@ -48,10 +68,10 @@ int			ft_read_file(char *file, t_input **input)
 	line = NULL;
 	while (get_next_line(fd, &line))
 	{
-		if (ft_strlen(line) > 0)
+		if (ft_strlen(line) > 0 && line[0] != COMMENT_CHAR)
 		{
 			split = ft_strsplit(line, '\t');
-			if (split[0] && !split[1])
+			if (split[0])
 				ft_input_push_back(input, split[0], ft_get_alias(split[0]));
 			if (split[0] && split[1])
 				ft_input_push_back(input, split[1], ft_get_alias(split[1]));
