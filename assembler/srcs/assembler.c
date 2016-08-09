@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 12:49:16 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 09:42:10 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 15:33:24 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int		main(int argc, char **argv)
 		if (!(ft_read_file(argv[i], &all.input)))
 			break ;
 		if (!(ft_validate(&all.input)))
+			break ;
+		if (!(ft_print_file(&all)))
 			break ;
 		ft_err(argv[i]); //DEBUG
 		//DEBUG DEBUG DEBUG

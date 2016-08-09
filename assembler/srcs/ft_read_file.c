@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 08:27:09 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 11:01:23 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 14:34:50 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ int			ft_is_cmd(char *str)
 
 int			ft_get_alias(char *str)
 {
-	ft_putstr("DEBUG LINE:"); //DEBUG
-	ft_putendl(str);		  //DEBUG
 	if (ft_strncmp(str, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)) == 0)
 		return (NAME);
 	else if (ft_strncmp(str, COMMENT_CMD_STRING,

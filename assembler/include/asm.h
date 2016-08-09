@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 10:58:42 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 15:40:25 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <op.h>
 # include <fcntl.h>
 # include <libft.h>
+
+# define OPEN O_WRONLY | O_CREAT | O_TRUNC
 
 typedef enum		e_aliases
 {
@@ -36,6 +38,7 @@ typedef struct		s_input
 
 typedef struct		s_all
 {
+	int				fd;
 	char			*name;
 	t_input			*input;
 }					t_all;
@@ -59,4 +62,7 @@ int					ft_val_prog(char *prog);
 int					ft_validate(t_input **input);
 
 char				*ft_itoa_base(int value, int base);
+
+int					ft_print_name(char *line);
+int					ft_print_file(t_all *all);
 #endif
