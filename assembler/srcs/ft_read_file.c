@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 08:27:09 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 10:06:02 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 11:01:23 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int			ft_is_cmd(char *str)
 	int	i;
 
 	i = -1;
-	(void)str;
 	while (++i < 16)
 		if (ft_strncmp(str, g_op_tab[i].name, ft_strlen(g_op_tab[i].name)) == 0)
 			return (i);

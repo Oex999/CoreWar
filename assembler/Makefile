@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/09 10:53:07 by oexall           ###   ########.fr        #
+#    Updated: 2016/08/09 11:23:58 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SP= ./srcs/
 SRC=	$(SP)assembler.c $(SP)ft_err.c $(SP)ft_check_file.c \
 		$(SP)ft_read_file.c $(SP)ft_input_new.c $(SP)ft_input_push.c \
 		$(SP)ft_input_free.c $(SP)op.c $(SP)ft_itoa_base.c $(SP)ft_validate.c \
-		$(SP)ft_val_prog.c $(SP)ft_val_comment.c $(SP)ft_val_label.c
+		$(SP)ft_val_prog.c $(SP)ft_val_comment.c $(SP)ft_val_label.c \
+		$(SP)ft_val_cmd.c
 
 all: $(NAME)
 

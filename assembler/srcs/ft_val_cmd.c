@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate.c                                      :+:      :+:    :+:   */
+/*   ft_val_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/09 09:32:48 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 11:31:03 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/09 10:58:10 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/09 11:31:21 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-int			ft_validate(t_input **input)
+int		ft_val_cmd(char *cmd)
 {
-	t_input	*list;
+	int	index;
 
-	list = *input;
-	while (list)
-	{
-		if (list->alias == NAME && !ft_val_prog(list->line))
-			return (0);
-		if (list->alias == COMMENT && !ft_val_comment(list->line))
-			return (0);
-		if (list->alias == LABEL && !ft_val_label(list->line))
-			return (0);
-		if ((list->alias == CMD || list->alias == UNKNOWN)
-				&& !ft_val_cmd(list->line))
-			return (0);
-		list = list->next;
-	}
+	if ((index = ft_is_cmd(cmd)) == -1)
+		return (ft_err("Invalid not found."));
+	ft_putnbr(index);
+	ft_putendl(" INDEX");
 	return (1);
 }

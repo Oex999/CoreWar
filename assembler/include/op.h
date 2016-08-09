@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 15:00:59 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/08 15:11:35 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 11:02:54 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define NAME_CMD_STRING		".name"
 # define COMMENT_CMD_STRING		".comment"
 
+# define NO_CMDS				16
 # define REG_NUMBER				16
 
 # define CYCLE_TO_DIE			1536

@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 10:40:27 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 10:58:42 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int					ft_get_alias(char *str);
 int					ft_read_file(char *file, t_input **input);
 
 char				*ft_trimquotes(char *str);
+int					ft_val_cmd(char *cmd);
 int					ft_val_label(char *label);
 int					ft_val_comment(char *comment);
 int					ft_val_prog(char *prog);
