@@ -6,11 +6,17 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 12:49:16 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 15:33:24 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 21:33:34 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
+
+void	ft_init(t_all *all)
+{
+	all->input = NULL;
+	all->output = NULL;
+}
 
 int		main(int argc, char **argv)
 {
@@ -19,10 +25,10 @@ int		main(int argc, char **argv)
 
 	if (argc < 2)
 		return (ft_err("No Arguments.\nUsage: ./asm [*.s] ..."));
-	i = 1;
-	while (argv[i])
+	i = 0;
+	ft_init(&all);
+	while (argv[++i])
 	{
-		all.input = NULL;
 		all.name = argv[i];
 		if (!(ft_check_file(argv[i])))
 			break ;
@@ -30,6 +36,8 @@ int		main(int argc, char **argv)
 			break ;
 		if (!(ft_validate(&all.input)))
 			break ;
+		//Process Commands Into Output
+		// ^^
 		if (!(ft_print_file(&all)))
 			break ;
 		ft_err(argv[i]); //DEBUG
@@ -46,7 +54,7 @@ int		main(int argc, char **argv)
 		//END   END   END
 		ft_putendl("END"); //DEBUG
 		ft_input_free(&all.input);
-		i++;
+		ft_output_free(&all.output);
 	}
 	return (0);
 }

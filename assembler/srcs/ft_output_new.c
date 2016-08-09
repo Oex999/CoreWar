@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_input_free.c                                    :+:      :+:    :+:   */
+/*   ft_output_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/08 10:04:12 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 21:26:18 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/09 21:14:00 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/09 21:16:29 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void	ft_input_free(t_input **input)
+t_output	*ft_output_new(void)
 {
-	t_input	*list;
-	t_input	*tmp;
+	t_output	*tmp;
 
-	list = *input;
-	if (list)
-	{
-		while (list != NULL)
-		{
-			tmp = list;
-			list = list->next;
-			tmp->next = NULL;
-			tmp->prev = NULL;
-			free(tmp->line);
-			free(tmp);
-		}
-		*input = NULL;
-	}
+	tmp = (t_output *)malloc(sizeof(t_output));
+	tmp->opcode = NULL;
+	tmp->acb = NULL;
+	tmp->arg1 = NULL;
+	tmp->arg2 = NULL;
+	tmp->arg3 = NULL;
+	tmp->arg3 = NULL;
+	tmp->prev = NULL;
+	tmp->next = NULL;
+	return (tmp);
 }

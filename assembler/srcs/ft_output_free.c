@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_input_free.c                                    :+:      :+:    :+:   */
+/*   ft_output_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/08 10:04:12 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 21:26:18 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/09 21:21:58 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/09 21:30:36 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void	ft_input_free(t_input **input)
+void	ft_output_free(t_output **output)
 {
-	t_input	*list;
-	t_input	*tmp;
+	t_output	*list;
+	t_output	*tmp;
 
-	list = *input;
+	list = *output;
 	if (list)
 	{
 		while (list != NULL)
 		{
 			tmp = list;
 			list = list->next;
-			tmp->next = NULL;
+			free(tmp->opcode);
+			free(tmp->acb);
+			free(tmp->arg1);
+			free(tmp->arg2);
+			free(tmp->arg3);
+			free(tmp->arg4);
 			tmp->prev = NULL;
-			free(tmp->line);
-			free(tmp);
+			tmp->next = NULL;
 		}
-		*input = NULL;
 	}
 }

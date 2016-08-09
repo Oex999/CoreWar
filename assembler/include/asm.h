@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 15:40:25 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 21:28:53 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,33 @@ typedef struct		s_input
 	struct s_input	*next;
 }					t_input;
 
+typedef struct		s_output
+{
+	char			*opcode;
+	char			*acb;
+	char			*arg1;
+	char			*arg2;
+	char			*arg3;
+	char			*arg4;
+	struct s_output	*prev;
+	struct s_output	*next;
+}					t_output;
+
 typedef struct		s_all
 {
 	int				fd;
 	char			*name;
 	t_input			*input;
+	t_output		*output;
 }					t_all;
 
 t_input				*ft_new_elem(char *line, int alias);
 void				ft_input_push_back(t_input **begin, char *line, int alias);
 void				ft_input_free(t_input **input);
+
+t_output			*ft_output_new(void);
+void				ft_output_push_back(t_output **begin, t_output *output);
+void				ft_output_free(t_output **output);
 
 int					ft_err(char *str);
 int					ft_check_file(char *file);
@@ -63,6 +80,7 @@ int					ft_validate(t_input **input);
 
 char				*ft_itoa_base(int value, int base);
 
-int					ft_print_name(char *line);
+char				*ft_text(char *line);
+int					ft_print_name(t_all *all);
 int					ft_print_file(t_all *all);
 #endif

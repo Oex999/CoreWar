@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_input_free.c                                    :+:      :+:    :+:   */
+/*   ft_output_push.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/08 10:04:12 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 21:26:18 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/09 21:18:49 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/09 21:21:04 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void	ft_input_free(t_input **input)
+void	ft_output_push_back(t_output **begin, t_output *output)
 {
-	t_input	*list;
-	t_input	*tmp;
+	t_output	*list;
 
-	list = *input;
+	list = *begin;
 	if (list)
 	{
-		while (list != NULL)
-		{
-			tmp = list;
+		while (list->next)
 			list = list->next;
-			tmp->next = NULL;
-			tmp->prev = NULL;
-			free(tmp->line);
-			free(tmp);
-		}
-		*input = NULL;
+		list->next = output;
+		list->next->prev = list;
 	}
+	else
+		*begin = output;
 }
