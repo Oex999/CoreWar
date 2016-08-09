@@ -6,13 +6,13 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 08:27:09 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/08 15:32:18 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 10:06:02 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-static void	ft_deltab(char **tab)
+void		ft_deltab(char **tab)
 {
 	int	i;
 
@@ -42,8 +42,8 @@ int			ft_is_cmd(char *str)
 
 int			ft_get_alias(char *str)
 {
-	ft_putstr("DEBUG LINE:");
-	ft_putendl(str);
+	ft_putstr("DEBUG LINE:"); //DEBUG
+	ft_putendl(str);		  //DEBUG
 	if (ft_strncmp(str, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)) == 0)
 		return (NAME);
 	else if (ft_strncmp(str, COMMENT_CMD_STRING,

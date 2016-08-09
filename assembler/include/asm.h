@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/08 14:58:14 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 10:40:27 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,28 @@ typedef struct		s_input
 	struct s_input	*next;
 }					t_input;
 
+typedef struct		s_all
+{
+	char			*name;
+	t_input			*input;
+}					t_all;
+
 t_input				*ft_new_elem(char *line, int alias);
 void				ft_input_push_back(t_input **begin, char *line, int alias);
 void				ft_input_free(t_input **input);
 
 int					ft_err(char *str);
 int					ft_check_file(char *file);
+void				ft_deltab(char **tab);
+int					ft_is_cmd(char *str);
 int					ft_get_alias(char *str);
 int					ft_read_file(char *file, t_input **input);
+
+char				*ft_trimquotes(char *str);
+int					ft_val_label(char *label);
+int					ft_val_comment(char *comment);
+int					ft_val_prog(char *prog);
+int					ft_validate(t_input **input);
+
+char				*ft_itoa_base(int value, int base);
 #endif
