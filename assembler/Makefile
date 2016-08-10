@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/09 21:32:39 by oexall           ###   ########.fr        #
+#    Updated: 2016/08/10 07:52:13 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ clean:
 	@echo "\x1b[32m\t+++++Completed Clean\x1b[0m"
 
 fclean: clean
-	@make -C libft fclean
+	@make -C ../libft fclean
 	@echo "\x1b[32m\t+++++Completed Full Clean\x1b[0m"
 
 re: fclean all
