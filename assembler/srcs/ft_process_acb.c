@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 14:00:45 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 15:18:30 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 15:46:09 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	**ft_get_params(char *line)
 char		*ft_process_acb(char *line)
 {
 	int		i;
-	char	acb;
+	int		acb;
 	char	**params;
 
 	i = -1;

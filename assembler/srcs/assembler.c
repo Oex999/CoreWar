@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 12:49:16 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 12:38:10 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 15:44:53 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int		main(int argc, char **argv)
 		t_input	*tmp = all.input;
 		while (tmp != NULL)
 		{
-			ft_putstr("LINE: ");
+			ft_putstr("ALIAS: ");
+			ft_putnbr(tmp->alias);
+			ft_putstr("\tLINE: ");
 			ft_putendl(tmp->line);
 			tmp = tmp->next;
 		}

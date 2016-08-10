@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 15:38:18 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 13:18:04 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 16:26:46 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 char	*ft_text(char *line)
 {
 	char	*tmp;
-	char	**split;
 
-	split = ft_strsplit(line, ' ');
-	tmp = ft_strdup(ft_trimquotes(split[1]));
-	ft_deltab(split);
-	return (tmp);
+	tmp = ft_strchr(line, '\"');
+	return (ft_strdup(ft_trimquotes(tmp)));
 }
 
 static int	ft_print_magic(int fd)

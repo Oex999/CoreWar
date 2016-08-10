@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 15:10:06 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 16:07:02 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ char				*ft_itoa_base(int value, int base);
 
 char				*ft_text(char *line);
 int					ft_print_name(t_all *all);
+int					ft_print_comment(t_all *all);
 int					ft_print_file(t_all *all);
 #endif

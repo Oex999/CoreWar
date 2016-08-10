@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 14:55:59 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 19:59:24 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 16:19:07 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int			ft_print_file(t_all *all)
 		return (ft_err("Failed to create .cor file"));
 	if (!ft_print_name(all))
 		res = ft_err("Failed to write .name to file.");
+	if (!ft_print_comment(all))
+		res = ft_err("Failed to write .comment to file.");
 	if (close(all->fd) == -1)
 		return (ft_err("Failed to close .cor file."));
 	free(n_name);
