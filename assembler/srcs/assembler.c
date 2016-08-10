@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 12:49:16 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 21:39:54 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 12:38:10 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int		main(int argc, char **argv)
 			break ;
 		if (!(ft_validate(&all.input)))
 			break ;
-		//Process Inputs Into Output
-		// ^^
+		if (!(ft_process_input(&all)))
+			break ;
 		if (!(ft_print_file(&all)))
 			break ;
 		ft_err(argv[i]); //DEBUG
@@ -45,9 +45,7 @@ int		main(int argc, char **argv)
 		t_input	*tmp = all.input;
 		while (tmp != NULL)
 		{
-			ft_putstr("Alias: ");
-			ft_putnbr(tmp->alias);
-			ft_putstr("\nLINE: ");
+			ft_putstr("LINE: ");
 			ft_putendl(tmp->line);
 			tmp = tmp->next;
 		}

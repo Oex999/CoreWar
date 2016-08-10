@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 21:28:53 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 12:36:44 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void				ft_input_free(t_input **input);
 t_output			*ft_output_new(void);
 void				ft_output_push_back(t_output **begin, t_output *output);
 void				ft_output_free(t_output **output);
+
+int					ft_process_input(t_all *all);
 
 int					ft_err(char *str);
 int					ft_check_file(char *file);
