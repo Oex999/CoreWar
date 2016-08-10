@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 12:49:16 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 21:33:34 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/09 21:39:54 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		main(int argc, char **argv)
 			break ;
 		if (!(ft_validate(&all.input)))
 			break ;
-		//Process Commands Into Output
+		//Process Inputs Into Output
 		// ^^
 		if (!(ft_print_file(&all)))
 			break ;

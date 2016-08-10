@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 15:38:18 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 21:18:34 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 10:23:58 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,39 @@ char	*ft_text(char *line)
 	return (tmp);
 }
 
+static int	ft_print_magic(int fd)
+{
+	int			t;
+	int			i;
+	char		*str;
+
+	i = -1;
+	str = ft_itoa_base((int)(COREWAR_EXEC_MAGIC), 16);
+	if ((ft_strlen(str) % 4) != 0)
+		while ((ft_strlen(str) + (++i)) % 4 != 0)
+			write(fd, "0", 1);
+	t = i;
+	i = 0;
+	while (str[i])
+	{
+		write(fd, &str[i], 2);
+		if (t % 4)
+			write(fd, " ", 1);
+		i += 2;
+		t += 2;
+	}
+	free(str);
+	return (t);
+}
+
 int		ft_print_name(t_all *all)
 {
 	int		i;
 	char	*name;
 
-	write(all->fd, "00ea 83f3 ", 10);
 	i = 0;
 	name = ft_text(all->input->line);
+	ft_print_magic(all->fd);
 	while (name[i])
 	{
 		write(all->fd, ft_itoa_base((int)name[i], 16), 2);
