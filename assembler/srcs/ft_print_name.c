@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 15:38:18 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 10:23:58 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 13:18:04 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ static int	ft_print_magic(int fd)
 
 int		ft_print_name(t_all *all)
 {
+	int		t;
 	int		i;
 	char	*name;
 
 	i = 0;
 	name = ft_text(all->input->line);
-	ft_print_magic(all->fd);
+	t = ft_print_magic(all->fd);
 	while (name[i])
 	{
 		write(all->fd, ft_itoa_base((int)name[i], 16), 2);
@@ -63,7 +64,7 @@ int		ft_print_name(t_all *all)
 			write(all->fd, " ", 1);
 		i++;
 	}
-	while (i < 124)
+	while ((t - 4 + i) < PROG_NAME_LENGTH)
 	{
 		write(all->fd, "00", 2);
 		if (i % 2)
