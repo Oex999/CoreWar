@@ -6,13 +6,13 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 14:00:45 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 15:46:09 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 17:05:38 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-static char	**ft_get_params(char *line)
+char	**ft_get_params(char *line)
 {
 	int		i;
 	char	*tmp;

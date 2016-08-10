@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 12:32:48 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 15:24:37 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 21:51:40 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		ft_process_input(t_all *all)
 					ft_strncmp(input->line, "zjmp", 4) != 0 &&
 					ft_strncmp(input->line, "live", 4) != 0)
 				n_out->acb = ft_process_acb(input->line);
+
 			ft_putstr(n_out->opcode); //DEBUG
 			ft_putstr(" "); //DEBUG
 			ft_putendl((n_out->acb) ? n_out->acb : ""); //DEBUG
