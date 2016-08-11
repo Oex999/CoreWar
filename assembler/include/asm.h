@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 21:28:53 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 17:06:06 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ t_output			*ft_output_new(void);
 void				ft_output_push_back(t_output **begin, t_output *output);
 void				ft_output_free(t_output **output);
 
+char				**ft_get_params(char *line);
+char				*ft_process_acb(char *line);
+int					ft_process_input(t_all *all);
+
+char				*ft_trimspaces(char *str);
 int					ft_err(char *str);
 int					ft_check_file(char *file);
 void				ft_deltab(char **tab);
@@ -71,6 +76,7 @@ int					ft_is_cmd(char *str);
 int					ft_get_alias(char *str);
 int					ft_read_file(char *file, t_input **input);
 
+t_arg_type			ft_get_type(char *str);
 char				*ft_trimquotes(char *str);
 int					ft_val_cmd(char *cmd);
 int					ft_val_label(char *label);
@@ -82,5 +88,6 @@ char				*ft_itoa_base(int value, int base);
 
 char				*ft_text(char *line);
 int					ft_print_name(t_all *all);
+int					ft_print_comment(t_all *all);
 int					ft_print_file(t_all *all);
 #endif

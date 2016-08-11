@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 15:00:59 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 11:02:54 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/10 12:38:58 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef char		t_arg_type;
 typedef struct		s_op
 {
 	char			*name;
+	char			*opcode;
 	int				no_args;
 	char			type[MAX_ARGS_NUMBER];
 	int				id;

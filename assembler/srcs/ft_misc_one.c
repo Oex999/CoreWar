@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_free.c                                   :+:      :+:    :+:   */
+/*   ft_misc_one.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/09 21:21:58 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 13:28:26 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/10 14:24:35 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/10 14:32:38 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void	ft_output_free(t_output **output)
+char	*ft_trimspaces(char *str)
 {
-	t_output	*list;
-	t_output	*tmp;
+	char	*end;
 
-	list = *output;
-	if (list)
-	{
-		while (list != NULL)
-		{
-			tmp = list;
-			list = list->next;
-			if (tmp->acb)
-				free(tmp->acb);
-			if (tmp->arg1)
-				free(tmp->arg1);
-			if (tmp->arg2)
-				free(tmp->arg2);
-			if (tmp->arg3)
-				free(tmp->arg3);
-			if (tmp->arg4)
-				free(tmp->arg4);
-			tmp->prev = NULL;
-			tmp->next = NULL;
-		}
-	}
+	while (*str == ' ' || *str == '\t')
+		str++;
+	end = str + ft_strlen(str) - 1;
+	while (end > str && (*end == ' ' || *end == '\t'))
+		end--;
+	*(end + 1) = '\0';
+	return (str);
 }
