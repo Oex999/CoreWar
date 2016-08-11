@@ -1,21 +1,13 @@
-#include "../includes/vm.h"
-#include "../includes/op.h"
-#include "../includes/libft.h"
+#include <vm.h>
 
-void	**registries()
+void	**init_reg(t_process *process)
 {
-	t_process	process;
-	void	**registries;
-	size_t	elements;
 	size_t	index;
-	elements = 17;
+
 	index = -1;
-	registries = (void**)malloc(sizeof(void*) * elements);
-	while(index != endex)
-	{
-		registries[++index] = (*(process->data) = memalloc(REG_SIZE));
-		process = process->next;
-	}
-	return ap;
+	registries = (void**)malloc(sizeof(void*) * REG_NUMBER);
+	while(++index != 16)
+		registries[index] = (*(process->data) = memalloc(REG_SIZE));
+	registries[index] = NULL;
 }
 

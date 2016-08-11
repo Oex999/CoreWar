@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 07:37:41 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 13:56:57 by ghavenga         ###   ########.fr       */
+/*   Updated: 2016/08/11 14:38:08 by ghavenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VM_H
 
 # include <libft.h>
+# include <op.h>
 
 #define
 
