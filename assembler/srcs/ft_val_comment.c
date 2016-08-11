@@ -6,25 +6,22 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 10:26:52 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 10:37:52 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/11 13:51:38 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-int		ft_val_comment(char *comment)
+int		ft_val_comment(char *comment, t_header *header)
 {
 	int		len;
-	char	*tmp;
 	char	**split;
 
-	split = ft_strsplit(comment, ' ');
+	split = ft_mysplit(comment, DELIM);
 	if (!split[1])
 		return (ft_err("Failed to detect Champion Comment."));
-	tmp = split[1];
-	free(split[1]);
-	split[1] = ft_strdup(ft_trimquotes(tmp));
-	len = ft_strlen(split[1]);
+	ft_strcpy(header->comment, ft_text(comment));
+	len = ft_strlen(header->comment);
 	if ((len + 3) > COMMENT_LENGTH)
 		return (ft_err("Champion Comment is too long"));
 	ft_deltab(split);

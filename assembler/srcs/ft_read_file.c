@@ -6,25 +6,28 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 08:27:09 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 14:34:50 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/11 14:07:54 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void		ft_deltab(char **tab)
+void		ft_format(char ***tab)
 {
-	int	i;
+	char	**split;
+	char	*tmp;
+	int		i;
 
-	if (tab)
+	i = 0;
+	split = *tab;
+	tmp = NULL;
+	while (split[i])
 	{
-		i = 0;
-		while (tab[i])
-		{
-			free(tab[i]);
-			i++;
-		}
-		free(tab);
+		tmp = ft_strdup(ft_trimspaces(split[i]));
+		free(split[i]);
+		split[i] = ft_strdup(tmp);
+		free(tmp);
+		i++;
 	}
 }
 
@@ -67,7 +70,8 @@ int			ft_read_file(char *file, t_input **input)
 	{
 		if (ft_strlen(line) > 0 && line[0] != COMMENT_CHAR)
 		{
-			split = ft_strsplit(line, '\t');
+			split = ft_mysplit(line, " ");
+			ft_format(&split);
 			if (split[0])
 				ft_input_push_back(input, split[0], ft_get_alias(split[0]));
 			if (split[0] && split[1])
@@ -75,6 +79,7 @@ int			ft_read_file(char *file, t_input **input)
 			ft_deltab(split);
 		}
 		free(line);
+		line = NULL;
 	}
 	if (close(fd) < 0)
 		return (ft_err("Failed to close file."));

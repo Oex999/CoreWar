@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 17:06:06 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/11 14:03:26 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <libft.h>
 
 # define OPEN O_WRONLY | O_CREAT | O_TRUNC
+# define DELIM " \t"
 
 typedef enum		e_aliases
 {
@@ -52,6 +53,7 @@ typedef struct		s_all
 {
 	int				fd;
 	char			*name;
+	t_header		header;
 	t_input			*input;
 	t_output		*output;
 }					t_all;
@@ -66,8 +68,10 @@ void				ft_output_free(t_output **output);
 
 char				**ft_get_params(char *line);
 char				*ft_process_acb(char *line);
+int					ft_process_args(t_all *all, t_output **node, char *line);
 int					ft_process_input(t_all *all);
 
+void				ft_format(char ***tab);
 char				*ft_trimspaces(char *str);
 int					ft_err(char *str);
 int					ft_check_file(char *file);
@@ -80,11 +84,12 @@ t_arg_type			ft_get_type(char *str);
 char				*ft_trimquotes(char *str);
 int					ft_val_cmd(char *cmd);
 int					ft_val_label(char *label);
-int					ft_val_comment(char *comment);
-int					ft_val_prog(char *prog);
-int					ft_validate(t_input **input);
+int					ft_val_comment(char *comment, t_header *header);
+int					ft_val_prog(char *prog, t_header *header);
+int					ft_validate(t_all *all);
 
 char				*ft_itoa_base(int value, int base);
+char				**ft_mysplit(char *str, char *delim);
 
 char				*ft_text(char *line);
 int					ft_print_name(t_all *all);

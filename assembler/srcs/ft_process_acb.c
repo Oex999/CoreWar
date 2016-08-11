@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 14:00:45 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 17:05:38 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/11 09:25:19 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**ft_get_params(char *line)
 	char	*tmp;
 	char	**split;
 
-	split = ft_strsplit(ft_strchr(line, ' '), SEPARATOR_CHAR);
+	split = ft_strsplit(ft_strchr(ft_trimspaces(line), ' '), SEPARATOR_CHAR);
 	i = -1;
 	while (split[++i])
 	{
@@ -42,11 +42,11 @@ char		*ft_process_acb(char *line)
 	while (params[++i])
 	{
 		if (ft_get_type(params[i]) == T_REG)
-			acb |= T_REG;
+			acb |= REG_CODE;
 		else if (ft_get_type(params[i]) == T_DIR)
-			acb |= T_DIR;
+			acb |= DIR_CODE;
 		else if (ft_get_type(params[i]) == T_IND)
-			acb |= T_IND;
+			acb |= IND_CODE;
 		acb = (int)(acb << 2);
 	}
 	ft_deltab(params);
