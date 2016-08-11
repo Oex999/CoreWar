@@ -9,5 +9,6 @@ void	**init_reg(t_process *process)
 	while(++index != 16)
 		registries[index] = (*(process->data) = memalloc(REG_SIZE));
 	registries[index] = NULL;
+	return registries;
 }
 
