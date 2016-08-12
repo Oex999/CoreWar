@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 08:27:09 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/12 09:24:48 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/12 10:38:36 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ int			ft_read_lines(int fd, t_input **input)
 	{
 		if (ft_strlen(line) <= 0 || line[0] == COMMENT_CHAR)
 			continue ;
-		if (!ft_val_label(ft_trimsp(line), 0) && (ft_is_cmd(ft_trimsp(line)) ||
-				ft_strncmp(ft_trimsp(line), "live", 4) == 0))
+		if (!ft_val_label(ft_trimsp(line), 0) && (ft_is_cmd(ft_trimsp(line))))
 		{
 			ft_input_push_back(input, ft_trimsp(line),
 				   	ft_get_alias(line));
