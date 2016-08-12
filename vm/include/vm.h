@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 07:37:41 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 14:38:08 by ghavenga         ###   ########.fr       */
+/*   Updated: 2016/08/12 15:08:52 by ghavenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 # include <libft.h>
 # include <op.h>
 
-#define
+/*----------------------------------------------------------------------------*/
 
 typedef struct			s_process
 {
 	char				*champion_comment;
 	int					*champion_id;
 	int					alive;
+	int					carry;
 	void				**registries;
 	char				*pc;
 	struct s_process	*next;
@@ -43,5 +44,12 @@ typedef struct			s_state
 	t_address			*begin;
 	t_process			**champions
 }						t_state;
+
+/*----------------------------------------------------------------------------*/
+/*init.c*/
+void	init_state(t_state *state);
+void	init_reg(t_process *process);
+void	init_mem(t_address *previous, t_address *current, int mem);
+void	init_process(t_process *process);
 
 #endif
