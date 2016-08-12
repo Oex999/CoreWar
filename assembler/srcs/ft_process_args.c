@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 09:07:45 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 12:59:03 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/12 09:27:17 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ static char	*ft_resolve_dir(char *dir)
 
 static char	*ft_get_arg(char *line)
 {
-	if (ft_get_type(ft_trimspaces(line)) == T_REG)
-		return (ft_resolve_reg(ft_trimspaces(line)));
-	else if (ft_get_type(ft_trimspaces(line)) == T_DIR)
-		return (ft_resolve_dir(ft_trimspaces(line)));
-	else if (ft_get_type(ft_trimspaces(line)) == T_IND)
+	if (ft_get_type(ft_trimsp(line)) == T_REG)
+		return (ft_resolve_reg(ft_trimsp(line)));
+	else if (ft_get_type(ft_trimsp(line)) == T_DIR)
+		return (ft_resolve_dir(ft_trimsp(line)));
+	else if (ft_get_type(ft_trimsp(line)) == T_IND)
 		return ("IND"); //TO-DO
 	return (NULL);
 }

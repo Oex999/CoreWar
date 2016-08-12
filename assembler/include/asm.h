@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/03 13:00:01 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 14:03:26 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/12 09:25:46 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int					ft_process_args(t_all *all, t_output **node, char *line);
 int					ft_process_input(t_all *all);
 
 void				ft_format(char ***tab);
-char				*ft_trimspaces(char *str);
+char				*ft_trimsp(char *str);
 int					ft_err(char *str);
 int					ft_check_file(char *file);
 void				ft_deltab(char **tab);
@@ -83,12 +83,13 @@ int					ft_read_file(char *file, t_input **input);
 t_arg_type			ft_get_type(char *str);
 char				*ft_trimquotes(char *str);
 int					ft_val_cmd(char *cmd);
-int					ft_val_label(char *label);
+int					ft_val_label(char *label, int visible);
 int					ft_val_comment(char *comment, t_header *header);
 int					ft_val_prog(char *prog, t_header *header);
 int					ft_validate(t_all *all);
 
 char				*ft_itoa_base(int value, int base);
+int					ft_oneof(char c, char *in);
 char				**ft_mysplit(char *str, char *delim);
 
 char				*ft_text(char *line);

@@ -6,13 +6,13 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 13:35:41 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 13:47:53 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/12 07:36:47 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-static int		ft_oneof(char c, char *in)
+int		ft_oneof(char c, char *in)
 {
 	int	i;
 

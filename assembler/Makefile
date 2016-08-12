@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/11 13:37:35 by oexall           ###   ########.fr        #
+#    Updated: 2016/08/12 07:55:46 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC=	$(SP)assembler.c $(SP)ft_err.c $(SP)ft_check_file.c \
 		$(SP)ft_val_prog.c $(SP)ft_val_comment.c $(SP)ft_val_label.c \
 		$(SP)ft_val_cmd.c $(SP)ft_print_file.c $(SP)ft_print_name.c \
 		$(SP)ft_print_comment.c \
-		$(SP)ft_misc_one.c $(SP)ft_mysplit.c
+		$(SP)ft_misc_one.c $(SP)ft_mysplit.c $(SP)ft_misc_two.c
 
 all: $(NAME)
 

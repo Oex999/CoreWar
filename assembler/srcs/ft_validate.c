@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 09:32:48 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 07:23:32 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/12 09:16:19 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			ft_validate(t_all *all)
 			return (0);
 		if (list->alias == COMMENT && !ft_val_comment(list->line, &all->header))
 			return (0);
-		if (list->alias == LABEL && !ft_val_label(list->line))
+		if (list->alias == LABEL && !ft_val_label(list->line, 1))
 			return (0);
 		if ((list->alias == CMD)
 				&& !ft_val_cmd(list->line))

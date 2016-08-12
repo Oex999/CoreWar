@@ -6,13 +6,13 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 14:24:35 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 13:55:45 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/12 09:28:51 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-char	*ft_trimspaces(char *str)
+char	*ft_trimsp(char *str)
 {
 	char	*end;
 

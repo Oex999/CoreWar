@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 14:00:45 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 09:25:19 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/12 09:26:35 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ char	**ft_get_params(char *line)
 	char	*tmp;
 	char	**split;
 
-	split = ft_strsplit(ft_strchr(ft_trimspaces(line), ' '), SEPARATOR_CHAR);
+	split = ft_strsplit(ft_strchr(ft_trimsp(line), ' '), SEPARATOR_CHAR);
 	i = -1;
 	while (split[++i])
 	{
 		tmp = ft_strdup(split[i]);
 		free(split[i]);
-		split[i] = ft_strdup(ft_trimspaces(tmp));
+		split[i] = ft_strdup(ft_trimsp(tmp));
 		free(tmp);
 	}
 	return (split);
