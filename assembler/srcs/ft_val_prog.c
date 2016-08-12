@@ -6,38 +6,22 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 10:04:21 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 15:31:37 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/11 13:50:57 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-char	*ft_trimquotes(char *str)
-{
-	char	*end;
-
-	while (*str == '\"')
-		str++;
-	end = str + ft_strlen(str) - 1;
-	while (end > str && *end == '\"')
-		end--;
-	*(end + 1) = '\0';
-	return (str);
-}
-
-int		ft_val_prog(char *prog)
+int		ft_val_prog(char *prog, t_header *header)
 {
 	int		len;
-	char	*tmp;
 	char	**split;
 
-	split = ft_strsplit(prog, ' ');
+	split = ft_mysplit(prog, DELIM);
 	if (!split[1])
 		return (ft_err("Failed to dectect Champion Name"));
-	tmp = split[1];
-	free(split[1]);
-	split[1] = ft_strdup(ft_trimquotes(tmp));
-	len = ft_strlen(split[1]);
+	ft_strcpy(header->prog_name, ft_trimquotes(split[1]));
+	len = ft_strlen(header->prog_name);
 	if ((len + 3) > PROG_NAME_LENGTH)
 		return (ft_err("Champion Name is too long"));
 	ft_deltab(split);

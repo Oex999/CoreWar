@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 10:58:10 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 19:42:56 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/11 10:07:58 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,6 @@ static int	ft_cargs(char **params)
 	while (params[i])
 		i++;
 	return (i);
-}
-
-t_arg_type	ft_get_type(char *str)
-{
-	if (str[0] == 'r')
-		return (T_REG);
-	else if (str[0] == '%' && str[1] != '\0')
-		return (T_DIR);
-	else
-		return (T_IND);
-	return (0);
 }
 
 static int	ft_check_params(char **params, int no_args, int index)

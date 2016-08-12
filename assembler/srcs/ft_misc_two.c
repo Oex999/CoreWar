@@ -1,29 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_val_comment.c                                   :+:      :+:    :+:   */
+/*   ft_misc_two.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/09 10:26:52 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 13:51:38 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/12 07:52:13 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/12 09:27:33 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-int		ft_val_comment(char *comment, t_header *header)
+int		ft_is_cmd(char *str)
 {
-	int		len;
-	char	**split;
+	int	i;
 
-	split = ft_mysplit(comment, DELIM);
-	if (!split[1])
-		return (ft_err("Failed to detect Champion Comment."));
-	ft_strcpy(header->comment, ft_text(comment));
-	len = ft_strlen(header->comment);
-	if ((len + 3) > COMMENT_LENGTH)
-		return (ft_err("Champion Comment is too long"));
-	ft_deltab(split);
-	return (1);
+	i = 0;
+	while (i < 16)
+	{
+		if (ft_strncmp(str, g_op_tab[i].name, ft_strlen(g_op_tab[i].name)) == 0)
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+void	ft_format(char ***tab)
+{
+	char	**split;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	split = *tab;
+	tmp = NULL;
+	while (split[i])
+	{
+		tmp = ft_strdup(ft_trimsp(split[i]));
+		free(split[i]);
+		split[i] = ft_strdup(tmp);
+		free(tmp);
+		i++;
+	}
 }

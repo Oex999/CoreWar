@@ -6,35 +6,24 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 10:39:53 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/09 10:54:11 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/12 09:16:48 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-static int	ft_oneof(char c)
+int			ft_val_label(char *label, int visible)
 {
 	int	i;
 
 	i = 0;
-	if (c == ':')
-		return (1);
-	while (LABEL_CHARS[i] != '\0')
+	while (label[i])
 	{
-		if (c == LABEL_CHARS[i])
-			return (1);
+		if (label[i] == ':' && label[i - 1] == '%')
+			return (visible ? ft_err("Invalid Label.") : 0);
+		if (!ft_oneof(label[i], LABEL_CHARS))
+			return (visible ? ft_err("Invalid Label.") : 0);
 		i++;
-	}
-	return (0);
-}
-
-int			ft_val_label(char *label)
-{
-	while (*label)
-	{
-		if (!ft_oneof(*label))
-			return (ft_err("Invalid character in label"));
-		label++;
 	}
 	return (1);
 }

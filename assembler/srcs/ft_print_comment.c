@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 16:05:41 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 16:59:42 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/11 08:59:00 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ int		ft_print_comment(t_all *all)
 
 	i = -1;
 	t = -1;
-	comment = ft_text(all->input->next->line);
+	comment = all->header.comment;
 	while (++t < 10)
 	{
 		write(all->fd, "00", 2);
 		if (t % 2)
 			write(all->fd, " ", 1);
 	}
-	ft_putendl(comment);
 	while (comment[++i])
 	{
 		write(all->fd, ft_itoa_base((int)comment[i], 16), 2);
@@ -46,6 +45,5 @@ int		ft_print_comment(t_all *all)
 			write(all->fd, " ", 1);
 	}
 	ft_print_pad(all, t + i);
-	free(comment);
 	return (1);
 }

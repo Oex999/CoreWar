@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: oexall <owen@exall.za.net>                 +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/08/10 07:38:38 by oexall            #+#    #+#              #
-#    Updated: 2016/08/11 15:01:03 by ghavenga         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME= corewar
 
 CC= gcc -o
@@ -18,7 +6,8 @@ LIBFT= -L ../libft/ -lft
 HEADER= -I ../libft -I include
 
 SP= ./srcs/
-SRC= $(SP)corewar.c
+SRC= $(SP)corewar.c\
+	 		init_reg.c
 
 all: $(NAME)
 
