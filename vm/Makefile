@@ -6,7 +6,7 @@
 #    By: oexall <owen@exall.za.net>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/10 07:38:38 by oexall            #+#    #+#              #
-#    Updated: 2016/08/11 14:57:56 by ghavenga         ###   ########.fr        #
+#    Updated: 2016/08/11 15:43:56 by sallen           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ LIBFT= -L ../libft/ -lft
 HEADER= -I ../libft -I include
 
 SP= ./srcs/
-SRC= $(SP)corewar.c
+SRC= $(SP)corewar.c\
+	 		init_reg.c
 
 all: $(NAME)
 

@@ -6,15 +6,15 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 07:52:49 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/10 07:53:37 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/11 15:42:45 by sallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
-int		main(int argc, char **argv)
+int		main()
 {
-	(void)argc; //Just so we can compile to test. Remove
-	(void)argv; 
+	t_process	process;
+	init_reg(&process);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 07:37:41 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 14:38:08 by ghavenga         ###   ########.fr       */
+/*   Updated: 2016/08/11 15:41:35 by sallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <libft.h>
 # include <op.h>
-
-#define
 
 typedef struct			s_process
 {
@@ -41,7 +39,11 @@ typedef struct			s_state
 	unsigned int		cycles_to_die;
 	int					checks_done;
 	t_address			*begin;
-	t_process			**champions
+	t_process			**champions;
 }						t_state;
+
+/*==== FUNCTIONS ==== */
+
+void	**init_reg(t_process *process);
 
 #endif
