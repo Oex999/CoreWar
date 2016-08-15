@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 10:26:52 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/11 13:51:38 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/13 11:36:22 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 int		ft_val_comment(char *comment, t_header *header)
 {
-	int		len;
-	char	**split;
+	char	*tmp;
 
-	split = ft_mysplit(comment, DELIM);
-	if (!split[1])
-		return (ft_err("Failed to detect Champion Comment."));
-	ft_strcpy(header->comment, ft_text(comment));
-	len = ft_strlen(header->comment);
-	if ((len + 3) > COMMENT_LENGTH)
-		return (ft_err("Champion Comment is too long"));
-	ft_deltab(split);
+	tmp = ft_trimquotes(ft_strchr(comment, '\"'));
+	ft_putstr("DEBUG: Line = "); ft_putendl(tmp); //DEBUG;
+	if (ft_strlen(tmp) + 3 > COMMENT_LENGTH)
+		return (ft_err("Comment is too long!"));
+	ft_strcpy(header->comment, tmp);
 	return (1);
 }
