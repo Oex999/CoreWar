@@ -1,13 +1,15 @@
 NAME= corewar
 
-CC= gcc -o
+CC= gcc -g -o
 CFLAGS= -Wall -Werror -Wextra
 LIBFT= -L ../libft/ -lft
 HEADER= -I ../libft -I include
 
 SP= ./srcs/
 SRC= $(SP)corewar.c\
-	 		init_reg.c
+	 	$(SP)init.c\
+	$(SP)ft_itoabase.c\
+
 
 all: $(NAME)
 

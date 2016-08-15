@@ -6,11 +6,7 @@
 /*   By: oexall <owen@exall.za.net>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 07:37:41 by oexall            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2016/08/12 15:08:52 by ghavenga         ###   ########.fr       */
-=======
-/*   Updated: 2016/08/11 15:41:35 by sallen           ###   ########.fr       */
->>>>>>> 5788d9acdc24708364e7d3381908cab03e1a41d8
+/*   Updated: 2016/08/15 18:17:59 by ghavenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +16,27 @@
 # include <libft.h>
 # include <op.h>
 
-<<<<<<< HEAD
+
+
+
+
+
+
+
+
+#include <stdio.h> //DEBUG PURPOSES ONLY
+
+
+
+
+
+
 /*----------------------------------------------------------------------------*/
 
-=======
->>>>>>> 5788d9acdc24708364e7d3381908cab03e1a41d8
 typedef struct			s_process
 {
 	char				*champion_comment;
-	int					*champion_id;
+	int					*champion_no;
 	int					alive;
 	int					carry;
 	void				**registries;
@@ -38,9 +46,8 @@ typedef struct			s_process
 
 typedef struct			s_address
 {
-	struct s_address	*previous;
 	struct s_address	*next;
-	char				*instruction;
+	int					instruction;
 	char				*address;
 }						t_address;
 
@@ -48,21 +55,26 @@ typedef struct			s_state
 {
 	unsigned int		cycles_to_die;
 	int					checks_done;
+	int					dump;
 	t_address			*begin;
 	t_process			**champions;
 }						t_state;
 
-<<<<<<< HEAD
 /*----------------------------------------------------------------------------*/
 /*init.c*/
 void	init_state(t_state *state);
 void	init_reg(t_process *process);
-void	init_mem(t_address *previous, t_address *current, int mem);
+void	init_mem(t_state *state, t_address *current, int mem);
 void	init_process(t_process *process);
-=======
-/*==== FUNCTIONS ==== */
 
-void	**init_reg(t_process *process);
->>>>>>> 5788d9acdc24708364e7d3381908cab03e1a41d8
+/*free.c*/
+void	free_state(t_state *state);
+void	free_reg(t_process *process);
+void	free_mem(t_address *current, int mem);
+void	free_process(t_process *process);
 
+/*input.c*/
+
+/*ft_itoabase.c ---TO BE ADDED TO LIBFT LATER*/
+char	*ft_itoabase(int value, int base);
 #endif
