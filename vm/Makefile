@@ -7,8 +7,9 @@ HEADER= -I ../libft -I include
 
 SP= ./srcs/
 SRC= $(SP)corewar.c\
-	 	$(SP)init.c\
-	$(SP)ft_itoabase.c\
+	 $(SP)init.c\
+	 $(SP)ft_itoabase.c\
+	 $(SP)free.c
 
 
 all: $(NAME)
