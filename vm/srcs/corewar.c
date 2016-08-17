@@ -16,12 +16,16 @@ int				main(int argc, char **argv)
 		state.champions[1]->has_next = 1;
 		init_process(&state, 1);
 		init_process(&state, 2);
+
+		printf("Process 1 Registries at %p\n", state.champions[0]->registries);
+		printf("Process 2 Registries at %p\n", state.champions[1]->registries);
 	
 		//read and validate champions here
 		//init_process;
 		
 		(void)argc; //Just so we can compile to test. Remove
 		(void)argv;
+		printf("\n\t\tFreeing State\n\n");
 		free_state(&state);
 	}
 	else
