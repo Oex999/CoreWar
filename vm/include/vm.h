@@ -71,4 +71,10 @@ void	free_champion(t_process *champion);
 
 /*ft_itoabase.c ---TO BE ADDED TO LIBFT LATER*/
 char	*ft_itoabase(int value, int base);
+
+/*parsing.c*/
+int     parse_cycles_to_die(t_state *state, char **argv, int count);
+int     parse_champ_count(t_state *state, char **argv, int count);
+//int     parse_champ_number(t_state *state, char **argv, int count); implement once champions setup
+
 #endif
