@@ -17,6 +17,21 @@ void			free_state(t_state *state)
 	}
 	free(state->champions);
 	printf("Champions succesfully freed\n");
+	free(state->live_champs);
+	printf("Live_Champs List succesfully freed\n");
+}
+
+void			free_mem(t_address *current, int mem)
+{
+	t_address	*temp;
+
+	//printf("Freeing Address %s\n", current->address);
+	if (mem != 0)
+		temp = current->next;
+	free(current->address);
+	free(current);
+	if (mem != 1)
+		free_mem(temp, mem - 1);
 }
 
 void			free_reg(t_process *process)
@@ -33,25 +48,13 @@ void			free_reg(t_process *process)
 	free(process->registries);
 }
 
-void			free_mem(t_address *current, int mem)
-{
-	t_address	*temp;
-
-	//printf("Freeing Address %s\n", current->address);
-	if (mem != 0)
-		temp = current->next;
-	free(current->address);
-	free(current);
-	if (mem != 1)
-		free_mem(temp, mem - 1);
-}
-
 void			free_process(t_process *process)
 {
 	free(process->champion_name);
 	free(process->champion_comment);
 	printf("Name & Champion succesfully freed\n");
-	printf("Registries at %p\n", process->registries);
+	printf("free_process at %p\n", process);
+	printf("free_process Registries at %p\n", process->registries);
 	free_reg(process);
 	printf("Registries succesfully freed\n");
 	free(process);
@@ -59,21 +62,22 @@ void			free_process(t_process *process)
 
 void			free_champion(t_process *champion)
 {
-	t_process	*temp;
+	//REMBMER TO MAKE THIS RECURSIVE TO FREE ALL CHAMPION PROCESSES
 
-	temp = champion;
-	if (temp != NULL)
-	{
-		printf("Freeing Process %p\n", champion);
+	//t_process	*temp;
+
+	//temp = champion;
+	//if (temp != NULL)
+	//{
 		//if (champion->next != NULL)
-		if (champion->has_next == 1)
-		{
-			printf("Freeing next Process %p\n", champion->next);
-			free_champion(champion->next);
-		}
-		printf("Registries at %p\n", temp->registries);
-		printf("freeing\n");
-		free_process(temp);
+	//	if (champion->has_next == 1)
+	//	{
+	//		printf("Freeing next Process %p\n", champion->next);
+	//		free_champion(champion->next);
+	//	}
+		printf("Freeing Process %p\n", champion);
+		printf("free_champion Registries at %p\n", champion->registries);
+		free_process(champion);
 		printf("Process succesfully freed\n");
-	}
+//	}
 }

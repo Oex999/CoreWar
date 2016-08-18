@@ -44,19 +44,21 @@ typedef struct			s_address
 typedef struct			s_state
 {
 	unsigned int		cycles_to_die;
+	int					champ_count;
 	int					checks_done;
 	int					dump;
 	t_address			*begin;
 	t_process			**champions;
-	int					champ_count;
+	char				*live_champs;
 }						t_state;
 
 /*----------------------------------------------------------------------------*/
 /*init.c*/
 void	init_state(t_state *state);
 void	init_mem(t_state *state, t_address *current, int mem);
-void	init_process(t_state *state, int champion_no);
+void	init_process(t_process *process, int champion_no);
 void	init_reg(t_process *process);
+void	create_process(t_state *state, int champion_no);
 
 /*free.c --- free_process does not reconnect the end of the list*/
 void	free_state(t_state *state);

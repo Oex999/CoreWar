@@ -8,17 +8,13 @@ int				main(int argc, char **argv)
 	{
 		state.champ_count = 2; // DEBUG
 		init_state(&state);
-		//while (process && process->next != NULL)
-		//	process = process->next;
-		state.champions[0] = malloc(sizeof(t_address));
-		state.champions[0]->has_next = 1;
-		state.champions[1] = malloc(sizeof(t_address));
-		state.champions[1]->has_next = 1;
-		init_process(&state, 1);
-		init_process(&state, 2);
-
+		create_process(&state, 1);
+		create_process(&state, 2);
+		printf("\nProcess 1 at %p\n", state.champions[0]);
 		printf("Process 1 Registries at %p\n", state.champions[0]->registries);
+		printf("Process 2 at %p\n", state.champions[1]);
 		printf("Process 2 Registries at %p\n", state.champions[1]->registries);
+
 	
 		//read and validate champions here
 		//init_process;

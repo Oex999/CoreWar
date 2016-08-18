@@ -2,43 +2,23 @@
 
 void			init_state(t_state *state)
 {
-	//int			i;
-	
-	state->cycles_to_die = CYCLE_TO_DIE;
+	state->cycles_to_die = 0;
+	state->champ_count = 0;
 	state->checks_done = 0;
 	state->dump = 0;
+	state->live_champs = malloc(sizeof(char) * 4);
+	ft_strcpy(state->live_champs, "0000");
+	printf("live_champs = %s\n", state->live_champs);
 	state->begin = malloc(sizeof(t_address));
 	init_mem(state, state->begin, MEM_SIZE);
 	state->champions = ft_memalloc(state->champ_count);
-	//i = -1;
-	//while (++i < state->champ_count)
-	//{
-	//	state->champions[i] = malloc(sizeof(t_process));
-	//	printf("t_process %p \n", state->champions[i]);
-	//}
-	/*printf("State Initialized\n");
-	printf("state->cycles_to_die = %i\n", state->cycles_to_die);
-	printf("state->checks_done = %i\n", state->checks_done);
-	printf("state->dump = %i\n", state->dump);
-	t_address *temp = state->begin->next;
-	while (ft_strcmp(temp->address, state->begin->address) != 0)
-	{
-		printf("Address Pointer -\t%p\n", temp);
-		printf("Address Designation -\t%s\n", temp->address);
-		printf("Address Instruction -\t%i\n", temp->instruction);
-		temp = temp->next;
-	}*/
 }
 
 void			init_mem(t_state *state, t_address *current, int mem)
 {
-	//printf("State->begin Memory Element -\t%p\n", state->begin);
-	current->instruction = 0xff;
+	current->instruction = 0;
 	current->address = (char *)malloc(sizeof(char) * 255);
 	current->address = ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16);
-	//printf("Memory Element Initialized -\t%s\n", current->address);
-	//if (mem < MEM_SIZE)
-	//	printf("Next Memory Element -\t%p\n", current->next);
 	if (mem == 1)
 		current->next = state->begin;
 	else
@@ -46,6 +26,50 @@ void			init_mem(t_state *state, t_address *current, int mem)
 		current->next = ft_memalloc(sizeof(t_address));
 		init_mem(state, current->next, mem - 1);
 	}
+}
+
+void			create_process(t_state *state, int champion_no)
+{
+	t_process	*pointer;
+
+	if (state->champions[champion_no - 1] != NULL)
+	{
+		printf("\nCreating Successive Process For Champion %i", champion_no);
+		pointer = state->champions[champion_no - 1];
+		while (pointer->next != NULL)
+			pointer = pointer->next;
+		pointer = malloc(sizeof(t_address));
+		pointer->registries = malloc(sizeof(int *) * REG_NUMBER);
+		init_process(pointer, champion_no);
+	}
+	else
+	{
+		printf("Creating First Process For Champion %i\n", champion_no);
+		state->champions[champion_no - 1] = malloc(sizeof(t_address));
+		printf("New Process at %p\n", state->champions[champion_no - 1]);
+		init_process(state->champions[champion_no - 1], champion_no);
+	}
+}
+
+void			init_process(t_process *process, int champion_no)
+{
+	printf("\ninit_process for champion %i\n", champion_no);
+	printf("t_process %p \n", process);
+	process->champion_name = malloc(sizeof(char) * PROG_NAME_LENGTH + 1);
+	process->champion_name[PROG_NAME_LENGTH + 1] = '\0';
+	process->champion_comment = malloc(sizeof(char) * COMMENT_LENGTH + 1);
+	process->champion_comment[COMMENT_LENGTH + 1] = '\0';
+	process->alive = 0;
+	process->carry = 0;
+	process->pc = NULL;
+	process->next = NULL;
+	process->has_next = 0;
+	process->champion_no = champion_no;
+	process->registries = malloc(sizeof(int *) * REG_NUMBER);
+	printf("Champion number = %i\n", process->champion_no);
+	printf("Registries Malloced at %p\n", process->registries);
+	init_reg(process);	
+	printf("Registries Initialized at %p\n", process->registries);
 }
 
 void			init_reg(t_process *process)
@@ -60,40 +84,8 @@ void			init_reg(t_process *process)
 			process->registries[index] = process->champion_no;
 		else
 			process->registries[index] = 0;
-		printf("Registry index %i initialized to %i\n", index, process->registries[index]);
+		printf("Registry index %i initialized to %i\n", 
+				index, process->registries[index]);
 	}
 }
 
-void			init_process(t_state *state, int champion_no)
-{
-	t_process	*process;
-
-	printf("init_process\n");
-	process = state->champions[champion_no - 1];
-	printf("t_process %p \n", process);
-	//printf("Seeking New Process Pointer\n");
-	//if (process = NULL
-	//while (process->next != NULL)
-	//{
-	//	process = process->next;
-	//	printf("t_process %p \n", process);
-	//}
-	//printf("New Process Pointer Found\n");
-	//process->next = malloc(sizeof(t_process));
-	//process = process->next;
-	printf("Process Malloced\n");
-	process->champion_name = malloc(sizeof(char) * PROG_NAME_LENGTH + 1);
-	process->champion_name[PROG_NAME_LENGTH + 1] = '\0';
-	process->champion_comment = malloc(sizeof(char) * COMMENT_LENGTH + 1);
-	process->champion_comment[COMMENT_LENGTH + 1] = '\0';
-	printf("Process Malloced\n");
-	process->alive = 0;
-	process->carry = 0;
-	process->pc = NULL;
-	process->next = NULL;
-	process->has_next = 0;
-	process->champion_no = champion_no;
-	process->registries = malloc(sizeof(int *) * REG_NUMBER);
-	init_reg(process);	
-	printf("Registries Initialized at %p\n", process->registries);
-}
