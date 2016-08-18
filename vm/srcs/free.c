@@ -6,6 +6,7 @@ void			free_state(t_state *state)
 	
 	free_mem(state->begin, MEM_SIZE);
 	printf("Memory succesfully freed\n\n");
+	printf("State->ChampCount = %i\n", state->champ_count);
 	k = state->champ_count;
 	while (k > 0)
 	{
@@ -62,22 +63,18 @@ void			free_process(t_process *process)
 
 void			free_champion(t_process *champion)
 {
-	//REMBMER TO MAKE THIS RECURSIVE TO FREE ALL CHAMPION PROCESSES
+	t_process *temp;
 
-	//t_process	*temp;
-
-	//temp = champion;
-	//if (temp != NULL)
-	//{
-		//if (champion->next != NULL)
-	//	if (champion->has_next == 1)
-	//	{
-	//		printf("Freeing next Process %p\n", champion->next);
-	//		free_champion(champion->next);
-	//	}
-		printf("Freeing Process %p\n", champion);
-		printf("free_champion Registries at %p\n", champion->registries);
-		free_process(champion);
-		printf("Process succesfully freed\n");
-//	}
+	printf("Champion Process %p\n", champion);
+	printf("Champion->next Process %p\n", champion->next);
+	temp = champion->next;
+	if (temp)
+	{
+		printf("Freeing Successive Champion Process\n\n");
+		free_champion(temp);
+	}
+	printf("Freeing Champion Process at %p\n", champion);
+	printf("free_champion Registries at %p\n", champion->registries);
+	free_process(champion);
+	printf("Process succesfully freed\n");
 }
