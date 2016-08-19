@@ -81,5 +81,6 @@ void    parse_user_input(t_state *state, char **argv, int count);
 int     parse_cycles_to_die(t_state *state, char **argv, int count);
 int     parse_champ_count(t_state *state, char **argv, int count);
 int     parse_champ_number(t_state *state, char **argv, int count); //implement once champions setup
+int     check_if_champs_assigned(t_state *state, int left);
 
 #endif
