@@ -3,6 +3,7 @@
 
 # include <libft.h>
 # include <op.h>
+# include <fcntl.h>
 
 
 
@@ -68,6 +69,9 @@ void	free_process(t_process *process);
 void	free_champion(t_process *champion);
 
 /*input.c*/
+
+/*exit.c*/
+void	error_exit(t_state *state, char *message);
 
 /*ft_itoabase.c ---TO BE ADDED TO LIBFT LATER*/
 char	*ft_itoabase(int value, int base);

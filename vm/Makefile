@@ -11,7 +11,8 @@ SRC= $(SP)corewar.c\
 	 $(SP)ft_itoabase.c\
 	 $(SP)free.c\
 	 $(SP)parsing.c\
-	 $(SP)read.c
+	 $(SP)read.c\
+	 $(SP)exit.c
 
 all: $(NAME)
 
