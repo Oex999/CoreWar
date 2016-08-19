@@ -2,8 +2,6 @@
 
 void			init_state(t_state *state)
 {
-    //int         i;
-    
     state->cycles_to_die = 0;
 	state->champ_count = 0;
 	state->checks_done = 0;
@@ -14,9 +12,6 @@ void			init_state(t_state *state)
 	state->begin = malloc(sizeof(t_address));
 	init_mem(state, state->begin, MEM_SIZE);
 	state->champions = malloc(sizeof(t_process *) * 4);
-    //i = 0;
-    //while (i++ < 4)
-    //    state->champions[i] = NULL;
 }
 
 void			init_mem(t_state *state, t_address *current, int mem)
@@ -59,8 +54,8 @@ void			create_process(t_state *state, int champion_no)
 
 void			init_process(t_process *process, int champion_no)
 {
-	printf("init_process for champion %i\n", champion_no);
-	printf("t_process %p \n", process);
+	//printf("init_process for champion %i\n", champion_no);
+	//printf("t_process %p \n", process);
 	process->champion_name = malloc(sizeof(char) * PROG_NAME_LENGTH + 1);
 	process->champion_name[PROG_NAME_LENGTH + 1] = '\0';
 	process->champion_comment = malloc(sizeof(char) * COMMENT_LENGTH + 1);
@@ -72,17 +67,17 @@ void			init_process(t_process *process, int champion_no)
 	process->has_next = 0;
 	process->champion_no = champion_no;
 	process->registries = malloc(sizeof(int *) * REG_NUMBER);
-	printf("Champion number = %i\n", process->champion_no);
-	printf("Registries Malloced at %p\n", process->registries);
+	//printf("Champion number = %i\n", process->champion_no);
+	//printf("Registries Malloced at %p\n", process->registries);
 	init_reg(process);	
-	printf("Registries Initialized at %p\n", process->registries);
+	//printf("Registries Initialized at %p\n", process->registries);
 }
 
 void			init_reg(t_process *process)
 {
 	int			index;
 
-	printf("Initializing Registries for Process at %p\n", process);
+	//printf("Initializing Registries for Process at %p\n", process);
 	index = -1;
 	while(++index != 16)
 	{
@@ -90,8 +85,8 @@ void			init_reg(t_process *process)
 			process->registries[index] = process->champion_no;
 		else
 			process->registries[index] = 0;
-		printf("Registry index %i initialized to %i\n",
-				index, process->registries[index]);
+		//printf("Registry index %i initialized to %i\n",
+		//		index, process->registries[index]);
 	}
 }
 
