@@ -1,5 +1,9 @@
 #include <vm.h>
 
+/*
+// If the -dump flag is found, cycles_to_die is set the the parsed value, else it is set to the default value
+*/
+
 int	parse_cycles_to_die(t_state *state, char **argv, int count)
 {
     int         i;
@@ -25,6 +29,10 @@ int	parse_cycles_to_die(t_state *state, char **argv, int count)
     }
     return (0);
 }
+
+/*
+// If a .cor extension is found, the champ_count is incremented
+*/
 
 int	parse_champ_count(t_state *state, char **argv, int count)
 {
@@ -66,6 +74,10 @@ int	parse_champ_count(t_state *state, char **argv, int count)
     return (0);
 }
 
+/*
+// If a -n flag is found, it assigns the player to the player number given
+*/
+
 int	parse_champ_number(t_state *state, char **argv, int count)
 {
     int         i;
@@ -84,11 +96,20 @@ int	parse_champ_number(t_state *state, char **argv, int count)
             n++;
             tmp = ft_atoi(argv[i + 1]);
             printf("\nchamp_no to be set = %s\n", argv[i + 1]);//debuggery
-            if (state->champions[tmp -1] == NULL)
-                create_process(state, tmp);
+            if (tmp <= MAX_PLAYERS)
+            {
+                if (state->champions[tmp -1] == NULL)
+                    create_process(state, tmp);
+                else
+                {
+                    ft_putstr("position already assigned");
+                    exit(-1);
+                }
+            }
             else
             {
-                ft_putstr("position already assigned");
+                ft_putstr("Error: Max Players is 4 and attempting to assign player to player number ");
+                ft_putnbr(tmp);
                 exit(-1);
             }
             printf("state.champion_no is now set to: %i\n", state->champions[tmp - 1]->champion_no);//debuggery
@@ -104,6 +125,10 @@ int	parse_champ_number(t_state *state, char **argv, int count)
     check_if_champs_assigned(state, state->champ_count - n);
     return (0);
 }
+
+/*
+// Checks if all players assigned a slot by comparing number of -n flags vs number of .cor flags
+*/
 
 int     check_if_champs_assigned(t_state *state, int left)
 {
@@ -132,6 +157,9 @@ int     check_if_champs_assigned(t_state *state, int left)
     return (0);
 }
 
+/*
+// Checks argv for -n, -dump flags and number of .cor files
+*/
 
 void    parse_user_input(t_state *state, char **argv, int count)
 {
@@ -144,6 +172,4 @@ void    parse_user_input(t_state *state, char **argv, int count)
     
     printf("Initial state.champ_count set to %i\n", state->champ_count);//debuggery
     parse_champ_number(state, argv, count);
-//    check_if_champs_assigned(state, count);
-
 }
