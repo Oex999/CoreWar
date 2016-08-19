@@ -32,15 +32,16 @@ void			create_process(t_state *state, int champion_no)
 {
 	t_process	*pointer;
 
+	printf("\n\nstate->champions[champion_no - 1] = %p\n", state->champions[champion_no - 1]);
 	if (state->champions[champion_no - 1] != NULL)
 	{
-		printf("\nCreating Successive Process For Champion %i", champion_no);
+		printf("Creating Successive Process For Champion %i\n", champion_no);
 		pointer = state->champions[champion_no - 1];
 		while (pointer->next != NULL)
 			pointer = pointer->next;
-		pointer = malloc(sizeof(t_address));
-		pointer->registries = malloc(sizeof(int *) * REG_NUMBER);
-		init_process(pointer, champion_no);
+		pointer->next = malloc(sizeof(t_address));
+		pointer->next->registries = malloc(sizeof(int *) * REG_NUMBER);
+		init_process(pointer->next, champion_no);
 	}
 	else
 	{
@@ -53,7 +54,7 @@ void			create_process(t_state *state, int champion_no)
 
 void			init_process(t_process *process, int champion_no)
 {
-	printf("\ninit_process for champion %i\n", champion_no);
+	printf("init_process for champion %i\n", champion_no);
 	printf("t_process %p \n", process);
 	process->champion_name = malloc(sizeof(char) * PROG_NAME_LENGTH + 1);
 	process->champion_name[PROG_NAME_LENGTH + 1] = '\0';
@@ -84,8 +85,8 @@ void			init_reg(t_process *process)
 			process->registries[index] = process->champion_no;
 		else
 			process->registries[index] = 0;
-		printf("Registry index %i initialized to %i\n", 
-				index, process->registries[index]);
+		//printf("Registry index %i initialized to %i\n", 
+		//		index, process->registries[index]);
 	}
 }
 

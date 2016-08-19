@@ -8,7 +8,7 @@ int				main(int argc, char **argv)
 	if (argc > 1)
 	{
         i = argc - 1;
-        init_state(&state);
+		init_state(&state);
         printf("Initial state.cycles_to_die set to %i\n", state.cycles_to_die);//debuggery
         parse_cycles_to_die(&state, argv, i);
         printf("After parse_cycles_to_die call, cycles_to_die value = %i\n", state.cycles_to_die);//debuggery
@@ -17,15 +17,13 @@ int				main(int argc, char **argv)
         parse_champ_count(&state, argv, i);
         printf("After parse_champ_count call, champ_count = %i\n", state.champ_count);//debuggery
         //parse_champ_number(&state, argv, i);
-
 		create_process(&state, 1);
 		create_process(&state, 2);
-		printf("\nProcess 1 at %p\n", state.champions[0]);//debuggery
-		printf("Process 1 Registries at %p\n", state.champions[0]->registries);//debuggery
-		printf("Process 2 at %p\n", state.champions[1]);
-		printf("Process 2 Registries at %p\n", state.champions[1]->registries);
-
-	
+		create_process(&state, 2);
+//		printf("\nProcess 1 at %p\n", state.champions[0]);
+//		printf("Process 1 Registries at %p\n", state.champions[0]->registries);
+//		printf("Process 2 at %p\n", state.champions[1]);
+//		printf("Process 2 Registries at %p\n", state.champions[1]->registries);
 		//read and validate champions here
 		//init_process;
 		
