@@ -86,7 +86,13 @@ int	parse_champ_number(t_state *state, char **argv, int count)
             printf("champ_no at argv = %s\n", argv[i + 1]);//debuggery
 
             printf("champ_no at tmp = %i\n", tmp);//debuggery
-            create_process(state, tmp);
+            if (state->champions[tmp -1] == NULL)
+                create_process(state, tmp);
+            else
+            {
+                ft_putstr("position already assigned");
+                exit(-1);
+            }
             printf("state.champion_no is now set to: %i\n", state->champions[tmp - 1]->champion_no);//debuggery
             printf("new champ at %p\n", state->champions[tmp - 1]);//debuggery
         }
@@ -98,7 +104,7 @@ int	parse_champ_number(t_state *state, char **argv, int count)
     {
         printf("%i champs not assigned yet, checking available slots\n", state->champ_count - n);
     }
-       check_if_champs_assigned(state, state->champ_count - n);
+    check_if_champs_assigned(state, state->champ_count - n);
     return (0);
 }
 
