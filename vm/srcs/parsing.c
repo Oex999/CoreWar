@@ -64,7 +64,6 @@ int	parse_champ_count(t_state *state, char **argv, int count)
         
     return (0);
 }
-/* needs work, segfaults as no champions set up yet
 
 int	parse_champ_number(t_state *state, char **argv, int count)
 {
@@ -80,12 +79,29 @@ int	parse_champ_number(t_state *state, char **argv, int count)
             printf("\tfound: -n flag\n");//debuggery
             tmp = ft_atoi(argv[i + 1]);
             printf("champ_no at argv = %s\n", argv[i + 1]);//debuggery
+
+            printf("champ_no at tmp = %i\n", tmp);//debuggery
+            create_process(state, tmp);
             //state->champions[tmp - 1]->champion_no = tmp;
-            //printf("state.champion_no is now set to: %i\n", state->champions[tmp - 1]->champion_no);//debuggery
+            printf("state.champion_no is now set to: %i\n", state->champions[tmp - 1]->champion_no);//debuggery
+            printf("new champ at %p\n", state->champions[tmp - 1]);//debuggery
+
             return (0);
         }
         i++;
     }
     return (0);
 }
-*/
+
+void    parse_user_input(t_state *state, char **argv, int count)
+{
+    parse_cycles_to_die(state, argv, count);
+    printf("After parse_cycles_to_die call, cycles_to_die value = %i\n", state->cycles_to_die);//debuggery
+    write(1, "\n", 1);//debug
+    printf("Initial state.champ_count set to %i\n", state->champ_count);//debuggery
+    parse_champ_count(state, argv, count);
+    printf("After parse_champ_count call, champ_count = %i\n", state->champ_count);//debuggery
+    parse_champ_number(state, argv, count);
+    printf("after parse_champ_number, champ_number = %i\n", state->champions[0]->champion_no);
+
+}

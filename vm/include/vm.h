@@ -73,8 +73,9 @@ void	free_champion(t_process *champion);
 char	*ft_itoabase(int value, int base);
 
 /*parsing.c*/
+void    parse_user_input(t_state *state, char **argv, int count);
 int     parse_cycles_to_die(t_state *state, char **argv, int count);
 int     parse_champ_count(t_state *state, char **argv, int count);
-//int     parse_champ_number(t_state *state, char **argv, int count); implement once champions setup
+int     parse_champ_number(t_state *state, char **argv, int count); //implement once champions setup
 
 #endif

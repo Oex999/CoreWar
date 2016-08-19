@@ -85,8 +85,8 @@ void			init_reg(t_process *process)
 			process->registries[index] = process->champion_no;
 		else
 			process->registries[index] = 0;
-		//printf("Registry index %i initialized to %i\n", 
-		//		index, process->registries[index]);
+		printf("Registry index %i initialized to %i\n",
+				index, process->registries[index]);
 	}
 }
 

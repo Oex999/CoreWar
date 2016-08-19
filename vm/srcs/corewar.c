@@ -10,16 +10,10 @@ int				main(int argc, char **argv)
         i = argc - 1;
 		init_state(&state);
         printf("Initial state.cycles_to_die set to %i\n", state.cycles_to_die);//debuggery
-        parse_cycles_to_die(&state, argv, i);
-        printf("After parse_cycles_to_die call, cycles_to_die value = %i\n", state.cycles_to_die);//debuggery
-        write(1, "\n", 1);//debug
-        printf("Initial state.champ_count set to %i\n", state.champ_count);//debuggery
-        parse_champ_count(&state, argv, i);
-        printf("After parse_champ_count call, champ_count = %i\n", state.champ_count);//debuggery
-        //parse_champ_number(&state, argv, i);
-		create_process(&state, 1);
-		create_process(&state, 2);
-		create_process(&state, 2);
+        parse_user_input(&state, argv, i);
+        //create_process(&state, 1);
+		//create_process(&state, 2);
+		//create_process(&state, 2);
 //		printf("\nProcess 1 at %p\n", state.champions[0]);
 //		printf("Process 1 Registries at %p\n", state.champions[0]->registries);
 //		printf("Process 2 at %p\n", state.champions[1]);
