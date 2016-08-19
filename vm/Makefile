@@ -10,7 +10,8 @@ SRC= $(SP)corewar.c\
 	 $(SP)init.c\
 	 $(SP)ft_itoabase.c\
 	 $(SP)free.c\
-	 $(SP)parsing.c
+	 $(SP)parsing.c\
+	 $(SP)read.c
 
 all: $(NAME)
 

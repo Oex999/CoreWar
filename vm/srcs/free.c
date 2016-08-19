@@ -67,14 +67,17 @@ void			free_champion(t_process *champion)
 
 	printf("Champion Process %p\n", champion);
 	printf("Champion->next Process %p\n", champion->next);
-	temp = champion->next;
-	if (temp)
+	if (champion)
 	{
-		printf("Freeing Successive Champion Process\n\n");
-		free_champion(temp);
+		temp = champion->next;
+		if (temp)
+		{
+			printf("Freeing Successive Champion Process\n\n");
+			free_champion(temp);
+		}
+		printf("Freeing Champion Process at %p\n", champion);
+		printf("free_champion Registries at %p\n", champion->registries);
+		free_process(champion);
+		printf("Process succesfully freed\n");
 	}
-	printf("Freeing Champion Process at %p\n", champion);
-	printf("free_champion Registries at %p\n", champion->registries);
-	free_process(champion);
-	printf("Process succesfully freed\n");
 }
