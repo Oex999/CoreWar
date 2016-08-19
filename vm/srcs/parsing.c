@@ -20,8 +20,8 @@ int	parse_cycles_to_die(t_state *state, char **argv, int count)
     if (state->cycles_to_die == 0)
     {
         state->cycles_to_die = CYCLE_TO_DIE;
-        printf("no -dump flag found\n");
-        printf("state.cycles_to_die set to default: %i\n", state->cycles_to_die);
+        ft_putstr("no -dump flag found\n");
+        printf("state.cycles_to_die set to default: %i\n", state->cycles_to_die);//debuggery
     }
     return (0);
 }
@@ -41,9 +41,9 @@ int	parse_champ_count(t_state *state, char **argv, int count)
         champion = argv[i];
         while (champion[x] != '\0')
         {
-            if (champion[x] == '.' && champion[x + 1] == 'c')
+            if (champion[x] == '.' && champion[x + 1] == 'c' && champion[x + 2 == 'r'])
             {
-                printf("\tfound: .corr flag\n");//debuggery
+                printf("\tfound: .cor flag\n");//debuggery
                 champs++;
             }
             x++;
@@ -51,11 +51,11 @@ int	parse_champ_count(t_state *state, char **argv, int count)
         x = 0;
         i++;
     }
-    printf("number of champions = %i \n", champs);
+    printf("number of champions = %i \n", champs);//debuggery
     if (champs > 0 && champs <= MAX_PLAYERS)
     {
         state->champ_count = champs;
-        printf("state.champ_count is now set to: %i\n", state->champ_count);
+        printf("state.champ_count is now set to: %i\n", state->champ_count);//debuggery
     }
     else if (champs > MAX_PLAYERS)
     {
@@ -65,6 +65,7 @@ int	parse_champ_count(t_state *state, char **argv, int count)
     return (0);
 }
 /* needs work, segfaults as no champions set up yet
+
 int	parse_champ_number(t_state *state, char **argv, int count)
 {
     int         i;
