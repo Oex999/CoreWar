@@ -2,7 +2,9 @@
 
 void			init_state(t_state *state)
 {
-	state->cycles_to_die = 0;
+    //int         i;
+    
+    state->cycles_to_die = 0;
 	state->champ_count = 0;
 	state->checks_done = 0;
 	state->dump = 0;
@@ -11,7 +13,10 @@ void			init_state(t_state *state)
 	printf("live_champs = %s\n", state->live_champs);
 	state->begin = malloc(sizeof(t_address));
 	init_mem(state, state->begin, MEM_SIZE);
-	state->champions = ft_memalloc(state->champ_count);
+	state->champions = malloc(sizeof(t_process *) * 4);
+    //i = 0;
+    //while (i++ < 4)
+    //    state->champions[i] = NULL;
 }
 
 void			init_mem(t_state *state, t_address *current, int mem)
@@ -23,7 +28,7 @@ void			init_mem(t_state *state, t_address *current, int mem)
 		current->next = state->begin;
 	else
 	{
-		current->next = ft_memalloc(sizeof(t_address));
+		current->next = malloc(sizeof(t_address));
 		init_mem(state, current->next, mem - 1);
 	}
 }
@@ -32,21 +37,21 @@ void			create_process(t_state *state, int champion_no)
 {
 	t_process	*pointer;
 
-	printf("\n\nstate->champions[champion_no - 1] = %p\n", state->champions[champion_no - 1]);
+	printf("\n\nstate->champions[%i] = %p\n", champion_no - 1, state->champions[champion_no - 1]);
 	if (state->champions[champion_no - 1] != NULL)
 	{
 		printf("Creating Successive Process For Champion %i\n", champion_no);
 		pointer = state->champions[champion_no - 1];
 		while (pointer->next != NULL)
 			pointer = pointer->next;
-		pointer->next = malloc(sizeof(t_address));
-		pointer->next->registries = malloc(sizeof(int *) * REG_NUMBER);
+		pointer->next = malloc(sizeof(t_process));
+		//pointer->next->registries = malloc(sizeof(long int *) * REG_NUMBER);
 		init_process(pointer->next, champion_no);
 	}
 	else
 	{
 		printf("Creating First Process For Champion %i\n", champion_no);
-		state->champions[champion_no - 1] = malloc(sizeof(t_address));
+		state->champions[champion_no - 1] = malloc(sizeof(t_process));
 		printf("New Process at %p\n", state->champions[champion_no - 1]);
 		init_process(state->champions[champion_no - 1], champion_no);
 	}

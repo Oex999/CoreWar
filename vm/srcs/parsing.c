@@ -31,17 +31,17 @@ int	parse_champ_count(t_state *state, char **argv, int count)
     int         i;
     int         x;
     int         champs;
-    char        *champion;
+    char        *c;
     
     i = 1;
     x = 0;
     champs = state->champ_count;
     while (i <= count)
     {
-        champion = argv[i];
-        while (champion[x] != '\0')
+        c = argv[i];
+        while (c[x] != '\0')
         {
-            if (champion[x] == '.' && champion[x + 1] == 'c' && champion[x + 2 == 'r'])
+            if (c[x] == '.' && c[x + 1] == 'c' && c[x + 2 == 'o'] && c[x + 3] == 'r')
             {
                 printf("\tfound: .cor flag\n");//debuggery
                 champs++;
@@ -59,7 +59,8 @@ int	parse_champ_count(t_state *state, char **argv, int count)
     }
     else if (champs > MAX_PLAYERS)
     {
-        ft_putstr("Error: max players is 4");
+        ft_putstr("Error: max players is 4\n");
+        exit(-1);
     }
         
     return (0);
@@ -68,40 +69,77 @@ int	parse_champ_count(t_state *state, char **argv, int count)
 int	parse_champ_number(t_state *state, char **argv, int count)
 {
     int         i;
+    int         n;
     int         tmp;
     
     i = 1;
     tmp = 0;
+    n = 0;
+    printf("at beginning of parse_champ_number, champ_count = %i\n", state->champ_count);
     while (i <= count)
     {
         if (!ft_strcmp("-n", argv[i]))
         {
             printf("\tfound: -n flag\n");//debuggery
+            n++;
             tmp = ft_atoi(argv[i + 1]);
             printf("champ_no at argv = %s\n", argv[i + 1]);//debuggery
 
             printf("champ_no at tmp = %i\n", tmp);//debuggery
             create_process(state, tmp);
-            //state->champions[tmp - 1]->champion_no = tmp;
             printf("state.champion_no is now set to: %i\n", state->champions[tmp - 1]->champion_no);//debuggery
             printf("new champ at %p\n", state->champions[tmp - 1]);//debuggery
-
-            return (0);
         }
         i++;
+    }
+    printf("\nnumber of champs assigned to positions %i vs %i number of champs\n\n", n, state->champ_count);
+
+    if (n < state->champ_count)
+    {
+        printf("%i champs not assigned yet, checking available slots\n", state->champ_count - n);
+    }
+       check_if_champs_assigned(state, state->champ_count - n);
+    return (0);
+}
+
+int     check_if_champs_assigned(t_state *state, int left)
+{
+    int i;
+    int x;
+    
+    x = 0;
+    i = 1;
+    while (i <= left && x < state->champ_count)
+    {
+        printf("\n\tchecking if state->champions[%i] is available...", x);
+        if (state->champions[x] == NULL)
+        {
+            printf("\n\tavailable... assigning\n");
+            create_process(state, x + 1);
+            i++;
+            x++;
+        }
+        else
+        {
+            printf("\n\toccupied...");
+            x++;
+        }
     }
     return (0);
 }
 
+
 void    parse_user_input(t_state *state, char **argv, int count)
 {
+    parse_champ_count(state, argv, count);
+    printf("After parse_champ_count call, champ_count = %i\n", state->champ_count);//debuggery
+
     parse_cycles_to_die(state, argv, count);
     printf("After parse_cycles_to_die call, cycles_to_die value = %i\n", state->cycles_to_die);//debuggery
     write(1, "\n", 1);//debug
+    
     printf("Initial state.champ_count set to %i\n", state->champ_count);//debuggery
-    parse_champ_count(state, argv, count);
-    printf("After parse_champ_count call, champ_count = %i\n", state->champ_count);//debuggery
     parse_champ_number(state, argv, count);
-    printf("after parse_champ_number, champ_number = %i\n", state->champions[0]->champion_no);
+//    check_if_champs_assigned(state, count);
 
 }
