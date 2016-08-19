@@ -96,7 +96,7 @@ int	parse_champ_number(t_state *state, char **argv, int count)
             n++;
             tmp = ft_atoi(argv[i + 1]);
             printf("\nchamp_no to be set = %s\n", argv[i + 1]);//debuggery
-            if (tmp <= MAX_PLAYERS)
+            if (tmp <= MAX_PLAYERS && tmp <= state->champ_count)
             {
                 if (state->champions[tmp -1] == NULL)
                     create_process(state, tmp);
@@ -108,7 +108,7 @@ int	parse_champ_number(t_state *state, char **argv, int count)
             }
             else
             {
-                ft_putstr("Error: Max Players is 4 and attempting to assign player to player number ");
+                ft_putstr("Error: Attempting to assign postion greater than max players / current players\n");
                 ft_putnbr(tmp);
                 exit(-1);
             }
