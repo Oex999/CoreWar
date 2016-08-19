@@ -46,7 +46,7 @@ int	parse_champ_count(t_state *state, char **argv, int count)
     
     i = 1;
     x = 0;
-    champs = state->champ_count;
+    champs = 0;
     while (i <= count)
     {
         c = argv[i];
@@ -63,13 +63,14 @@ int	parse_champ_count(t_state *state, char **argv, int count)
         i++;
     }
     printf("\nnumber of champions = %i \n", champs);//debuggery
-    if (champs > 0 && champs <= MAX_PLAYERS)
+    if (champs == 0 || champs > MAX_PLAYERS)
+        error_exit(state, "Error: Invalid amount of players\n");
+    else if (champs > 0 && champs <= MAX_PLAYERS)
     {
         state->champ_count = champs;
         printf("state.champ_count is now set to: %i\n", state->champ_count);//debuggery
     }
-    else if (champs > MAX_PLAYERS)
-        error_exit(state, "Error: max players is 4\n");
+
     return (0);
 }
 

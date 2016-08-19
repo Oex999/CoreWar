@@ -82,7 +82,7 @@ void			init_reg(t_process *process)
 {
 	int			index;
 
-	printf("Initializing Registries for Process at %p\n", process);
+	//printf("Initializing Registries for Process at %p\n", process);
 	index = -1;
 	while(++index != 16)
 	{

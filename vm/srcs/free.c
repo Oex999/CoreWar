@@ -40,11 +40,11 @@ void			free_reg(t_process *process)
 {
 	int			index;
 
-	printf("Freeing registries at %p\n", process->registries);
+	//printf("Freeing registries at %p\n", process->registries);
 	index = -1;
 	while (++index != 16)
 	{
-		printf("Freeing registry[%i] = %i\n", index, process->registries[index]);
+		//printf("Freeing registry[%i] = %i\n", index, process->registries[index]);
 		//free(process->registries[index]);
 	}
 	free(process->registries);

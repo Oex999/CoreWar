@@ -27,7 +27,7 @@ int				main(int argc, char **argv)
 		free_state(&state);
 	}
 	else
-	{
+    {
 		ft_putstr("No Input Given. Usage - ./corewar [-dump nbr_cycles] ");
 		ft_putendl("[[-n number] champion1.cor] ...");
 	}
