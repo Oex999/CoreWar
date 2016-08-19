@@ -15,7 +15,10 @@ int	parse_cycles_to_die(t_state *state, char **argv, int count)
         {
             printf("\n\tfound: -dump flag\n\n");//debuggery
             printf("cycles to die at argv = %s\n", argv[i + 1]);//debuggery
-            state->cycles_to_die = ft_atoi(argv[i + 1]);
+            if (ft_atoi(argv[i + 1]) > 0)
+                state->cycles_to_die = ft_atoi(argv[i + 1]);
+            else
+                error_exit(state, "Error: CYCLES_TO_DIE must be greater than zero\n");
             printf("state.cycles_to_die is now set to: %i\n", state->cycles_to_die);//debuggery
             return (0);
         }
@@ -66,11 +69,7 @@ int	parse_champ_count(t_state *state, char **argv, int count)
         printf("state.champ_count is now set to: %i\n", state->champ_count);//debuggery
     }
     else if (champs > MAX_PLAYERS)
-    {
-        ft_putstr("Error: max players is 4\n");
-        exit(-1);
-    }
-        
+        error_exit(state, "Error: max players is 4\n");
     return (0);
 }
 
@@ -101,17 +100,10 @@ int	parse_champ_number(t_state *state, char **argv, int count)
                 if (state->champions[tmp -1] == NULL)
                     create_process(state, tmp);
                 else
-                {
-                    ft_putstr("position already assigned");
-                    exit(-1);
-                }
+                    error_exit(state, "Error: position already assigned\n");
             }
             else
-            {
-                ft_putstr("Error: Attempting to assign postion greater than max players / current players\n");
-                ft_putnbr(tmp);
-                exit(-1);
-            }
+                error_exit(state, "Error: Attempting to assign postion greater than max players / current players\n");
             printf("state.champion_no is now set to: %i\n", state->champions[tmp - 1]->champion_no);//debuggery
             printf("new champ at %p\n", state->champions[tmp - 1]);//debuggery
         }
