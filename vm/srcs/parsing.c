@@ -125,6 +125,7 @@ int     check_if_champs_assigned(t_state *state, int left)
             x++;
         }
     }
+    printf("\nAll champs have a room...\n");
     return (0);
 }
 
