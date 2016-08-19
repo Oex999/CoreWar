@@ -9,7 +9,7 @@ int				main(int argc, char **argv)
 	{
         i = argc - 1;
 		init_state(&state);
-        printf("Initial state.cycles_to_die set to %i\n", state.cycles_to_die);//debuggery
+        printf("Initial state.cycles_to_die set to %i\n\n", state.cycles_to_die);//debuggery
         parse_user_input(&state, argv, i);
         //create_process(&state, 1);
 		//create_process(&state, 2);
