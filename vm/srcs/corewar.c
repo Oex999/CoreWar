@@ -11,7 +11,9 @@ int				main(int argc, char **argv)
 		init_state(&state);
         printf("Initial state.cycles_to_die set to %i\n\n", state.cycles_to_die);//debuggery
         parse_user_input(&state, argv, i);
-		printf("\n\t\tFreeing State\n\n");//debuggery
+
+		play_game(&state);
+		printf("\n\t\t\x1b[36mFreeing State\x1b[0m\n\n");//debuggery
 		free_state(&state);
 	}
 	else

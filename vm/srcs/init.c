@@ -4,7 +4,6 @@ void			init_state(t_state *state)
 {
     state->cycles_to_die = 0;
 	state->champ_count = 0;
-	state->checks_done = 0;
 	state->dump = 0;
 	state->live_champs = malloc(sizeof(char) * 4);
 	ft_strcpy(state->live_champs, "0000");
@@ -16,7 +15,12 @@ void			init_state(t_state *state)
 
 void			init_mem(t_state *state, t_address *current, int mem)
 {
-	current->instruction = 0;
+	current->operation = 0;
+	current->acb = 0;
+	current->arg1 = 0;
+	current->arg2 = 0;
+	current->arg3 = 0;
+	current->arg4 = 0;
 	current->address = (char *)malloc(sizeof(char) * 255);
 	current->address = ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16);
 	if (mem == 1)
@@ -63,6 +67,8 @@ void			init_process(t_process *process, int champion_no)
 	process->alive = 0;
 	process->carry = 0;
 	process->pc = NULL;
+	process->current_op.operation = 0;
+	process->cycles_to_execute = 0;
 	process->next = NULL;
 	process->has_next = 0;
 	process->champion_no = champion_no;

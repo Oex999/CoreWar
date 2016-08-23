@@ -22,6 +22,18 @@
 
 /*----------------------------------------------------------------------------*/
 
+typedef struct			s_address
+{
+	struct s_address	*next;
+	int					operation;
+	int					acb;
+	int					arg1;
+	int					arg2;
+	int					arg3;
+	int					arg4;
+	char				*address;
+}						t_address;
+
 typedef struct			s_process
 {
 	char				*champion_name;
@@ -30,23 +42,17 @@ typedef struct			s_process
 	int					alive;
 	int					carry;
 	int					*registries;
-	char				*pc;
-	int					has_next;
+	t_address			*pc;
+	t_address			current_op;
+	int					cycles_to_execute;
+	int					has_next; //Check if used in code, remove if not
 	struct s_process	*next;
 }						t_process;
-
-typedef struct			s_address
-{
-	struct s_address	*next;
-	int					instruction;
-	char				*address;
-}						t_address;
 
 typedef struct			s_state
 {
 	unsigned int		cycles_to_die;
 	int					champ_count;
-	int					checks_done;
 	int					dump;
 	t_address			*begin;
 	t_process			**champions;
@@ -82,5 +88,12 @@ int     parse_cycles_to_die(t_state *state, char **argv, int count);
 int     parse_champ_count(t_state *state, char **argv, int count);
 int     parse_champ_number(t_state *state, char **argv, int count); //implement once champions setup
 int     check_if_champs_assigned(t_state *state, int left);
+
+/*game.c*/
+void	play_game(t_state *state);
+void	declare_champs(t_state *state);
+void	execute_cmd(t_process *process);
+void	kill_process(t_state *state, t_process *process);
+void	dump_memory(t_state *state);
 
 #endif
