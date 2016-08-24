@@ -19,7 +19,7 @@ void				play_game(t_state *state)
 	{
 		cycle++;
 		//state->cycles_to_die--;
-		printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
+		//printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
 		if (state->dump != 0)
 		{
 			printf("cycles left until dump = %i\n", cycles_left);
@@ -51,7 +51,24 @@ void				play_game(t_state *state)
 
 void			declare_champs(t_state *state)
 {
-	(void)state;
+	int			i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (state->champions[i])
+		{
+			ft_putstr("Player ");
+			ft_putnbr(i + 1);
+			ft_putstr("\t");
+			ft_putstr(state->champions[i]->champion_name);
+			ft_putchar(' ');
+			ft_putstr(state->champions[i]->champion_comment);
+			ft_putstr("\n");
+		}
+		i++;
+	}
+	ft_putstr("\n");
 }
 
 void			execute_cmd(t_process *process)
