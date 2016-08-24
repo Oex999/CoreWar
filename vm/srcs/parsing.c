@@ -1,35 +1,33 @@
 #include <vm.h>
 
 /*
-// If the -dump flag is found, cycles_to_die is set the the parsed value, else it is set to the default value
+// If the -dump flag is found, state->dump is set the the parsed value, else it is set to the default value
 */
 
-int	parse_cycles_to_die(t_state *state, char **argv, int count)
+int	parse_dump(t_state *state, char **argv, int count)
 {
     int         i;
     
     i = 1;
+    state->cycles_to_die = CYCLE_TO_DIE;
+    printf("state.cycles_to_die set to default: %i\n", state->cycles_to_die);//debuggery
     while (i <= count)
     {
         if (!ft_strcmp("-dump", argv[i]))
         {
             printf("\n\tfound: -dump flag\n\n");//debuggery
-            printf("cycles to die at argv = %s\n", argv[i + 1]);//debuggery
+            printf("dump at argv = %s\n", argv[i + 1]);//debuggery
             if (ft_atoi(argv[i + 1]) > 0)
-                state->cycles_to_die = ft_atoi(argv[i + 1]);
+                state->dump = ft_atoi(argv[i + 1]);
             else
-                error_exit(state, "Error: CYCLES_TO_DIE must be greater than zero\n");
-            printf("state.cycles_to_die is now set to: %i\n", state->cycles_to_die);//debuggery
+                error_exit(state, "Error: Dump  must be greater than zero\n");
+            printf("state.dump is now set to: %i\n", state->dump);//debuggery
             return (0);
         }
         i++;
     }
-    if (state->cycles_to_die == 0)
-    {
-        state->cycles_to_die = CYCLE_TO_DIE;
+    if (state->dump == 0)
         ft_putstr("\n\tno -dump flag found\n\n");
-        printf("state.cycles_to_die set to default: %i\n", state->cycles_to_die);//debuggery
-    }
     return (0);
 }
 
@@ -159,8 +157,8 @@ void    parse_user_input(t_state *state, char **argv, int count)
     parse_champ_count(state, argv, count);
     printf("After parse_champ_count call, champ_count = %i\n", state->champ_count);//debuggery
 
-    parse_cycles_to_die(state, argv, count);
-    printf("After parse_cycles_to_die call, cycles_to_die value = %i\n", state->cycles_to_die);//debuggery
+    parse_dump(state, argv, count);
+    printf("After parse_dump call, state->dump value = %i, and cycles_to_die value = %i\n", state->dump, state->cycles_to_die);//debuggery
     write(1, "\n", 1);//debug
     
     printf("Initial state.champ_count set to %i\n", state->champ_count);//debuggery

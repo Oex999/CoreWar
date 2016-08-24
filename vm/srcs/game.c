@@ -4,7 +4,7 @@ void				play_game(t_state *state)
 {
 	unsigned int	cycles_run;
 	unsigned int	cycles_left;
-	int				check_done;
+//	int				check_done;
 
 	cycles_run = 0;
 	cycles_left = state->dump;
@@ -12,7 +12,7 @@ void				play_game(t_state *state)
 	declare_champs(state);
 	while (cycles_run <= state->cycles_to_die)
 	{
-		printf("cycles left until dump = %i\n", cycles_left);
+		//printf("cycles left until dump = %i\n", cycles_left);
 		if (cycles_left == 0)
 			dump_memory(state);
 		//check champion->process for a current operation 
