@@ -13,7 +13,8 @@ SRC= $(SP)corewar.c\
 	 $(SP)parsing.c\
 	 $(SP)read.c\
 	 $(SP)exit.c\
-	 $(SP)game.c\
+	 $(SP)game1.c\
+	 $(SP)game2.c\
 	 $(SP)cmd1.c\
 	 $(SP)cmd2.c\
 	 $(SP)cmd3.c\

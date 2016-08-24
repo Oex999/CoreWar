@@ -13,8 +13,6 @@ int				main(int argc, char **argv)
         parse_user_input(&state, argv, i);
 
 		play_game(&state);
-		printf("\n\t\t\x1b[36mFreeing State\x1b[0m\n\n");//debuggery
-		free_state(&state);
 	}
 	else
     {

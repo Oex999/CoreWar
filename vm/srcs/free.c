@@ -4,6 +4,7 @@ void			free_state(t_state *state)
 {
 	int			k;
 	
+	printf("\n\t\t\x1b[36mFreeing State\x1b[0m\n\n");
 	free_mem(state->begin, MEM_SIZE);
 	printf("Memory succesfully freed\n\n");
 	//printf("State->ChampCount = %i\n", state->champ_count);

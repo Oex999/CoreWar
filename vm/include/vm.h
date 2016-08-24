@@ -29,6 +29,8 @@ typedef struct			s_address
 	int					acb;
 	int					arg1;
 	int					arg2;
+	int					arg3;
+	int					arg4;
 	char				*address;
 }						t_address;
 
@@ -43,6 +45,7 @@ typedef struct			s_process
 	t_address			*pc;
 	t_address			current_op;
 	int					cycles_to_execute;
+	int					lives_reported;
 	int					has_next; //Check if used in code, remove if not
 	struct s_process	*next;
 }						t_process;
@@ -87,11 +90,14 @@ int     parse_champ_count(t_state *state, char **argv, int count);
 int     parse_champ_number(t_state *state, char **argv, int count); //implement once champions setup
 int     check_if_champs_assigned(t_state *state, int left);
 
-/*game.c*/
+/*game1.c*/
 void	play_game(t_state *state);
 void	declare_champs(t_state *state);
 void	execute_cmd(t_process *process);
-void	kill_process(t_state *state, t_process *process);
+void	prune_champs(t_state *state);
 void	dump_memory(t_state *state);
+
+/*game2.c*/
+void	check_for_winner(t_state *state);
 
 #endif
