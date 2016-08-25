@@ -23,7 +23,7 @@ void			check_for_winner(t_state *state)
 		ft_putstr(winner.champion_name);
 		error_exit(state, "\x1b[35mWon!\n\x1b[0m");
 	}
-	if (living > 1)
+	if (living > 1 && state->cycles_to_die > CYCLE_TO_DIE)
 		error_exit(state, 
 				"\x1b[35mDraw - Multiple Champions Still ALive\n\x1b[0m");
 }
