@@ -10,7 +10,7 @@ SRC= $(SP)corewar.c\
 	 $(SP)init.c\
 	 $(SP)ft_itoabase.c\
 	 $(SP)free.c\
-	 $(SP)parsing.c\
+	 $(SP)new_parse.c\
 	 $(SP)read.c\
 	 $(SP)exit.c\
 	 $(SP)game1.c\

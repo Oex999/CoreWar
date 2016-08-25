@@ -91,6 +91,7 @@ void			dump_memory(t_state *state)
 	done = 0;
 	while (done != 2)
 	{
+        /*
 		ft_putstr(mem->address);
 		ft_putstr("\t->\t");
 		ft_putstr(ft_itoabase(mem->operation, 16));
@@ -102,6 +103,8 @@ void			dump_memory(t_state *state)
 		ft_putstr(ft_itoabase(mem->arg2, 16));
 		ft_putchar('\n');
 		mem = mem->next;
+         */
+        
 		if (ft_strcmp(mem->address, "1000") == 0 
 				|| ft_strcmp(mem->address, "1") == 0)
 			done++;
