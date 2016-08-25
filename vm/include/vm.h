@@ -45,7 +45,6 @@ typedef struct			s_process
 	t_address			*pc;
 	t_address			current_op;
 	int					cycles_to_execute;
-	int					lives_reported;
 	int					has_next; //Check if used in code, remove if not
 	struct s_process	*next;
 }						t_process;

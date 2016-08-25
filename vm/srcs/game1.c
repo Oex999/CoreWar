@@ -10,7 +10,7 @@ void				play_game(t_state *state)
 
 	modified_ctd = 1;
 	cycle = 0;
-	cycles_left = state->dump;
+	cycles_left = state->dump - 1;
 	checks_done = 0;
 	//cycle_deltas = 0;
 	printf("\n\t\t\x1b[35mStarting game\x1b[0m\n\n");
@@ -19,7 +19,7 @@ void				play_game(t_state *state)
 	{
 		cycle++;
 		//state->cycles_to_die--;
-		//printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
+		printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
 		if (state->dump != 0)
 		{
 			printf("cycles left until dump = %i\n", cycles_left);
@@ -31,6 +31,7 @@ void				play_game(t_state *state)
 		//		process command at process->pc, update current operation
 		//check next champion
 		//check number of cycles
+		//check number of lives reported per champs, reduce cycles to die
 		if (cycle % state->cycles_to_die == 0 && cycle != 0)
 		{
 			prune_champs(state);
@@ -45,6 +46,7 @@ void				play_game(t_state *state)
 			state->cycles_to_die -= CYCLE_DELTA;
 			modified_ctd = 1;
 		}
+		check_for_winner(state);
 	}
 	check_for_winner(state);
 }
@@ -78,7 +80,37 @@ void			execute_cmd(t_process *process)
 
 void			prune_champs(t_state *state)
 {
-	(void)state;
+	t_process	*temp;
+	t_process	*iter;
+	int			i;
+
+	printf("Pruning Champs\n");
+	i = -1;
+	while (++i < 4)
+		if (state->champions[i] != NULL)
+		{
+	printf("First Process for champ %i exists\n", i);
+			temp = state->champions[i];
+			while (temp->next)
+			{
+	printf("First Process has successive process\n");
+				if (temp->next->alive < 1)
+				{
+	printf("Successive Process Did Not Report Live\n");
+					iter = temp->next;
+					temp->next = temp->next->next;
+					free_process(iter);
+				}
+				temp->alive = 0;
+				temp = temp->next;
+			}
+			if (temp == state->champions[i] && temp->alive < 1)
+			{
+	printf("Champions First Process Did Not Report Live\n");
+				state->champions[i] = state->champions[i]->next;
+				free_process(temp);
+			}
+		}
 }
 
 void			dump_memory(t_state *state)
@@ -100,6 +132,10 @@ void			dump_memory(t_state *state)
 		ft_putstr(ft_itoabase(mem->arg1, 16));
 		ft_putchar(' ');
 		ft_putstr(ft_itoabase(mem->arg2, 16));
+		ft_putchar(' ');
+		ft_putstr(ft_itoabase(mem->arg3, 16));
+		ft_putchar(' ');
+		ft_putstr(ft_itoabase(mem->arg4, 16));
 		ft_putchar('\n');
 		mem = mem->next;
 		if (ft_strcmp(mem->address, "1000") == 0 
