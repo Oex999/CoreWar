@@ -50,4 +50,12 @@ void			run_champs(t_state *state)
 	}
 }
 
+void			complete_op(t_process *process)
+{
+	(void)process;
+}
 
+void			start_op(t_process *process)
+{
+	(void)process;
+}
