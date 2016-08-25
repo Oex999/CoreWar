@@ -9,8 +9,8 @@ void				play_game(t_state *state)
 	int				modified_ctd;
 
 	modified_ctd = 1;
-	cycle = 0;
-	cycles_left = state->dump - 1;
+	cycle = 1;
+	cycles_left = state->dump;
 	checks_done = 0;
 	//cycle_deltas = 0;
 	printf("\n\t\t\x1b[35mStarting game\x1b[0m\n\n");
@@ -71,11 +71,6 @@ void			declare_champs(t_state *state)
 		i++;
 	}
 	ft_putstr("\n");
-}
-
-void			execute_cmd(t_process *process)
-{
-	(void)process;
 }
 
 void			prune_champs(t_state *state)

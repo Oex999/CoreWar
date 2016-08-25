@@ -45,7 +45,7 @@ typedef struct			s_process
 	t_address			*pc;
 	t_address			current_op;
 	int					cycles_to_execute;
-	int					has_next; //Check if used in code, remove if not
+	int					ops_executed;
 	struct s_process	*next;
 }						t_process;
 
@@ -89,14 +89,40 @@ int     parse_champ_count(t_state *state, char **argv, int count);
 int     parse_champ_number(t_state *state, char **argv, int count); //implement once champions setup
 int     check_if_champs_assigned(t_state *state, int left);
 
-/*game1.c*/
+/*gamecycles.c*/
 void	play_game(t_state *state);
 void	declare_champs(t_state *state);
-void	execute_cmd(t_process *process);
 void	prune_champs(t_state *state);
 void	dump_memory(t_state *state);
 
-/*game2.c*/
+/*gamechamps.c*/
 void	check_for_winner(t_state *state);
+void	run_champs(t_state *state);
+void	complete_op(t_process *process);
+void	start_op(t_process *process);
+
+/*cmd1.c*/
+void	live(t_process *process);
+void	ld(t_process *process);
+void	st(t_process *process);
+void	add(t_process *process);
+void	sub(t_process *process);
+
+/*cmd2.c*/
+void	and(t_process *process);
+void	or(t_process *process);
+void	xor(t_process *process);
+void	zjmp(t_process *process);
+void	ldi(t_process *process);
+
+/*cmd3.c*/
+void	sti(t_process *process);
+void	cfork(t_process *process);
+void	lld(t_process *process);
+void	lldi(t_process *process);
+void	lfork(t_process *process);
+
+/*cmd4.c*/
+void	aff(t_process *process);
 
 #endif

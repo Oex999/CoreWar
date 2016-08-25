@@ -17,7 +17,7 @@ void			check_for_winner(t_state *state)
 		}
 	}
 	if (living == 0)
-		error_exit(state, "\x1b[35mNo Winner, all Processes Dead\n\x1b[0m");
+		error_exit(state, "\x1b[35mDraw, No Lives Reported\n\x1b[0m");
 	if (living == 1)
 	{
 		ft_putstr(winner.champion_name);
@@ -27,3 +27,27 @@ void			check_for_winner(t_state *state)
 		error_exit(state, 
 				"\x1b[35mDraw - Multiple Champions Still ALive\n\x1b[0m");
 }
+
+void			run_champs(t_state *state)
+{
+	int			i;
+	t_process	*temp;
+
+	i = 3;
+	while (i > -1)
+	{
+		if (state->champions[i])
+		{
+			temp = state->champions[i];
+			complete_op(temp);
+			while (temp->next && temp->ops_executed < temp->next->ops_executed)
+			{
+				temp = temp->next;
+				complete_op(temp);
+			}
+			start_op(temp);
+		}
+	}
+}
+
+

@@ -69,8 +69,8 @@ void			init_process(t_process *process, int champion_no)
 	process->pc = NULL;
 	process->current_op.operation = 0;
 	process->cycles_to_execute = 0;
+	process->ops_executed = 0;
 	process->next = NULL;
-	process->has_next = 0;
 	process->champion_no = champion_no;
 	process->registries = malloc(sizeof(int *) * REG_NUMBER);
 	//printf("Champion number = %i\n", process->champion_no);
