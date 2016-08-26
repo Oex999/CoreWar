@@ -15,6 +15,7 @@ SRC= $(SP)corewar.c\
 	 $(SP)exit.c\
 	 $(SP)gamecycles.c\
 	 $(SP)gamechamps.c\
+	 $(SP)operations.c\
 	 $(SP)cmd1.c\
 	 $(SP)cmd2.c\
 	 $(SP)cmd3.c\

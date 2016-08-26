@@ -33,8 +33,8 @@ void			run_champs(t_state *state)
 	int			i;
 	t_process	*temp;
 
-	i = 3;
-	while (i > -1)
+	i = 4;
+	while (--i > -1)
 	{
 		if (state->champions[i])
 		{
@@ -47,40 +47,8 @@ void			run_champs(t_state *state)
 				complete_op1(temp);
 				complete_op2(temp);
 			}
-			start_op(temp);
+			start_op1(temp);
+			start_op2(temp);
 		}
 	}
-}
-
-void			start_op(t_process *process)
-{
-	(void)process;
-}
-
-void			complete_op1(t_process *process)
-{
-	(void)process;
-
-	if (process->pc->operation = 0)
-		;
-	else if (process->pc->operation = 1)
-	else if (process->pc->operation = 2)
-	else if (process->pc->operation = 3)
-	else if (process->pc->operation = 4)
-	else if (process->pc->operation = 5)
-	else if (process->pc->operation = 6)
-	else if (process->pc->operation = 7)
-	else if (process->pc->operation = 8)
-}
-
-void			complete_op2(t_process *process)
-{
-	if (process->pc->operation = 9)
-	if (process->pc->operation = 10)
-	if (process->pc->operation = 11)
-	if (process->pc->operation = 12)
-	if (process->pc->operation = 13)
-	if (process->pc->operation = 14)
-	if (process->pc->operation = 15)
-	if (process->pc->operation = 16)
 }
