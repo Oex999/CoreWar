@@ -19,10 +19,10 @@ void				play_game(t_state *state)
 	{
 		cycle++;
 		//state->cycles_to_die--;
-		//printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
+		printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
 		if (state->dump != 0)
 		{
-			//printf("cycles left until dump = %i\n", cycles_left);
+			printf("cycles left until dump = %i\n", cycles_left);
 			if (cycles_left-- == 0)
 				dump_memory(state);
 		}
@@ -57,7 +57,7 @@ void			declare_champs(t_state *state)
 		if (state->champions[i])
 		{
 			ft_putstr("Player ");
-			ft_putnbr(i + 1);
+			ft_putstr(ft_itoabase((i + 1), 10));
 			ft_putstr("\t");
 			ft_putstr(state->champions[i]->champion_name);
 			ft_putchar(' ');
@@ -80,14 +80,14 @@ void			prune_champs(t_state *state)
 	while (++i < 4)
 		if (state->champions[i] != NULL)
 		{
-	printf("First Process for champ %i exists\n", i);
+			printf("First Process for champ %i exists\n", i);
 			temp = state->champions[i];
 			while (temp->next)
 			{
-	printf("First Process has successive process\n");
+				printf("First Process has successive process\n");
 				if (temp->next->alive < 1)
 				{
-	printf("Successive Process Did Not Report Live\n");
+					printf("Successive Process Did Not Report Live\n");
 					iter = temp->next;
 					temp->next = temp->next->next;
 					free_process(iter);
@@ -97,7 +97,7 @@ void			prune_champs(t_state *state)
 			}
 			if (temp == state->champions[i] && temp->alive < 1)
 			{
-	printf("Champions First Process Did Not Report Live\n");
+				printf("Champions First Process Did Not Report Live\n");
 				state->champions[i] = state->champions[i]->next;
 				free_process(temp);
 			}
@@ -108,32 +108,33 @@ void			dump_memory(t_state *state)
 {	
 	t_address	*mem;
 	int			done;
-	
+
 	printf("Dumping Memory\n");
 	mem = state->begin;
 	done = 0;
 	while (done != 2)
 	{
-        /*
-		ft_putstr(mem->address);
-		ft_putstr("\t->\t");
-		ft_putstr(ft_itoabase(mem->operation, 16));
-		ft_putchar(' ');
-		ft_putstr(ft_itoabase(mem->acb, 16));
-		ft_putchar(' ');
-		ft_putstr(ft_itoabase(mem->arg1, 16));
-		ft_putchar(' ');
-		ft_putstr(ft_itoabase(mem->arg2, 16));
-		ft_putchar(' ');
-		ft_putstr(ft_itoabase(mem->arg3, 16));
-		ft_putchar(' ');
-		ft_putstr(ft_itoabase(mem->arg4, 16));
-		ft_putchar('\n');
-		mem = mem->next;
-         */
-        
-		if (ft_strcmp(mem->address, "1000") == 0 
-				|| ft_strcmp(mem->address, "1") == 0)
+		/*
+		   ft_putstr(ft_itoabase(mem->address, 16));
+		   ft_putstr("\t->\t");
+		   ft_putstr(ft_itoabase(mem->operation, 16));
+		   ft_putchar(' ');
+		   ft_putstr(ft_itoabase(mem->acb, 16));
+		   ft_putchar(' ');
+		   ft_putstr(ft_itoabase(mem->arg1, 16));
+		   ft_putchar(' ');
+		   ft_putstr(ft_itoabase(mem->arg2, 16));
+		   ft_putchar(' ');
+		   ft_putstr(ft_itoabase(mem->arg3, 16));
+		   ft_putchar(' ');
+		   ft_putstr(ft_itoabase(mem->arg4, 16));
+		   ft_putchar('\n');
+		   mem = mem->next;
+		   */
+
+//		if (ft_strcmp(mem->address, "1000") == 0 
+//				|| ft_strcmp(mem->address, "1") == 0)
+		if (mem->address == MEM_SIZE || mem->address == 1)
 			done++;
 	}
 	error_exit(state, "Memory Dumped As Per -dump Flag\n");

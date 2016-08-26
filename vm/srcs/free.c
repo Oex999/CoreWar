@@ -28,10 +28,10 @@ void			free_mem(t_address *current, int mem)
 {
 	t_address	*temp;
 
-	//printf("Freeing Address %s\n", current->address);
+	printf("Freeing Address %s\n", ft_itoabase(current->address, 16));
 	if (mem != 0)
 		temp = current->next;
-	free(current->address);
+//	free(current->address);
 	free(current);
 	if (mem != 1)
 		free_mem(temp, mem - 1);

@@ -31,7 +31,7 @@ typedef struct			s_address
 	int					arg2;
 	int					arg3;
 	int					arg4;
-	char				*address;
+	int					address;
 }						t_address;
 
 typedef struct			s_process

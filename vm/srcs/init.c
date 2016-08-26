@@ -5,7 +5,7 @@ void			init_state(t_state *state)
     state->cycles_to_die = 0;
 	state->champ_count = 0;
 	state->dump = 0;
-	state->live_champs = malloc(sizeof(char) * 4);
+	state->live_champs = malloc(sizeof(char) * 5);
 	ft_strcpy(state->live_champs, "0000");
 	printf("live_champs = %s\n", state->live_champs);
 	state->begin = malloc(sizeof(t_address));
@@ -21,8 +21,10 @@ void			init_mem(t_state *state, t_address *current, int mem)
 	current->arg2 = 0;
 	current->arg3 = 0;
 	current->arg4 = 0;
-	current->address = (char *)malloc(sizeof(char) * 255);
-	current->address = ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16);
+//	current->address = malloc(sizeof(char) * 255);
+//	current->address = ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16);
+//	ft_strcpy(current->address, ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16));
+	current->address = ((mem - MEM_SIZE - 1) * -1);
 	if (mem == 1)
 		current->next = state->begin;
 	else
@@ -60,9 +62,9 @@ void			init_process(t_process *process, int champion_no)
 {
 	//printf("init_process for champion %i\n", champion_no);
 	//printf("t_process %p \n", process);
-	process->champion_name = malloc(sizeof(char) * PROG_NAME_LENGTH + 1);
+	process->champion_name = malloc(sizeof(char) * PROG_NAME_LENGTH + 2);
 	process->champion_name[PROG_NAME_LENGTH + 1] = '\0';
-	process->champion_comment = malloc(sizeof(char) * COMMENT_LENGTH + 1);
+	process->champion_comment = malloc(sizeof(char) * COMMENT_LENGTH + 2);
 	process->champion_comment[COMMENT_LENGTH + 1] = '\0';
 	process->alive = 0;
 	process->carry = 0;
