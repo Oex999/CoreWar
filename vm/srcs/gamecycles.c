@@ -19,10 +19,10 @@ void				play_game(t_state *state)
 	{
 		cycle++;
 		//state->cycles_to_die--;
-		printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
+		//printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
 		if (state->dump != 0)
 		{
-			printf("cycles left until dump = %i\n", cycles_left);
+			//printf("cycles left until dump = %i\n", cycles_left);
 			if (cycles_left-- == 0)
 				dump_memory(state);
 		}
