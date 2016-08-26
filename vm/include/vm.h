@@ -98,8 +98,14 @@ void	dump_memory(t_state *state);
 /*gamechamps.c*/
 void	check_for_winner(t_state *state);
 void	run_champs(t_state *state);
-void	complete_op(t_process *process);
-void	start_op(t_process *process);
+
+/*operations.c*/
+void	complete_op1(t_process *process);
+void	complete_op2(t_process *process);
+void	set_op(t_process *process, int cycle_cost);
+void	start_op1(t_process *process);
+void	start_op2(t_process *process);
+
 
 /*cmd1.c*/
 void	live(t_process *process);

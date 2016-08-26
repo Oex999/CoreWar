@@ -26,11 +26,7 @@ void				play_game(t_state *state)
 			if (cycles_left-- == 0)
 				dump_memory(state);
 		}
-		//check champion->process for a current operation 
-		//		else, run champion->process[next]
-		//		process command at process->pc, update current operation
-		//check next champion
-		//check number of cycles
+		run_champs(state);
 		//check number of lives reported per champs, reduce cycles to die
 		if (cycle % state->cycles_to_die == 0 && cycle != 0)
 		{
