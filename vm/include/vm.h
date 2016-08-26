@@ -53,6 +53,7 @@ typedef struct			s_state
 {
 	unsigned int		cycles_to_die;
 	int					champ_count;
+    int                 occupied;
 	int					dump;
 	t_address			*begin;
 	t_process			**champions;
@@ -86,8 +87,8 @@ char	*ft_itoabase(int value, int base);
 void    parse_user_input(t_state *state, char **argv, int count);
 int     parse_cycles_to_die(t_state *state, char **argv, int count);
 int     parse_champ_count(t_state *state, char **argv, int count);
-int     parse_champ_number(t_state *state, char **argv, int count); //implement once champions setup
-int     check_if_champs_assigned(t_state *state, int left);
+int     parse_champ_number(t_state *state, char **argv, int i, int count); //implement once champions setup
+int     check_if_champs_assigned(t_state *state);
 
 /*gamecycles.c*/
 void	play_game(t_state *state);
