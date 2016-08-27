@@ -7,6 +7,8 @@ void			init_state(t_state *state)
 	state->dump = 0;
 	state->live_champs = malloc(sizeof(char) * 5);
 	ft_strcpy(state->live_champs, "0000");
+	state->prev_lc = malloc(sizeof(char) * 5);
+	ft_strcpy(state->prev_lc, "0000");
 	printf("live_champs = %s\n", state->live_champs);
 	state->begin = malloc(sizeof(t_address));
 	init_mem(state, state->begin, MEM_SIZE);

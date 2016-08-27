@@ -14,7 +14,7 @@ void				play_game(t_state *state)
 	checks_done = 0;
 	//cycle_deltas = 0;
 	printf("\n\t\t\x1b[35mStarting game\x1b[0m\n\n");
-	declare_champs(state);
+	//declare_champs(state);
 	while (state->cycles_to_die <= CYCLE_TO_DIE)
 	{
 		cycle++;
@@ -27,10 +27,10 @@ void				play_game(t_state *state)
 				dump_memory(state);
 		}
 		run_champs(state);
-		//check number of lives reported per champs, reduce cycles to die
 		if (cycle % state->cycles_to_die == 0 && cycle != 0)
 		{
 			prune_champs(state);
+			check_nbr_live(state);
 			checks_done++;
 			modified_ctd = 0;
 			//state->cycles_to_die = CYCLE_TO_DIE - (CYCLE_DELTA * cycle_deltas);
@@ -42,7 +42,6 @@ void				play_game(t_state *state)
 			state->cycles_to_die -= CYCLE_DELTA;
 			modified_ctd = 1;
 		}
-		check_for_winner(state);
 	}
 	check_for_winner(state);
 }
@@ -115,19 +114,19 @@ void			dump_memory(t_state *state)
 	while (done != 2)
 	{
 		/*
-		   ft_putstr(ft_itoabase(mem->address, 16));
+		   ft_puthex(mem->address);
 		   ft_putstr("\t->\t");
-		   ft_putstr(ft_itoabase(mem->operation, 16));
+		   ft_puthex(mem->operation);
 		   ft_putchar(' ');
-		   ft_putstr(ft_itoabase(mem->acb, 16));
+		   ft_puthex(mem->acb);
 		   ft_putchar(' ');
-		   ft_putstr(ft_itoabase(mem->arg1, 16));
+		   ft_puthex(mem->arg1);
 		   ft_putchar(' ');
-		   ft_putstr(ft_itoabase(mem->arg2, 16));
+		   ft_puthex(mem->arg2);
 		   ft_putchar(' ');
-		   ft_putstr(ft_itoabase(mem->arg3, 16));
+		   ft_puthex(mem->arg3);
 		   ft_putchar(' ');
-		   ft_putstr(ft_itoabase(mem->arg4, 16));
+		   ft_puthex((mem->arg4);
 		   ft_putchar('\n');
 		   mem = mem->next;
 		   */

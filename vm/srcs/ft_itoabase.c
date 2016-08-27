@@ -6,14 +6,14 @@
 /*   By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 07:33:26 by ghavenga          #+#    #+#             */
-/*   Updated: 2016/08/26 16:17:43 by ghavenga         ###   ########.fr       */
+/*   Updated: 2016/08/27 08:05:07 by ghavenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 #include <libc.h>
 
-/*char		*get_str(char *ptr)
+char		*get_str(char *ptr)
 {
 	int		i;
 	char	*str;
@@ -30,7 +30,7 @@
 	}
 	str[i] = '\0';
 	return (str);
-}*/
+}
 
 char			*ft_itoabase(int value, int base)
 {
@@ -57,6 +57,5 @@ char			*ft_itoabase(int value, int base)
 	}
 	if (minus == 1 && base == 10)
 		*--ptr = '-';
-	return (ptr);
-	//return (get_str(ptr));
+	return (get_str(ptr));
 }

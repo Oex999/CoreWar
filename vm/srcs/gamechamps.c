@@ -52,3 +52,29 @@ void			run_champs(t_state *state)
 		}
 	}
 }
+
+void			check_nbr_live(t_state *state)
+{
+	int			i;
+	int			found;
+	t_process	*temp;
+
+	i = -1;
+	found = 0;
+	while (++i < 4)
+	{
+		temp = state->champions[i];
+		while (temp)
+		{
+			if (temp->alive >= NBR_LIVE)
+				found++;
+			temp->alive = 0;
+			temp = temp->next;
+		}
+	}
+	if (found > 0)
+	{
+		printf("Reducing Cycles To Die: NBR_LIVE reported\n");
+		state->cycles_to_die -= CYCLE_DELTA;
+	}
+}

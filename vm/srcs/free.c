@@ -22,13 +22,18 @@ void			free_state(t_state *state)
 	printf("Champions succesfully freed\n");
 	free(state->live_champs);
 	printf("Live_Champs List succesfully freed\n");
+	free(state->prev_lc);
+	printf("Previous Live Champs List succesfully freed\n");
 }
 
 void			free_mem(t_address *current, int mem)
 {
 	t_address	*temp;
+//	char		*str;
 
-	printf("Freeing Address %s\n", ft_itoabase(current->address, 16));
+//	str = ft_itoabase(current->address, 16);
+//	printf("Freeing Address %s\n", str);
+//	free(str);
 	if (mem != 0)
 		temp = current->next;
 //	free(current->address);

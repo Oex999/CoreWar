@@ -58,6 +58,7 @@ typedef struct			s_state
 	t_address			*begin;
 	t_process			**champions;
 	char				*live_champs;
+	char				*prev_lc;
 }						t_state;
 
 /*----------------------------------------------------------------------------*/
@@ -83,6 +84,9 @@ void	error_exit(t_state *state, char *message);
 /*ft_itoabase.c ---TO BE ADDED TO LIBFT LATER*/
 char	*ft_itoabase(int value, int base);
 
+/*ft_puthex.c ---TO BE ADDED TO LIBFT LATER*/
+void	ft_puthex(int value, int base);
+
 /*parsing.c*/
 void    parse_user_input(t_state *state, char **argv, int count);
 int     parse_cycles_to_die(t_state *state, char **argv, int count);
@@ -99,6 +103,7 @@ void	dump_memory(t_state *state);
 /*gamechamps.c*/
 void	check_for_winner(t_state *state);
 void	run_champs(t_state *state);
+void	check_nbr_live(t_state *state);
 
 /*operations.c*/
 void	complete_op1(t_process *process);
