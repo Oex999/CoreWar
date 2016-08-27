@@ -39,12 +39,12 @@ void			run_champs(t_state *state)
 		if (state->champions[i])
 		{
 			temp = state->champions[i];
-			complete_op1(temp);
+			complete_op1(state, temp);
 			complete_op2(temp);
 			while (temp->next && temp->ops_executed < temp->next->ops_executed)
 			{
 				temp = temp->next;
-				complete_op1(temp);
+				complete_op1(state, temp);
 				complete_op2(temp);
 			}
 			start_op1(temp);

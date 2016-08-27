@@ -7,7 +7,7 @@ int     check_if_champs_assigned(t_state *state)
     
     i = 0;
     printf("starting check_if_champs_assigned...\n\n");
-    left = state-> champ_count - state->occupied;
+    left = state->champ_count - state->occupied;
     printf("\nUnassigned Players = %i\n", left);
     printf("\n\nStarting check_if_champ_assigned...\n\n");
     while (left >= 0 && i < state->champ_count)

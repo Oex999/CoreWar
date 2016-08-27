@@ -26,7 +26,7 @@ typedef struct			s_address
 {
 	struct s_address	*next;
 	int					operation;
-	int					acb;
+	char				acb;
 	int					arg1;
 	int					arg2;
 	int					arg3;
@@ -106,7 +106,7 @@ void	run_champs(t_state *state);
 void	check_nbr_live(t_state *state);
 
 /*operations.c*/
-void	complete_op1(t_process *process);
+void	complete_op1(t_state *state, t_process *process);
 void	complete_op2(t_process *process);
 void	set_op(t_process *process, int cycle_cost);
 void	start_op1(t_process *process);
@@ -114,7 +114,7 @@ void	start_op2(t_process *process);
 
 
 /*cmd1.c*/
-void	live(t_process *process);
+void	live(t_state *state, t_process *process);
 void	ld(t_process *process);
 void	st(t_process *process);
 void	add(t_process *process);

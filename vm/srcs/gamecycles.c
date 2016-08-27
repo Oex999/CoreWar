@@ -9,12 +9,13 @@ void				play_game(t_state *state)
 	int				modified_ctd;
 
 	modified_ctd = 1;
+	ft_strcpy(state->champions[0]->champion_name, "test");
 	cycle = 0;
 	cycles_left = state->dump -	1;
 	checks_done = 0;
 	//cycle_deltas = 0;
 	printf("\n\t\t\x1b[35mStarting game\x1b[0m\n\n");
-	//declare_champs(state);
+	declare_champs(state);
 	while (state->cycles_to_die <= CYCLE_TO_DIE)
 	{
 		cycle++;
@@ -42,6 +43,9 @@ void				play_game(t_state *state)
 			state->cycles_to_die -= CYCLE_DELTA;
 			modified_ctd = 1;
 		}
+		if (ft_strcmp(state->live_champs, "0000") != 0)
+			ft_strcpy(state->prev_lc, state->live_champs);
+		printf("plc = %s \t lc = %s\n", state->prev_lc, state->live_champs);
 	}
 	check_for_winner(state);
 }

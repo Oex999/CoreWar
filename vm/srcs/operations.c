@@ -48,14 +48,14 @@ void			set_op(t_process *process, int cycle_cost)
 	process->current_op = *process->pc;
 }
 
-void			complete_op1(t_process *process)
+void			complete_op1(t_state *state, t_process *process)
 {
 	if (process->cycles_to_execute == 0)
 	{
 		if (process->current_op.operation == 0)
 			;
 		else if (process->current_op.operation == 1)
-			live(process);
+			live(state, process);
 		else if (process->current_op.operation == 2)
 			ld(process);
 		else if (process->current_op.operation == 3)
