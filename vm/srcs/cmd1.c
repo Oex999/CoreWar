@@ -25,18 +25,31 @@ void			ld(t_process *process)
 void		 	st(t_process *process)
 {
     t_address   *indirect;
-	//if instruction, address = PC + (arg2 % IDX_MOD) / 5
-	//field at instruction to be changed is remainder
-	if (process->current_op.arg1 < 17 && process->current_op.arg1 > 0)
+    int         reg;
+	
+    if (process->current_op.arg1 < 17 && process->current_op.arg1 > 0)
 	{
+        reg = process->current_op.arg1;
 		if (process->current_op.acb <= 112 && process->current_op.acb >= 124)
         {
-            while (indirect->address != process->pc->address
+            while (indirect->address != (process->pc->address + 
+                        (process->current_op.arg2 % IDX_MOD) / 5) % MEM_SIZE)
+                indirect = indirect->next;
+            if (process->current_op.arg2 % 5 = 0)
+                indirect->operation = process->registries[reg];
+            if (process->current_op.arg2 % 5 = 1)
+                indirect->acb = process->registries[reg];
+            if (process->current_op.arg2 % 5 = 2)
+                indirect->arg1 = process->registries[reg];
+            if (process->current_op.arg2 % 5 = 3)
+                indirect->arg2 = process->registries[reg];
+            if (process->current_op.arg2 % 5 = 4)
+                indirect->arg3 = process->registries[reg];
         }
         if (process->current_op.acb <= 80 && process->current_op.acb >= 92)
-        {
-
-        }
+            if (process->current_op.arg2 < 17 && process->current_op.arg2 > 0)
+                process->registries[process->current_op.arg2] =
+                    process->registries[reg];
 	}
 }
 

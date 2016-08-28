@@ -25,7 +25,7 @@ void			init_mem(t_state *state, t_address *current, int mem)
 //	current->address = malloc(sizeof(char) * 255);
 //	current->address = ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16);
 //	ft_strcpy(current->address, ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16));
-	current->address = ((mem - MEM_SIZE - 1) * -1);
+	current->address = ((mem - MEM_SIZE) * -1);
 	if (mem == 1)
 		current->next = state->begin;
 	else
