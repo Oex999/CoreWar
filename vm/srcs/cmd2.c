@@ -137,6 +137,13 @@ void			zjmp(t_process *process)
 
 void			ldi(t_process *process)
 {
-	(void)process;
-
+    process->registries[process->current_op.arg3] = 
+        return_field(process->pc, 
+                return_field(
+                    (seek_address(process->pc, process->current_op.arg1 %
+                                  IDX_MOD)), process->current_op.arg1 % 5) +
+                return_field(
+                    (seek_address(process->pc, process->current_op.arg1 %
+                                  IDX_MOD)), process->current_op.arg2 % 5)
+                % 5);
 }
