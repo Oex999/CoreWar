@@ -75,6 +75,18 @@ void			add(t_process *process)
 
 void			sub(t_process *process)
 {
-	(void)process;
-
+    if (process->current_op.acb == 84)
+    {
+        if (process->current_op.arg1 < 17 && process->current_op.arg1 > 0)
+            if (process->current_op.arg2 < 17 && process->current_op.arg2 > 0)
+                if (process->current_op.arg3 < 17 && 
+                        process->current_op.arg3 > 0)    
+                {
+                    process->current_op.arg3 = 
+                        process->current_op.arg1 - process->current_op.arg2;
+                    process->carry = 1;
+                }
+    }
+    else
+        process->carry = 0;
 }
