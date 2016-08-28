@@ -22,7 +22,6 @@ void			init_mem(t_state *state, t_address *current, int mem)
 	current->arg1 = 0;
 	current->arg2 = 0;
 	current->arg3 = 0;
-	current->arg4 = 0;
 //	current->address = malloc(sizeof(char) * 255);
 //	current->address = ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16);
 //	ft_strcpy(current->address, ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16));

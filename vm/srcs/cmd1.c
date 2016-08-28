@@ -19,15 +19,24 @@ void			ld(t_process *process)
 		process->carry = 0;
 }
 
+/*112 120 124 - acb implies a registry, indirect, any
+    80  84  92 - acb implies a registry, registry, any*/
+
 void		 	st(t_process *process)
 {
-	//According to ACB, either reference a registry or instruction for 2 arg
+    t_address   *indirect;
 	//if instruction, address = PC + (arg2 % IDX_MOD) / 5
-	//field at instruction to be changed
+	//field at instruction to be changed is remainder
 	if (process->current_op.arg1 < 17 && process->current_op.arg1 > 0)
 	{
-		//112 120 124 - implies a registry, indirect, any
-		//80  84  92 - implies a registry, registry, any
+		if (process->current_op.acb <= 112 && process->current_op.acb >= 124)
+        {
+            while (indirect->address != process->pc->address
+        }
+        if (process->current_op.acb <= 80 && process->current_op.acb >= 92)
+        {
+
+        }
 	}
 }
 
