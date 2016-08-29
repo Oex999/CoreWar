@@ -16,8 +16,13 @@
 #include <stdio.h> //DEBUG PURPOSES ONLY
 
 
-
-
+# define REG process->registries
+# define OP process->current_op.operation
+# define ACB process->current_op.acb
+# define ARG1 process->current_op.arg1
+# define ARG2 process->current_op.arg2
+# define ARG3 process->current_op.arg3
+# define PC process->pc
 
 
 /*----------------------------------------------------------------------------*/

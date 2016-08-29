@@ -3,7 +3,7 @@
 void	    	aff(t_process *process)
 {
 	(void)process;
-
+// ARG1 is registry. Character is printed on standard output. Mod 256
 }
 
 t_address       *seek_address(t_address *mem, int address)
@@ -11,13 +11,14 @@ t_address       *seek_address(t_address *mem, int address)
     t_address   *ptr;
 
     ptr = mem;
-    while (ptr->address != address)
+    while (ptr->address != address % MEM_SIZE)
         ptr = ptr->next;
     return (ptr);
 }
 
 int             return_field(t_address *address, int field)
 {
+    field = field % 5;
     if (field == 0)
         return (address->operation);
     if (field == 1)
@@ -33,6 +34,7 @@ int             return_field(t_address *address, int field)
 
 void            edit_field(t_address *address, int field, int new_value)
 {
+    field = field % 5;
     if (field == 0)
         address->operation = new_value;
     if (field == 1)
