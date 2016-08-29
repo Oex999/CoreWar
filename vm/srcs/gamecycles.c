@@ -9,7 +9,7 @@ void				play_game(t_state *state)
 	int				modified_ctd;
 
 	modified_ctd = 1;
-	ft_strcpy(state->champions[0]->champion_name, "test");
+	ft_strcpy(state->champ[0]->champ_name, "test");
 	cycle = 0;
 	cycles_left = state->dump -	1;
 	checks_done = 0;
@@ -57,14 +57,14 @@ void			declare_champs(t_state *state)
 	i = 0;
 	while (i < 4)
 	{
-		if (state->champions[i])
+		if (state->champ[i])
 		{
 			ft_putstr("Player ");
 			ft_putstr(ft_itoabase((i + 1), 10));
 			ft_putstr("\t");
-			ft_putstr(state->champions[i]->champion_name);
+			ft_putstr(state->champ[i]->champ_name);
 			ft_putchar(' ');
-			ft_putstr(state->champions[i]->champion_comment);
+			ft_putstr(state->champ[i]->champ_comment);
 			ft_putstr("\n");
 		}
 		i++;
@@ -81,10 +81,10 @@ void			prune_champs(t_state *state)
 	printf("Pruning Champs\n");
 	i = -1;
 	while (++i < 4)
-		if (state->champions[i] != NULL)
+		if (state->champ[i] != NULL)
 		{
 			printf("First Process for champ %i exists\n", i);
-			temp = state->champions[i];
+			temp = state->champ[i];
 			while (temp->next)
 			{
 				printf("First Process has successive process\n");
@@ -98,10 +98,10 @@ void			prune_champs(t_state *state)
 				temp->alive = 0;
 				temp = temp->next;
 			}
-			if (temp == state->champions[i] && temp->alive < 1)
+			if (temp == state->champ[i] && temp->alive < 1)
 			{
 				printf("Champions First Process Did Not Report Live\n");
-				state->champions[i] = state->champions[i]->next;
+				state->champ[i] = state->champ[i]->next;
 				free_process(temp);
 			}
 		}

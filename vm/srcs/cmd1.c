@@ -35,15 +35,15 @@ void		 	st(t_process *process)
             while (indirect->address != (process->pc->address + 
                         (process->current_op.arg2 % IDX_MOD) / 5) % MEM_SIZE)
                 indirect = indirect->next;
-            if (process->current_op.arg2 % 5 = 0)
+            if (process->current_op.arg2 % 5 == 0)
                 indirect->operation = process->registries[reg];
-            if (process->current_op.arg2 % 5 = 1)
+            if (process->current_op.arg2 % 5 == 1)
                 indirect->acb = process->registries[reg];
-            if (process->current_op.arg2 % 5 = 2)
+            if (process->current_op.arg2 % 5 == 2)
                 indirect->arg1 = process->registries[reg];
-            if (process->current_op.arg2 % 5 = 3)
+            if (process->current_op.arg2 % 5 == 3)
                 indirect->arg2 = process->registries[reg];
-            if (process->current_op.arg2 % 5 = 4)
+            if (process->current_op.arg2 % 5 == 4)
                 indirect->arg3 = process->registries[reg];
         }
         if (process->current_op.acb <= 80 && process->current_op.acb >= 92)

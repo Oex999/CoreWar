@@ -22,6 +22,10 @@
 
 /*----------------------------------------------------------------------------*/
 
+//typedef unsigned char   t_u8;
+typedef unsigned short  t_u16;
+typedef unsigned int    t_u32;
+
 typedef struct			s_address
 {
 	struct s_address	*next;
@@ -35,9 +39,14 @@ typedef struct			s_address
 
 typedef struct			s_process
 {
-	char				*champion_name;
-	char				*champion_comment;
-	int					champion_no;
+	char				*champ_name;
+	char				*champ_comment;
+	int					champ_no;
+    header_t            header;
+    
+    //for testing
+    char                *p_c;
+    //
 	int					alive;
 	int					carry;
 	int					*registries;
@@ -55,7 +64,7 @@ typedef struct			s_state
     int                 occupied;
 	int					dump;
 	t_address			*begin;
-	t_process			**champions;
+	t_process			**champ;
 	char				*live_champs;
 	char				*prev_lc;
 }						t_state;
@@ -64,16 +73,16 @@ typedef struct			s_state
 /*init.c*/
 void    	init_state(t_state *state);
 void    	init_mem(t_state *state, t_address *current, int mem);
-void    	init_process(t_process *process, int champion_no);
+void    	init_process(t_process *process, int champ_no);
 void    	init_reg(t_process *process);
-void    	create_process(t_state *state, int champion_no);
+void    	create_process(t_state *state, int champ_no);
 
 /*free.c --- free_process does not reconnect the end of the list*/
 void    	free_state(t_state *state);
 void    	free_reg(t_process *process);
 void    	free_mem(t_address *current, int mem);
 void	    free_process(t_process *process);
-void        free_champion(t_process *champion);
+void        free_champ(t_process *champ);
 
 /*input.c*/
 
@@ -90,7 +99,7 @@ void        ft_puthex(int value, int base);
 void        parse_user_input(t_state *state, char **argv, int count);
 int         parse_cycles_to_die(t_state *state, char **argv, int count);
 int         parse_champ_count(t_state *state, char **argv, int count);
-int         parse_champ_number(t_state *state, char **argv, int i, int count); //implement once champions setup
+int         parse_champ_number(t_state *state, char **argv, int i, int count); //implement once champ setup
 int         check_if_champs_assigned(t_state *state);
 
 /*gamecycles.c*/
@@ -136,5 +145,8 @@ void    	lfork(t_process *process);
 /*cmd4.c*/
 void    	aff(t_process *process);
 t_process   *seek_address(t_process *mem, int address);
+
+/*read.c*/
+t_state     parse_champ_data(t_state *state, char *argv, int i);
 
 #endif

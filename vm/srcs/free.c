@@ -12,14 +12,14 @@ void			free_state(t_state *state)
 	while (k > 0)
 	{
 		//printf("Freeing champion[%i]\n", k - 1);
-		//printf("Registries at %p\n", state->champions[k - 1]->registries);
-		if (state->champions[k - 1])
-			free_champion(state->champions[k - 1]);
-		//printf("Champions[%i] succesfully freed\n\n", k - 1);
+		//printf("Registries at %p\n", state->champ[k - 1]->registries);
+		if (state->champ[k - 1])
+			free_champ(state->champ[k - 1]);
+		//printf("champ[%i] succesfully freed\n\n", k - 1);
 		k--;
 	}
-	free(state->champions);
-	printf("Champions succesfully freed\n");
+	free(state->champ);
+	printf("champ succesfully freed\n");
 	free(state->live_champs);
 	printf("Live_Champs List succesfully freed\n");
 	free(state->prev_lc);
@@ -58,8 +58,8 @@ void			free_reg(t_process *process)
 
 void			free_process(t_process *process)
 {
-	free(process->champion_name);
-	free(process->champion_comment);
+	free(process->champ_name);
+	free(process->champ_comment);
 	//printf("Name & Champion succesfully freed\n");
 	//printf("free_process at %p\n", process);
 	//printf("free_process Registries at %p\n", process->registries);
@@ -68,20 +68,20 @@ void			free_process(t_process *process)
 	free(process);
 }
 
-void			free_champion(t_process *champion)
+void			free_champ(t_process *champ)
 {
 	t_process *temp;
 
 	//printf("Champion Process %p\n", champion);
 	//printf("Champion->next Process %p\n", champion->next);
-	temp = champion->next;
+	temp = champ->next;
 	if (temp)
 	{
 		//printf("Freeing Successive Champion Process\n\n");
-		free_champion(temp);
+		free_champ(temp);
 	}
 	//printf("Freeing Champion Process at %p\n", champion);
 	//printf("free_champion Registries at %p\n", champion->registries);
-	free_process(champion);
+	free_process(champ);
 	//printf("Process succesfully freed\n");
 }

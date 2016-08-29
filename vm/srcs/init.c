@@ -12,7 +12,7 @@ void			init_state(t_state *state)
 	printf("live_champs = %s\n", state->live_champs);
 	state->begin = malloc(sizeof(t_address));
 	init_mem(state, state->begin, MEM_SIZE);
-	state->champions = malloc(sizeof(t_process *) * 4);
+	state->champ = malloc(sizeof(t_process *) * 4);
 }
 
 void			init_mem(t_state *state, t_address *current, int mem)
@@ -35,38 +35,38 @@ void			init_mem(t_state *state, t_address *current, int mem)
 	}
 }
 
-void			create_process(t_state *state, int champion_no)
+void			create_process(t_state *state, int champ_no)
 {
 	t_process	*pointer;
 
-	printf("\n\nstate->champions[%i] = %p\n", champion_no - 1, state->champions[champion_no - 1]);
-	if (state->champions[champion_no - 1] != NULL)
+	printf("\n\nstate->champs[%i] = %p\n", champ_no - 1, state->champ[champ_no - 1]);
+	if (state->champ[champ_no - 1] != NULL)
 	{
-		printf("Creating Successive Process For Champion %i\n", champion_no);
-		pointer = state->champions[champion_no - 1];
+		printf("Creating Successive Process For Champion %i\n", champ_no);
+		pointer = state->champ[champ_no - 1];
 		while (pointer->next != NULL)
 			pointer = pointer->next;
 		pointer->next = malloc(sizeof(t_process));
 		//pointer->next->registries = malloc(sizeof(long int *) * REG_NUMBER);
-		init_process(pointer->next, champion_no);
+		init_process(pointer->next, champ_no);
 	}
 	else
 	{
-		printf("Creating First Process For Champion %i\n", champion_no);
-		state->champions[champion_no - 1] = malloc(sizeof(t_process));
-		printf("New Process at %p\n", state->champions[champion_no - 1]);
-		init_process(state->champions[champion_no - 1], champion_no);
+		printf("Creating First Process For Champion %i\n", champ_no);
+		state->champ[champ_no - 1] = malloc(sizeof(t_process));
+		printf("New Process at %p\n", state->champ[champ_no - 1]);
+		init_process(state->champ[champ_no - 1], champ_no);
 	}
 }
 
-void			init_process(t_process *process, int champion_no)
+void			init_process(t_process *process, int champ_no)
 {
 	//printf("init_process for champion %i\n", champion_no);
 	//printf("t_process %p \n", process);
-	process->champion_name = malloc(sizeof(char) * PROG_NAME_LENGTH + 2);
-	process->champion_name[PROG_NAME_LENGTH + 1] = '\0';
-	process->champion_comment = malloc(sizeof(char) * COMMENT_LENGTH + 2);
-	process->champion_comment[COMMENT_LENGTH + 1] = '\0';
+	process->champ_name = malloc(sizeof(char) * PROG_NAME_LENGTH + 2);
+	process->champ_name[PROG_NAME_LENGTH + 1] = '\0';
+	process->champ_comment = malloc(sizeof(char) * COMMENT_LENGTH + 2);
+	process->champ_comment[COMMENT_LENGTH + 1] = '\0';
 	process->alive = 0;
 	process->carry = 0;
 	process->pc = NULL;
@@ -74,7 +74,7 @@ void			init_process(t_process *process, int champion_no)
 	process->cycles_to_execute = 0;
 	process->ops_executed = 0;
 	process->next = NULL;
-	process->champion_no = champion_no;
+	process->champ_no = champ_no;
 	process->registries = malloc(sizeof(int *) * REG_NUMBER);
 	//printf("Champion number = %i\n", process->champion_no);
 	//printf("Registries Malloced at %p\n", process->registries);
@@ -91,7 +91,7 @@ void			init_reg(t_process *process)
 	while(++index != 16)
 	{
 		if (index == 0)
-			process->registries[index] = process->champion_no;
+			process->registries[index] = process->champ_no;
 		else
 			process->registries[index] = 0;
 		//printf("Registry index %i initialized to %i\n",

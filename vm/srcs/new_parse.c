@@ -12,8 +12,8 @@ int     check_if_champs_assigned(t_state *state)
     printf("\n\nStarting check_if_champ_assigned...\n\n");
     while (left >= 0 && i < state->champ_count)
     {
-        printf("\n\tchecking if state->champions[%i] is available...\n\n", i);
-        if (state->champions[i] == NULL)
+        printf("\n\tchecking if state->champ[%i] is available...\n\n", i);
+        if (state->champ[i] == NULL)
         {
             printf("\navailable...\n");
             create_process(state, i + 1);
@@ -21,7 +21,7 @@ int     check_if_champs_assigned(t_state *state)
             i++;
             printf("Unasigned champ value decreased in open = %i\n", left);
         }
-        else if (state->champions[i] != NULL)
+        else if (state->champ[i] != NULL)
         {
             i++;
             printf("Taken...\n");
@@ -54,6 +54,7 @@ int		ft_check_file(t_state *state, char **argv, int count)
         {
             if ((fd = open(argv[i], O_RDONLY)) < 0)
                     error_exit(state, "Error: Invalid file at O_RDONLY check\n");
+            //parse_champ_data(state, argv[i]);
             close(fd);
             cor++;
         }
@@ -127,8 +128,11 @@ int	parse_champ_number(t_state *state, char **argv, int i, int count)
                 error_exit(state, "Error: position to be assigned cannot be less 0 or less\n");
             else if (tmp <= MAX_PLAYERS && tmp <= state->champ_count)
             {
-                if (state->champions[tmp - 1] == NULL)
+                if (state->champ[tmp - 1] == NULL)
+                {
                     create_process(state, tmp);
+                    parse_champ_data(state, argv[i + 2], tmp - 1);
+                }
                 else
                     error_exit(state, "Error: position already assigned\n");
             }
@@ -144,11 +148,12 @@ int	parse_champ_number(t_state *state, char **argv, int i, int count)
             i++;
         }
     }
+    
     state->occupied = n;
     if (n >= 1)
     {
-        printf("state.champion_no is now set to: %i\n", state->champions[tmp - 1]->champion_no);//debuggery
-        printf("new champ at %p\n", state->champions[tmp - 1]);//debuggery
+        printf("state.champ_no is now set to: %i\n", state->champ[tmp - 1]->champ_no);//debuggery
+        printf("new champ at %p\n", state->champ[tmp - 1]);//debuggery
     }
     else
         printf("no -n flags found\n\n");
@@ -182,7 +187,7 @@ int	parse_champ_count(t_state *state, char **argv, int count)
         }
         i++;
     }
-    printf("\nnumber of champions = %i \n", champs);//debuggery
+    printf("\nnumber of champ = %i \n", champs);//debuggery
     if (champs == 0 || champs > MAX_PLAYERS)
         error_exit(state, "Error: Invalid amount of players\n");
     else if (champs > 0 && champs <= MAX_PLAYERS)
