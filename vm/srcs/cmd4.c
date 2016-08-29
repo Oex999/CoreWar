@@ -10,6 +10,7 @@ t_address       *seek_address(t_address *mem, int address)
 {
     t_address   *ptr;
 
+    ptr = mem;
     while (ptr->address != address)
         ptr = ptr->next;
     return (ptr);
@@ -27,6 +28,7 @@ int             return_field(t_address *address, int field)
         return (address->arg2);
     if (field == 4)
         return (address->arg3);
+    return (0);
 }
 
 void            edit_field(t_address *address, int field, int new_value)

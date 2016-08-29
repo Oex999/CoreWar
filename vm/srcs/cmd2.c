@@ -14,7 +14,7 @@ void			and(t_process *process)
     else if (process->current_op.acb - 4 >= 144) //REG IND
         process->registries[process->current_op.arg3] = 
             process->registries[process->current_op.arg1] &
-            return_field(seek_address(process->pc ,process->current_op.arg2 % IX_MOD), process->current_op.arg2 % 5);
+            return_field(seek_address(process->pc ,process->current_op.arg2 % IDX_MOD), process->current_op.arg2 % 5);
     else if (process->current_op.acb - 4 >= 112) //DIR REG
         process->registries[process->current_op.arg3] = 
             process->current_op.arg1 & 
@@ -38,7 +38,7 @@ void			and(t_process *process)
     else if (process->current_op.acb - 4 >= 160) //IND IND
         process->registries[process->current_op.arg3] = 
             return_field((seek_address(process->pc, process->current_op.arg1 % IDX_MOD)), process->current_op.arg1 % 5) & 
-            return_field((seek_address(process->pc, process->current_op.arg2 % IDX_MOD)), process->current_op.arg2 % 5)
+            return_field((seek_address(process->pc, process->current_op.arg2 % IDX_MOD)), process->current_op.arg2 % 5);
     else
         process->carry = 0;
 }
@@ -81,7 +81,7 @@ void			or(t_process *process)
     else if (process->current_op.acb - 4 >= 160) //IND IND
         process->registries[process->current_op.arg3] = 
             return_field((seek_address(process->pc, process->current_op.arg1 % IDX_MOD)), process->current_op.arg1 % 5) | 
-            return_field((seek_address(process->pc, process->current_op.arg2 % IDX_MOD)), process->current_op.arg2 % 5)
+            return_field((seek_address(process->pc, process->current_op.arg2 % IDX_MOD)), process->current_op.arg2 % 5);
     else
         process->carry = 0;
 }
@@ -124,15 +124,15 @@ void			xor(t_process *process)
     else if (process->current_op.acb - 4 >= 160) //IND IND
         process->registries[process->current_op.arg3] = 
             return_field((seek_address(process->pc, process->current_op.arg1 % IDX_MOD)), process->current_op.arg1 % 5) ^ 
-            return_field((seek_address(process->pc, process->current_op.arg2 % IDX_MOD)), process->current_op.arg2 % 5)
+            return_field((seek_address(process->pc, process->current_op.arg2 % IDX_MOD)), process->current_op.arg2 % 5);
     else
         process->carry = 0;
 }
 
 void			zjmp(t_process *process)
 {
-    if (process->carry = 1)
-        process->pc = find_address(process->pc, process->current_op.arg1 % IDX_MOD);
+    if (process->carry == 1)
+        process->pc = seek_address(process->pc, return_field(process->pc, process->current_op.arg1 % IDX_MOD));
 }
 
 void			ldi(t_process *process)

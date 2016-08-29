@@ -144,7 +144,9 @@ void    	lfork(t_process *process);
 
 /*cmd4.c*/
 void    	aff(t_process *process);
-t_process   *seek_address(t_process *mem, int address);
+t_address   *seek_address(t_address *mem, int address);
+int         return_field(t_address *address, int field);
+void        edit_field(t_address *address, int field, int new_value);
 
 /*read.c*/
 t_state     parse_champ_data(t_state *state, char *argv, int i); // testing
