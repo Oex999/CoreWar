@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <vm.h>
-#include <libc.h>
+#include <stdlib.h>
 
 char		*get_str(char *ptr)
 {

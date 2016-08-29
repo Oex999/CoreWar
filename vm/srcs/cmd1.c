@@ -32,6 +32,7 @@ void		 	st(t_process *process)
         reg = process->current_op.arg1;
 		if (process->current_op.acb <= 112 && process->current_op.acb >= 124)
         {
+            indirect = process->pc;
             while (indirect->address != (process->pc->address + 
                         (process->current_op.arg2 % IDX_MOD) / 5) % MEM_SIZE)
                 indirect = indirect->next;
