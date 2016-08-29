@@ -28,11 +28,14 @@ t_state             parse_champ_data(t_state *state, char *argv, int i)
         error_exit(state, "Error: Could not open file\n");
     if (read(fd, &state->champ[i]->header, sizeof(header_t)) != sizeof(header_t))
         error_exit(state, "Error: Not a valid header\n");
-    //testing
-    read_u32(&state->champ[i]->header.magic);
-    //testing
-    read_u32(&state->champ[i]->header.prog_size);
+    
+    read_u32(&state->champ[i]->header.magic);//testing
+    printf("header.magic after read_u32 = %u\n", state->champ[i]->header.magic);//debug
+    
+    read_u32(&state->champ[i]->header.prog_size);//testing
+    
     size = state->champ[i]->header.prog_size;
+    printf("header.magic after read_u32 = %u\n", state->champ[i]->header.prog_size);//debug
     
     if (state->champ[i]->header.magic != COREWAR_EXEC_MAGIC || size > CHAMP_MAX_SIZE)
         error_exit(state, "Error: Not a valid header\n");

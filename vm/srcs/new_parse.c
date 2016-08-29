@@ -6,31 +6,31 @@ int     check_if_champs_assigned(t_state *state)
     int left;
     
     i = 0;
-    printf("starting check_if_champs_assigned...\n\n");
+    printf("starting check_if_champs_assigned...\n\n");//debug
     left = state->champ_count - state->occupied;
-    printf("\nUnassigned Players = %i\n", left);
-    printf("\n\nStarting check_if_champ_assigned...\n\n");
+    printf("\nUnassigned Players = %i\n", left);//debug
+    printf("\n\nStarting check_if_champ_assigned...\n\n");//debug
     while (left >= 0 && i < state->champ_count)
     {
-        printf("\n\tchecking if state->champ[%i] is available...\n\n", i);
+        printf("\n\tchecking if state->champ[%i] is available...\n\n", i);//debug
         if (state->champ[i] == NULL)
         {
-            printf("\navailable...\n");
+            printf("\navailable...\n");//debug
             create_process(state, i + 1);
             left--;
             i++;
-            printf("Unasigned champ value decreased in open = %i\n", left);
+            printf("Unasigned champ value decreased in open = %i\n", left);//debug
         }
         else if (state->champ[i] != NULL)
         {
             i++;
-            printf("Taken...\n");
-            printf("i value incresed in taken = %i\n", i);
+            printf("Taken...\n");//debug
+            printf("i value incresed in taken = %i\n", i);//debug
         }
 
     }
-    printf("i value = %i\n", i);
-    printf("\nAll champs have a room...\n");
+    printf("i value = %i\n", i);//debug
+    printf("\nAll champs have a room...\n");//debug
     return (0);
 }
 
@@ -43,11 +43,11 @@ int		ft_check_file(t_state *state, char **argv, int count)
     
     i = 1;
     cor = 0;
-    printf("\nStarting check_file...\n\n");
+    printf("\nStarting check_file...\n\n");//debug
     while (i <= count)
     {
         tmp = ft_strrchr(argv[i], '.');
-        printf("tmp is set to %s\n", tmp);
+        printf("tmp is set to %s\n", tmp);//debug
         if (tmp == NULL)
             i++;
         else if (!strcmp(tmp,".cor"))
@@ -60,10 +60,10 @@ int		ft_check_file(t_state *state, char **argv, int count)
         }
         i++;
     }
-    printf("\nValid .cor count = %i\n", cor);
+    printf("\nValid .cor count = %i\n", cor);//debug
     if (cor < state->champ_count)
         error_exit(state, "Error: Invalid file extension\n");
-    printf("\nValid file(s) and extension\n");
+    printf("\nValid file(s) and extension\n");//debug
     return (0);
 }
 
@@ -76,14 +76,14 @@ int	parse_dump(t_state *state, char **argv, int i, int count)
     int dump_count;
     
     dump_count = 0;
-    printf("\n\nstarting parse_dump...\n\n");
+    printf("\n\nstarting parse_dump...\n\n");//debug
     state->cycles_to_die = CYCLE_TO_DIE;
     printf("state.cycles_to_die set to default: %i\n", state->cycles_to_die);//debuggery
     while (i <= count)
     {
         if (dump_count != 0)
             error_exit(state, "Error: Only 1 Dump can be entered\n");
-        printf("argv[%i] in parse_dump = %s\n", i, argv[i]);
+        printf("argv[%i] in parse_dump = %s\n", i, argv[i]);//debug
         if (!ft_strcmp(argv[i], "-dump"))
         {
             printf("\n\tfound: -dump flag\n\n");//debuggery
@@ -115,8 +115,8 @@ int	parse_champ_number(t_state *state, char **argv, int i, int count)
 
     tmp = 0;
     n = 0;
-    printf("\nstarting parse_champ_number...\n\n");
-    printf("at beginning of parse_champ_number, champ_count = %i\n\n", state->champ_count);
+    printf("\nstarting parse_champ_number...\n\n");//debug
+    printf("at beginning of parse_champ_number, champ_count = %i\n\n", state->champ_count);//debug
     while (i <= count)
     {
         if (!ft_strcmp(argv[i], "-n"))
@@ -138,13 +138,13 @@ int	parse_champ_number(t_state *state, char **argv, int i, int count)
             }
             else if (tmp > MAX_PLAYERS || tmp > state->champ_count)
                 error_exit(state, "Error: Attempting to assign postion greater than max players / current players\n");
-            printf("tmp is set to %i\n", tmp);
+            printf("tmp is set to %i\n", tmp);//debug
             printf("\nchamp_no to be set = %s\n", argv[i + 1]);//debuggery
             i++;
         }
         else if (ft_strcmp(argv[i], "-n"))
         {
-            printf("no -n found at argv[%i]\n", i);
+            printf("no -n found at argv[%i]\n", i);//debug
             i++;
         }
     }
@@ -156,7 +156,7 @@ int	parse_champ_number(t_state *state, char **argv, int i, int count)
         printf("new champ at %p\n", state->champ[tmp - 1]);//debuggery
     }
     else
-        printf("no -n flags found\n\n");
+        printf("no -n flags found\n\n");//debug
     return (0);
 }
 
@@ -172,7 +172,7 @@ int	parse_champ_count(t_state *state, char **argv, int count)
     
     i = 1;
     champs = 0;
-    printf("starting parse_champ_count...\n\n");
+    printf("starting parse_champ_count...\n\n");//debug
     while (i <= count)
     {
         tmp = ft_strrchr(argv[i], '.');
@@ -204,7 +204,7 @@ void        parse_user_input(t_state *state, char **argv, int count)
     int     i;
     
     i = 1;
-    printf("starting parse_user_input...\n\n");
+    printf("starting parse_user_input...\n\n");//debug
     
     printf("Initial state.champ_count set to %i\n", state->champ_count);//debuggery
     parse_champ_count(state, argv, count);
