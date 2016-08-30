@@ -2,66 +2,67 @@
 
 void		sti(t_process *process)
 {
-    int         address;
+    t_address	*address;
     int         result;
-// EDIT ALL ACB NUMBERS for ARG2 & ARG3 creating place that ARG1 is put
-    if (ACB - 4 >= 80) //REG REG
+// EDIT ALL ACB NUMBERS for ARG3 & ARG1 creating place that ARG2 REG is put
+    if (ACB - 4 == 168) //REG REG
     {
-        address = seek_address(PC, REG[ARG1] + REG[ARG2]);
-        REG[ARG3] = return_field(address, REG[ARG1] + REG[ARG2]);
+        address = seek_address(PC, REG[ARG2] + REG[ARG3]);
+        address = seek_address(address, (REG[ARG2] + REG[ARG3]) % IDX_MOD);
+		edit_field(address, (REG[ARG2] + REG[ARG3]) % IDX_MOD, REG[ARG1]);
     }
-    else if (ACB - 4 >= 208) //REG DIR
+    else if (ACB - 4 == 164) //REG DIR
     {
-        address = seek_address(PC, REG[ARG1] + ARG2);
-        REG[ARG3] = return_field(address, REG[ARG1] + ARG2);
+        address = seek_address(PC, REG[ARG2] + ARG3);
+        address = return_field(address, (REG[ARG2] + ARG3) % IDX_MOD);
     }
-    else if (ACB - 4 >= 144) //REG IND
+    else if (ACB - 4 == 172) //REG IND
     {
-        result = return_field(seek_address(PC, ARG1), ARG1)
-            + return_field(seek_address(PC, ARG2), ARG2);
-        address = seek_address(PC, result);
-        REG[ARG3] = return_field(address, result);
+        result = return_field(seek_address(PC, ARG2), ARG2)
+            + return_field(seek_address(PC, ARG3), ARG3);
+        address = seek_address(PC, result % IDX_MOD);
+        address = return_field(address, result % IDX_MOD);
     }
-    else if (ACB - 4 >= 112) //DIR REG
+    else if (ACB - 4 == 152) //DIR REG
     {
-        address = seek_address(PC, ARG1 + REG[ARG2]);
-        REG[ARG3] = return_field(address, ARG1 + REG[ARG2] % 5);
+        address = seek_address(PC, ARG2 + REG[ARG3]);
+        address = return_field(address, (ARG2 + REG[ARG3]) % 5);
     }
-    else if (ACB - 4 >= 240) //DIR DIR
+    else if (ACB - 4 == 148) //DIR DIR
     {
-        address = seek_address(PC, ARG1 + ARG2);
-        REG[ARG3] = return_field(address, ARG1 + ARG2 % 5);
+        address = seek_address(PC, ARG2 + ARG3);
+        address = return_field(address, (ARG2 + ARG3) % 5);
     }
-    else if (ACB - 4 >= 176) //DIR IND
+    else if (ACB - 4 == 156) //DIR IND
+    {
+        result = return_field(seek_address(PC, ARG3), ARG3);
+        address = seek_address(PC, (ARG2 + result) % IDX_MOD);
+        address = return_field(address, (ARG2 + result) % IDX_MOD);
+    }
+    else if (ACB - 4 == 184)  //IND REG
     {
         result = return_field(seek_address(PC, ARG2), ARG2);
-        address = seek_address(PC, ARG1 + result);
-        REG[ARG3] = return_field(address, ARG1 + result);
+        address = seek_address(PC, (result + REG[ARG3]) % IDX_MOD);
+        address = return_field(address, (result + REG[ARG3]) % IDX_MOD);
     }
-    else if (ACB - 4 >= 96)  //IND REG
+    else if (ACB - 4 == 180) //IND DIR
     {
-        result = return_field(seek_address(PC, ARG1), ARG1);
-        address = seek_address(PC, result + REG[ARG2]);
-        REG[ARG3] = return_field(address, result + REG[ARG2]);
+        result = return_field(seek_address(PC, ARG2), ARG2);
+        address = seek_address(PC, (result + ARG3) % IDX_MOD);
+        address = return_field(address, (result + ARG3) % IDX_MOD);
     }
-    else if (ACB - 4 >= 224) //IND DIR
+    else if (ACB - 4 == 188) //IND IND
     {
-        result = return_field(seek_address(PC, ARG1), ARG1);
-        address = seek_address(PC, result + ARG2);
-        REG[ARG3] = return_field(address, result + ARG2);
-    }
-    else if (ACB - 4 >= 160) //IND IND
-    {
-        result = return_field(seek_address(PC, ARG1), ARG1) 
-            + return_field(seek_address(PC, ARG2), ARG2);
-        address = seek_address(PC, result);
-        REG[ARG3] = return_field(address, result);
+        result = return_field(seek_address(PC, ARG2), ARG2) 
+            + return_field(seek_address(PC, ARG3), ARG3);
+        address = seek_address(PC, result % IDX_MOD);
+        address = return_field(address, result % IDX_MOD);
     }
 }	
 
 void		cfork(t_process *process)
 {
-    //PLACE new process at PC place ARG1 % IDX_MOD
+    //PLACE new process at PC place ARG2 % IDX_MOD
 	(void)process;
 
 }	
@@ -74,7 +75,7 @@ void		lld(t_process *process)
 
 void		lldi(t_process *process)
 {
-// SAme as LDI but no IDX_MOD. Modifies Carry
+// Same as LDI but no IDX_MOD. Modifies Carry
 	(void)process;
 }	
 
