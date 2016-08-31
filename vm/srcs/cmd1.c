@@ -27,48 +27,43 @@ void			ld(t_process *process)
 void		 	st(t_process *process)
 {
     t_address   *indirect;
-    int         reg;
 	
     if (ARG1 < 17 && ARG1 > 0)
 	{
-        reg = ARG1;
-		if (ACB <= 112 && ACB >= 124)
+		if ((ACB & 176) == 176)
         {
             indirect = PC;
             while (indirect->address != (PC->address + 
                         (ARG2 % IDX_MOD) / 5) % MEM_SIZE)
                 indirect = indirect->next;
             if (ARG2 % 5 == 0)
-                indirect->operation = REG[reg];
+                indirect->operation = REG[ARG1];
             if (ARG2 % 5 == 1)
-                indirect->acb = REG[reg];
+                indirect->acb = REG[ARG1];
             if (ARG2 % 5 == 2)
-                indirect->arg1 = REG[reg];
+                indirect->arg1 = REG[ARG1];
             if (ARG2 % 5 == 3)
-                indirect->arg2 = REG[reg];
+                indirect->arg2 = REG[ARG1];
             if (ARG2 % 5 == 4)
-                indirect->arg3 = REG[reg];
+                indirect->arg3 = REG[ARG1];
         }
-        if (ACB <= 80 && ACB >= 92)
+        if ((ACB & 160) == 160)
             if (ARG2 < 17 && ARG2 > 0)
-                REG[ARG2] =
-                    REG[reg];
+                REG[ARG2] = REG[ARG1];
 	}
 }
 
-/*3 registry coding bte = 84*/
+/*3 registry coding byte = 84*/
 
 void			add(t_process *process)
 {
-    if (ACB == 84)
+    if ((ACB & 168) == 168)
     {
         if (ARG1 < 17 && ARG1 > 0)
             if (ARG2 < 17 && ARG2 > 0)
-                if (ARG3 < 17 && 
-                        ARG3 > 0)    
+                if (ARG3 < 17 && ARG3 > 0)    
                 {
-                    ARG3 = 
-                        ARG1 + ARG2;
+                    ARG3 = ARG1 + ARG2;
                     process->carry = 1;
                 }
     }
@@ -78,15 +73,13 @@ void			add(t_process *process)
 
 void			sub(t_process *process)
 {
-    if (ACB == 84)
+    if ((ACB & 168) == 168)
     {
         if (ARG1 < 17 && ARG1 > 0)
             if (ARG2 < 17 && ARG2 > 0)
-                if (ARG3 < 17 && 
-                        ARG3 > 0)    
+                if (ARG3 < 17 && ARG3 > 0)    
                 {
-                    ARG3 = 
-                        ARG1 - ARG2;
+                    ARG3 = ARG1 - ARG2;
                     process->carry = 1;
                 }
     }

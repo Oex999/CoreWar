@@ -2,26 +2,26 @@
 
 void			sti(t_process *process)
 {
-    if (ACB - 4 == 168) //REG REG
+    if ((ACB & 168) == 168) //REG REG
 		edit_field(PC, (REG[ARG2] + REG[ARG3]) % IDX_MOD, REG[ARG1]);
-    else if (ACB - 4 == 164) //REG DIR
+    else if ((ACB & 164) == 164) //REG DIR
 		edit_field(PC, (REG[ARG2] + ARG3) % IDX_MOD, REG[ARG1]);
-    else if (ACB - 4 == 172) //REG IND
+    else if ((ACB & 172) == 172) //REG IND
 		edit_field(PC, 
 				(REG[ARG2] + return_field(PC, ARG3)) % IDX_MOD, REG[ARG1]);
-    else if (ACB - 4 == 152) //DIR REG
+    else if ((ACB & 152) == 152) //DIR REG
 		edit_field(PC, (ARG2 + REG[ARG3]) % IDX_MOD, REG[ARG1]);
-    else if (ACB - 4 == 148) //DIR DIR
+    else if ((ACB & 148) == 148) //DIR DIR
 		edit_field(PC, (ARG2 + ARG3) % IDX_MOD, REG[ARG1]);
-    else if (ACB - 4 == 156) //DIR IND
+    else if ((ACB & 156) == 156) //DIR IND
 		edit_field(PC, 
 				(ARG2 + return_field(PC, ARG3)) % IDX_MOD, REG[ARG1]);
-    else if (ACB - 4 == 184)  //IND REG
+    else if ((ACB & 184) == 184)  //IND REG
 		edit_field(PC, 
 				(return_field(PC, ARG2) + REG[ARG3]) % IDX_MOD, REG[ARG1]);
-    else if (ACB - 4 == 180) //IND DIR
+    else if ((ACB & 180) == 180) //IND DIR
 		edit_field(PC, (return_field(PC, ARG2) + ARG3) % IDX_MOD, REG[ARG1]);
-    else if (ACB - 4 == 188) //IND IND
+    else if ((ACB & 188) == 188) //IND IND
 		edit_field(PC, 
 				(return_field(PC, ARG2) + return_field(PC, ARG3))
 			   	% IDX_MOD, REG[ARG1]);
@@ -58,25 +58,25 @@ void			lld(t_process *process)
 void			lldi(t_process *process)
 {
 	process->carry = 1;
-    if (ACB - 4 >= 80) //REG REG
+    if ((ACB & 80) == 80) //REG REG
         REG[ARG3] = return_field(PC, (REG[ARG1] + REG[ARG2]));
-    else if (ACB - 4 >= 208) //REG DIR
+    else if ((ACB & 208) == 208) //REG DIR
         REG[ARG3] = return_field(PC, (REG[ARG1] + ARG2));
-    else if (ACB - 4 >= 144) //REG IND
+    else if ((ACB & 144) == 144) //REG IND
         REG[ARG3] = return_field(PC,
                 (REG[ARG1] + return_field(PC, ARG2)));
-    else if (ACB - 4 >= 112) //DIR REG
+    else if ((ACB & 112) == 112) //DIR REG
         REG[ARG3] = return_field(PC, (ARG1 + REG[ARG2]));
-    else if (ACB - 4 >= 240) //DIR DIR
+    else if ((ACB & 240) == 240) //DIR DIR
         REG[ARG3] = return_field(PC, (ARG1 + ARG2));
-    else if (ACB - 4 >= 176) //DIR IND
+    else if ((ACB & 176) == 176) //DIR IND
         REG[ARG3] = return_field(PC, (ARG1 + return_field(PC, ARG2)));
-    else if (ACB - 4 >= 96)  //IND REG
+    else if ((ACB & 96) == 96)  //IND REG
         REG[ARG3] = return_field(PC,
                 (return_field(PC, ARG1) + REG[ARG2]));
-    else if (ACB - 4 >= 224) //IND DIR
+    else if ((ACB & 224) == 224) //IND DIR
         REG[ARG3] = return_field(PC, (return_field(PC, ARG1) + ARG2));
-    else if (ACB - 4 >= 160) //IND IND
+    else if ((ACB & 160) == 160) //IND IND
         REG[ARG3] = return_field(PC,
                 return_field(PC, ARG1) +
                 return_field(PC, ARG1));
