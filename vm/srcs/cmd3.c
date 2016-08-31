@@ -56,7 +56,6 @@ void			lld(t_process *process)
 }	
 
 void			lldi(t_process *process)
-// Same as LDI but no IDX_MOD. Modifies Carry
 {
 	process->carry = 1;
     if (ACB - 4 >= 80) //REG REG

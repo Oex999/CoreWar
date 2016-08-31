@@ -2,8 +2,14 @@
 
 void	    	aff(t_process *process)
 {
-	(void)process;
-// ARG1 is registry. Character is printed on standard output. Mod 256
+	char		c;
+
+	if ((ACB & 128) == 128)
+		if (ARG1 / 16 < 16 && ARG1 / 16 > -1)
+		{
+			c = REG[ARG1] % 256;
+			write(1, &c, 1);
+		}
 }
 
 t_address       *seek_address(t_address *mem, int address)
