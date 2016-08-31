@@ -43,14 +43,46 @@ void			cfork(t_state *state, t_process *process)
 
 void			lld(t_process *process)
 {
-// LD without IDX_MOD. Modifies Carry
-	(void)process;
+    process->carry = 1;
+    if ((ACB & 160) == 160) //REG REG
+        REG[ARG3] = return_field(PC, (REG[ARG1] + REG[ARG2]));
+    else if ((ACB & 96) == 96) //DIR REG
+        REG[ARG3] = return_field(PC, (REG[ARG1] + ARG2));
+    else if ((ACB & 224) == 224) //IND REG
+        REG[ARG3] = return_field(PC,
+                (REG[ARG1] + return_field(PC, ARG2)));
+    else
+        process->carry = 0;
 }	
 
 void			lldi(t_process *process)
-{
 // Same as LDI but no IDX_MOD. Modifies Carry
-	(void)process;
+{
+	process->carry = 1;
+    if (ACB - 4 >= 80) //REG REG
+        REG[ARG3] = return_field(PC, (REG[ARG1] + REG[ARG2]));
+    else if (ACB - 4 >= 208) //REG DIR
+        REG[ARG3] = return_field(PC, (REG[ARG1] + ARG2));
+    else if (ACB - 4 >= 144) //REG IND
+        REG[ARG3] = return_field(PC,
+                (REG[ARG1] + return_field(PC, ARG2)));
+    else if (ACB - 4 >= 112) //DIR REG
+        REG[ARG3] = return_field(PC, (ARG1 + REG[ARG2]));
+    else if (ACB - 4 >= 240) //DIR DIR
+        REG[ARG3] = return_field(PC, (ARG1 + ARG2));
+    else if (ACB - 4 >= 176) //DIR IND
+        REG[ARG3] = return_field(PC, (ARG1 + return_field(PC, ARG2)));
+    else if (ACB - 4 >= 96)  //IND REG
+        REG[ARG3] = return_field(PC,
+                (return_field(PC, ARG1) + REG[ARG2]));
+    else if (ACB - 4 >= 224) //IND DIR
+        REG[ARG3] = return_field(PC, (return_field(PC, ARG1) + ARG2));
+    else if (ACB - 4 >= 160) //IND IND
+        REG[ARG3] = return_field(PC,
+                return_field(PC, ARG1) +
+                return_field(PC, ARG1));
+	else
+		process->carry = 0;
 }	
 
 void			lfork(t_state *state, t_process *process)
