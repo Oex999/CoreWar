@@ -1,6 +1,6 @@
 #include <vm.h>
 
-void		sti(t_process *process)
+void			sti(t_process *process)
 {
     if (ACB - 4 == 168) //REG REG
 		edit_field(PC, (REG[ARG2] + REG[ARG3]) % IDX_MOD, REG[ARG1]);
@@ -27,27 +27,42 @@ void		sti(t_process *process)
 			   	% IDX_MOD, REG[ARG1]);
 }	
 
-void		cfork(t_process *process)
+void			cfork(t_state *state, t_process *process)
 {
-    //PLACE new process at PC place ARG2 % IDX_MOD
-	(void)process;
+    t_process	*new;
 
+	create_process(state, process->champ_no);
+	new = process;
+	while (new->next)
+		new = new->next;
+	new->champ_name = process->champ_name;
+	new->champ_comment = process->champ_comment;
+	new->carry = process->carry;
+	new->pc = seek_address(PC, (PC->address + ARG2) % IDX_MOD);
 }	
 
-void		lld(t_process *process)
+void			lld(t_process *process)
 {
 // LD without IDX_MOD. Modifies Carry
 	(void)process;
 }	
 
-void		lldi(t_process *process)
+void			lldi(t_process *process)
 {
 // Same as LDI but no IDX_MOD. Modifies Carry
 	(void)process;
 }	
 
-void		lfork(t_process *process)
+void			lfork(t_state *state, t_process *process)
 {
-	(void)process;
-// Fork without Modulo
+    t_process	*new;
+
+	create_process(state, process->champ_no);
+	new = process;
+	while (new->next)
+		new = new->next;
+	new->champ_name = process->champ_name;
+	new->champ_comment = process->champ_comment;
+	new->carry = process->carry;
+	new->pc = seek_address(PC, (PC->address + ARG2));
 }	

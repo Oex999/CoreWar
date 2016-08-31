@@ -120,7 +120,7 @@ void    	check_nbr_live(t_state *state);
 
 /*operations.c*/
 void    	complete_op1(t_state *state, t_process *process);
-void    	complete_op2(t_process *process);
+void    	complete_op2(t_state *state, t_process *process);
 void    	set_op(t_process *process, int cycle_cost);
 void    	start_op1(t_process *process);
 void	    start_op2(t_process *process);
@@ -142,10 +142,10 @@ void    	ldi(t_process *process);
 
 /*cmd3.c*/
 void    	sti(t_process *process);
-void    	cfork(t_process *process);
+void    	cfork(t_state *state, t_process *process);
 void    	lld(t_process *process);
 void	    lldi(t_process *process);
-void    	lfork(t_process *process);
+void    	lfork(t_state *state, t_process *process);
 
 /*cmd4.c*/
 void    	aff(t_process *process);

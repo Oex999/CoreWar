@@ -73,7 +73,7 @@ void			complete_op1(t_state *state, t_process *process)
 		process->cycles_to_execute--;
 }
 
-void			complete_op2(t_process *process)
+void			complete_op2(t_state *state, t_process *process)
 {
 	if (process->cycles_to_execute == 0)
 	{
@@ -86,13 +86,13 @@ void			complete_op2(t_process *process)
 		else if (process->current_op.operation == 11)
 			sti(process);
 		else if (process->current_op.operation == 12)
-			cfork(process);
+			cfork(state, process);
 		else if (process->current_op.operation == 13)
 			lld(process);
 		else if (process->current_op.operation == 14)
 			lldi(process);
 		else if (process->current_op.operation == 15)
-			lfork(process);
+			lfork(state, process);
 		else if (process->current_op.operation == 16)
 			aff(process);
 	}
