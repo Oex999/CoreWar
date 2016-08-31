@@ -68,6 +68,7 @@ void			complete_op1(t_state *state, t_process *process)
 			and(process);
 		else if (process->current_op.operation == 7)
 			or(process);
+		process->pc = process->pc->next;
 	}
 	else
 		process->cycles_to_execute--;
@@ -95,6 +96,8 @@ void			complete_op2(t_state *state, t_process *process)
 			lfork(state, process);
 		else if (process->current_op.operation == 16)
 			aff(process);
+		if (process->current_op.operation != 9)
+			process->pc = process->pc->next;
 	}
 	else
 		process->cycles_to_execute--;	
