@@ -86,7 +86,8 @@ void    	init_process(t_process *process, int champ_no);
 void    	init_reg(t_process *process);
 void    	create_process(t_state *state, int champ_no);
 
-/*free.c --- free_process does not reconnect the end of the list*/
+/*free.c*/
+/*free_process does not reconnect the end of the list*/
 void    	free_state(t_state *state);
 void    	free_reg(t_process *process);
 void    	free_mem(t_address *current, int mem);
@@ -109,7 +110,7 @@ void        parse_user_input(t_state *state, char **argv, int count);
 int         parse_cycles_to_die(t_state *state, char **argv, int count);
 int         parse_champ_count(t_state *state, char **argv, int count);
 int         parse_champ_number(t_state *state, char **argv, int i, int count);
-int         check_if_champs_assigned(t_state *state);
+int         check_if_champs_assigned(t_state *state, char **argv);
 int			ft_check_file(t_state *state, char **argv, int count);
 int			parse_dump(t_state *state, char **argv, int i, int count);
 
@@ -162,6 +163,8 @@ void        edit_field(t_state *state, t_address *address, int field, int new_va
 /*read.c*/
 void		parse_champ_data(t_state *state, char *argv, int champ_no); // testing
 void		check_magic(t_state *state, unsigned char *buff);
+void        buffer_champion(unsigned char *buff, int fd);
+void        deploy_champion(t_address *pc, unsigned char *buff);
 
 /*ft_reverse_bytes.c*/
 void		ft_reverse_bytes(void *mem, size_t size);

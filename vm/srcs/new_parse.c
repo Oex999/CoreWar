@@ -1,6 +1,6 @@
 #include <vm.h>
 
-int     check_if_champs_assigned(t_state *state)
+int     check_if_champs_assigned(t_state *state, char **argv)
 {
     int i;
     int left;
@@ -17,6 +17,7 @@ int     check_if_champs_assigned(t_state *state)
         {
             printf("\navailable...\n");//debug
             create_process(state, i + 1);
+            parse_champ_data(state, argv[i], i + 1);
             left--;
             i++;
             printf("Unasigned champ value decreased in open = %i\n", left);//debug
@@ -54,7 +55,6 @@ int		ft_check_file(t_state *state, char **argv, int count)
         {
             if ((fd = open(argv[i], O_RDONLY)) < 0)
                     error_exit(state, "Error: Invalid file at O_RDONLY check\n");
-            parse_champ_data(state, argv[i], i);
             close(fd);
             cor++;
         }
@@ -214,6 +214,6 @@ void        parse_user_input(t_state *state, char **argv, int count)
     
     parse_dump(state, argv, i, count);
 
-    check_if_champs_assigned(state);
+    check_if_champs_assigned(state, argv);
     ft_check_file(state, argv, count);
 }
