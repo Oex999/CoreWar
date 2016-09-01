@@ -11,12 +11,13 @@ void			init_state(t_state *state)
 	ft_strcpy(state->prev_lc, "0000");
 	printf("live_champs = %s\n", state->live_champs);
 	state->begin = malloc(sizeof(t_address));
-	init_mem(state, state->begin, MEM_SIZE);
+	init_mem(state, state->begin, MEM_SIZE * 5);
 	state->champ = malloc(sizeof(t_process *) * 4);
 }
 
 void			init_mem(t_state *state, t_address *current, int mem)
 {
+	//printf("Initializing mem %i\n", mem);
 	current->operation = 0;
 	current->acb = 0;
 	current->arg1 = 0;
@@ -25,13 +26,13 @@ void			init_mem(t_state *state, t_address *current, int mem)
 //	current->address = malloc(sizeof(char) * 255);
 //	current->address = ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16);
 //	ft_strcpy(current->address, ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16));
-	current->address = ((mem - MEM_SIZE * 5) * -1);
-	if (mem == 1)
+	current->address = mem;
+	if (mem <= 1)
 		current->next = state->begin;
 	else
 	{
 		current->next = malloc(sizeof(t_address));
-		init_mem(state, current->next, mem - 6);
+		init_mem(state, current->next, mem - 5);
 	}
 }
 
