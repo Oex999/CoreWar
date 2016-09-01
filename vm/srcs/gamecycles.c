@@ -9,7 +9,7 @@ void				play_game(t_state *state)
 	int				modified_ctd;
 
 	modified_ctd = 1;
-	ft_strcpy(state->champ[0]->champ_name, "test");
+	ft_strcpy(state->champ[0]->champ_name, "test");	//debug
 	cycle = 0;
 	cycles_left = state->dump -	1;
 	checks_done = 0;
