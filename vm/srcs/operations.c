@@ -57,7 +57,7 @@ void			complete_op1(t_state *state, t_process *process)
 		else if (process->current_op.operation == 1)
 			live(state, process);
 		else if (process->current_op.operation == 2)
-			ld(process);
+			ld(state, process);
 		else if (process->current_op.operation == 3)
 			st(process);
 		else if (process->current_op.operation == 4)
@@ -65,9 +65,9 @@ void			complete_op1(t_state *state, t_process *process)
 		else if (process->current_op.operation == 5)
 			sub(process);
 		else if (process->current_op.operation == 6)
-			and(process);
+			and(state, process);
 		else if (process->current_op.operation == 7)
-			or(process);
+			or(state, process);
 		process->pc = process->pc->next;
 	}
 	else
@@ -79,19 +79,19 @@ void			complete_op2(t_state *state, t_process *process)
 	if (process->cycles_to_execute == 0)
 	{
 		if (process->current_op.operation == 8)
-			xor(process);
+			xor(state, process);
 		else if (process->current_op.operation == 9)
-			zjmp(process);
+			zjmp(state, process);
 		else if (process->current_op.operation == 10)
-			ldi(process);
+			ldi(state, process);
 		else if (process->current_op.operation == 11)
-			sti(process);
+			sti(state, process);
 		else if (process->current_op.operation == 12)
 			cfork(state, process);
 		else if (process->current_op.operation == 13)
-			lld(process);
+			lld(state, process);
 		else if (process->current_op.operation == 14)
-			lldi(process);
+			lldi(state, process);
 		else if (process->current_op.operation == 15)
 			lfork(state, process);
 		else if (process->current_op.operation == 16)
