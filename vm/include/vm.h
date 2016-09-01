@@ -134,30 +134,30 @@ void	    start_op2(t_process *process);
 
 /*cmd1.c*/
 void    	live(t_state *state, t_process *process);
-void    	ld(t_process *process);
+void    	ld(t_state *state, t_process *process);
 void    	st(t_process *process);
 void    	add(t_process *process);
 void	    sub(t_process *process);
 
 /*cmd2.c*/
-void    	and(t_process *process);
-void    	or(t_process *process);
-void    	xor(t_process *process);
-void    	zjmp(t_process *process);
-void    	ldi(t_process *process);
+void    	and(t_state *state, t_process *process);
+void    	or(t_state *state, t_process *process);
+void    	xor(t_state *state, t_process *process);
+void    	zjmp(t_state *state, t_process *process);
+void    	ldi(t_state *state, t_process *process);
 
 /*cmd3.c*/
-void    	sti(t_process *process);
+void    	sti(t_state *state, t_process *process);
 void    	cfork(t_state *state, t_process *process);
-void    	lld(t_process *process);
-void	    lldi(t_process *process);
+void    	lld(t_state *state, t_process *process);
+void	    lldi(t_state *state, t_process *process);
 void    	lfork(t_state *state, t_process *process);
 
 /*cmd4.c*/
 void    	aff(t_process *process);
-t_address   *seek_address(t_address *mem, int address);
-int         return_field(t_address *address, int field);
-void        edit_field(t_address *address, int field, int new_value);
+t_address   *seek_address(t_state *state, t_address *mem, int address);
+int         return_field(t_state *state, t_address *address, int field);
+void        edit_field(t_state *state, t_address *address, int field, int new_value);
 
 /*read.c*/
 void		parse_champ_data(t_state *state, char *argv, int champ_no); // testing

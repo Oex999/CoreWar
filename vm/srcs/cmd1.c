@@ -7,16 +7,16 @@ void			live(t_state *state, t_process *process)
 		state->live_champs[ARG1 - 1] = 1;
 }
 
-void			ld(t_process *process)
+void			ld(t_state *state, t_process *process)
 {
 	process->carry = 1;
 	if ((ACB & 160) == 160) //REG REG
-        REG[ARG3] = return_field(PC, (REG[ARG1] + REG[ARG2]) % IDX_MOD);
+        REG[ARG3] = return_field(state, PC, (REG[ARG1] + REG[ARG2]) % IDX_MOD);
     else if ((ACB & 96) == 96) //DIR REG
-        REG[ARG3] = return_field(PC, (REG[ARG1] + ARG2) % IDX_MOD);
+        REG[ARG3] = return_field(state, PC, (REG[ARG1] + ARG2) % IDX_MOD);
     else if ((ACB & 224) == 224) //IND REG
-        REG[ARG3] = return_field(PC,
-                (REG[ARG1] + return_field(PC, ARG2)) % IDX_MOD);
+        REG[ARG3] = return_field(state, PC,
+                (REG[ARG1] + return_field(state, PC, ARG2)) % IDX_MOD);
 	else
 		process->carry = 0;
 }
