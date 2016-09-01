@@ -16,6 +16,10 @@
 #include <stdio.h> //DEBUG PURPOSES ONLY
 
 
+
+
+
+
 # define REG process->registries
 # define OP process->current_op.operation
 # define ACB process->current_op.acb
@@ -106,6 +110,8 @@ int         parse_cycles_to_die(t_state *state, char **argv, int count);
 int         parse_champ_count(t_state *state, char **argv, int count);
 int         parse_champ_number(t_state *state, char **argv, int i, int count);
 int         check_if_champs_assigned(t_state *state);
+int			ft_check_file(t_state *state, char **argv, int count);
+int			parse_dump(t_state *state, char **argv, int i, int count);
 
 /*gamecycles.c*/
 void    	play_game(t_state *state);
@@ -154,6 +160,9 @@ int         return_field(t_address *address, int field);
 void        edit_field(t_address *address, int field, int new_value);
 
 /*read.c*/
-t_state     parse_champ_data(t_state *state, char *argv, int i); // testing
+t_state     parse_champ_data(t_state *state, char *argv, int champ_no); // testing
+
+/*ft_reverse_bytes.c*/
+void		ft_reverse_bytes(void *mem, size_t size);
 
 #endif

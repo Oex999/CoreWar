@@ -20,6 +20,7 @@ SRC= $(SP)corewar.c\
 	 $(SP)cmd2.c\
 	 $(SP)cmd3.c\
 	 $(SP)cmd4.c\
+	 $(SP)ft_reverse_bytes.c\
 
 
 all: $(NAME)
