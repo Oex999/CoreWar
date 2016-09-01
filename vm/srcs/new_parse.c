@@ -54,7 +54,7 @@ int		ft_check_file(t_state *state, char **argv, int count)
         {
             if ((fd = open(argv[i], O_RDONLY)) < 0)
                     error_exit(state, "Error: Invalid file at O_RDONLY check\n");
-            //parse_champ_data(state, argv[i]);
+            parse_champ_data(state, argv[i], i);
             close(fd);
             cor++;
         }
