@@ -25,6 +25,25 @@ int			read_live(t_address *current, unsigned char *buff, long int index)
 	return (index);
 }
 
+/*
+int			read_ld(t_address *current, unsigned char *buff, long int index)
+{
+    int		temp;
+    int		counter;
+    
+    counter = -1;
+    temp = 0;
+    current->operation = buff[index];
+    index++;
+    if ((buff[index] & 90) == 90)
+        ld_reg(buff, index);
+    else if ((buff[index] & 144) == 144)
+        ld_dir();
+    else if ((buff[index] & 208) == 208)
+        ld_ind();
+}
+ */
+
 int			read_ld(t_address *current, unsigned char *buff, long int index)
 {
 	int		temp;
@@ -34,7 +53,7 @@ int			read_ld(t_address *current, unsigned char *buff, long int index)
 	temp = 0;
 	current->operation = buff[index];
 	index++;
-	if ((buff[index] & 160) == 160)
+	if ((buff[index] & 144) == 144)
 	{
 		while (++counter <= 1) 
 		{
@@ -47,7 +66,7 @@ int			read_ld(t_address *current, unsigned char *buff, long int index)
 		}
 
 	}
-	else if ((buff[index] & 224) == 224)
+	else if ((buff[index] & 208) == 208)
 	{
 		while (++counter <= IND_SIZE)
 		{
@@ -60,7 +79,7 @@ int			read_ld(t_address *current, unsigned char *buff, long int index)
 		}
 
 	}
-	else if ((buff[index] & 96) == 96)
+	else if ((buff[index] & 80) == 80)
 	{
 		while (++counter <= DIR_SIZE)
 		{
