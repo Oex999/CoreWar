@@ -16,7 +16,7 @@ int     check_if_champs_assigned(t_state *state, char **argv)
         if (state->champ[i] == NULL)
         {
             printf("\navailable...\n");//debug
-            create_process(state, i + 1, argv[i]);
+            create_process(state, i + 1, argv[i + 1]);
             left--;
             i++;
             printf("Unasigned champ value decreased in open = %i\n", left);//debug

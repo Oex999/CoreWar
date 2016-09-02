@@ -9,7 +9,8 @@ void				play_game(t_state *state)
 	int				modified_ctd;
 
 	modified_ctd = 1;
-	ft_strcpy(state->champ[0]->champ_name, "test");	//debug
+//	ft_strcpy(state->champ[0]->champ_name, "test");	//debug
+//	ft_strcpy(state->champ[0]->champ_comment, "test");	//debug
 	cycle = 0;
 	cycles_left = state->dump -	1;
 	checks_done = 0;
@@ -20,7 +21,7 @@ void				play_game(t_state *state)
 	{
 		cycle++;
 		//state->cycles_to_die--;
-		printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
+//		printf("Current Cycle = %i\tCycles_To_Die = %i\tChecks_Done = %i\n", cycle, state->cycles_to_die, checks_done);
 		if (state->dump != 0)
 		{
 			printf("cycles left until dump = %i\n", cycles_left);
@@ -45,7 +46,7 @@ void				play_game(t_state *state)
 		}
 		if (ft_strcmp(state->live_champs, "0000") != 0)
 			ft_strcpy(state->prev_lc, state->live_champs);
-		printf("plc = %s \t lc = %s\n", state->prev_lc, state->live_champs);
+//		printf("plc = %s \t lc = %s\n", state->prev_lc, state->live_champs);
 	}
 	check_for_winner(state);
 }
@@ -54,19 +55,18 @@ void			declare_champs(t_state *state)
 {
 	int			i;
 
+	printf("Declaring Champions!\n");
 	i = 0;
-	while (i < 4)
+	while (i < state->champ_count)
 	{
-		if (state->champ[i])
-		{
-			ft_putstr("Player ");
-			ft_putstr(ft_itoabase((i + 1), 10));
-			ft_putstr("\t");
-			ft_putstr(state->champ[i]->champ_name);
-			ft_putchar(' ');
-			ft_putstr(state->champ[i]->champ_comment);
-			ft_putstr("\n");
-		}
+		printf("i = %i, pointer = %p\n", i, state->champ[i]);
+		ft_putstr("Player ");
+		ft_putstr(ft_itoabase((i + 1), 10));
+		ft_putstr("\t");
+		ft_putstr(state->champ[i]->champ_name);
+		ft_putchar(' ');
+		ft_putstr(state->champ[i]->champ_comment);
+		ft_putstr("\n");
 		i++;
 	}
 	ft_putstr("\n");
@@ -78,7 +78,7 @@ void			prune_champs(t_state *state)
 	t_process	*iter;
 	int			i;
 
-	printf("Pruning Champs\n");
+	//printf("Pruning Champs\n");
 	i = -1;
 	while (++i < 4)
 		if (state->champ[i] != NULL)

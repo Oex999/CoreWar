@@ -153,9 +153,9 @@ void        edit_field(t_state *state, t_address *address, int field, int new_va
 
 /*read.c*/
 void		parse_champ_data(t_state *state, char *argv, int champ_no); // testing
-void		check_magic(t_state *state, char *buff);
-void        buffer_champion(char *buff, int fd);
-void        deploy_champion(t_address *pc, char *buff);
+void		check_magic(t_state *state, unsigned char *buff);
+void        buffer_champion(unsigned char *buff, int fd);
+void        deploy_champion(t_address *pc, unsigned  char *buff);
 
 /*ft_reverse_bytes.c*/
 void		ft_reverse_bytes(void *mem, size_t size);
