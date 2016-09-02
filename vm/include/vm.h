@@ -31,10 +31,6 @@
 
 /*----------------------------------------------------------------------------*/
 
-//typedef unsigned char   t_u8;
-typedef unsigned short  t_u16;
-typedef unsigned int    t_u32;
-
 typedef struct			s_address
 {
 	struct s_address	*next;
@@ -51,11 +47,6 @@ typedef struct			s_process
 	char				*champ_name;
 	char				*champ_comment;
 	int					champ_no;
-    header_t            header;
-    
-    //for testing
-    char                *p_c;
-    //
 	int					alive;
 	int					carry;
 	int					*registries;
@@ -84,7 +75,7 @@ void    	init_state(t_state *state);
 void    	init_mem(t_state *state, t_address *current, int mem);
 void    	init_process(t_process *process, int champ_no);
 void    	init_reg(t_process *process);
-void    	create_process(t_state *state, int champ_no);
+void    	create_process(t_state *state, int champ_no, char *file_name);
 
 /*free.c*/
 /*free_process does not reconnect the end of the list*/
@@ -162,9 +153,9 @@ void        edit_field(t_state *state, t_address *address, int field, int new_va
 
 /*read.c*/
 void		parse_champ_data(t_state *state, char *argv, int champ_no); // testing
-void		check_magic(t_state *state, unsigned char *buff);
-void        buffer_champion(unsigned char *buff, int fd);
-void        deploy_champion(t_address *pc, unsigned char *buff);
+void		check_magic(t_state *state, char *buff);
+void        buffer_champion(char *buff, int fd);
+void        deploy_champion(t_address *pc, char *buff);
 
 /*ft_reverse_bytes.c*/
 void		ft_reverse_bytes(void *mem, size_t size);

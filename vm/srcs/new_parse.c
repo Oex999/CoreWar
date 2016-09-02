@@ -16,8 +16,7 @@ int     check_if_champs_assigned(t_state *state, char **argv)
         if (state->champ[i] == NULL)
         {
             printf("\navailable...\n");//debug
-            create_process(state, i + 1);
-            parse_champ_data(state, argv[i], i + 1);
+            create_process(state, i + 1, argv[i]);
             left--;
             i++;
             printf("Unasigned champ value decreased in open = %i\n", left);//debug
@@ -129,10 +128,7 @@ int	parse_champ_number(t_state *state, char **argv, int i, int count)
             else if (tmp <= MAX_PLAYERS && tmp <= state->champ_count)
             {
                 if (state->champ[tmp - 1] == NULL)
-                {
-                    create_process(state, tmp);
-                    parse_champ_data(state, argv[i + 2], tmp - 1);
-                }
+                    create_process(state, tmp, argv[i + 2]);
                 else
                     error_exit(state, "Error: position already assigned\n");
             }

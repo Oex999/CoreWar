@@ -31,7 +31,7 @@ void			cfork(t_state *state, t_process *process)
 {
     t_process	*new;
 
-	create_process(state, process->champ_no);
+	create_process(state, process->champ_no, "NULL");
 	new = process;
 	while (new->next)
 		new = new->next;
@@ -88,7 +88,7 @@ void			lfork(t_state *state, t_process *process)
 {
     t_process	*new;
 
-	create_process(state, process->champ_no);
+	create_process(state, process->champ_no, "NULL");
 	new = process;
 	while (new->next)
 		new = new->next;

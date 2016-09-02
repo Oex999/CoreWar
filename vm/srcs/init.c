@@ -36,7 +36,7 @@ void			init_mem(t_state *state, t_address *current, int mem)
 	}
 }
 
-void			create_process(t_state *state, int champ_no)
+void			create_process(t_state *state, int champ_no, char *file_name)
 {
 	t_process	*pointer;
 
@@ -50,6 +50,8 @@ void			create_process(t_state *state, int champ_no)
 		pointer->next = malloc(sizeof(t_process));
 		//pointer->next->registries = malloc(sizeof(long int *) * REG_NUMBER);
 		init_process(pointer->next, champ_no);
+		if (ft_strcmp(file_name, "NULL") != 0)
+			parse_champ_data(state, file_name, champ_no);
 	}
 	else
 	{
