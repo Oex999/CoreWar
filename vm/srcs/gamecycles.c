@@ -55,18 +55,18 @@ void			declare_champs(t_state *state)
 {
 	int			i;
 
-	printf("Declaring Champions!\n");
+	printf("Declaring Champions!\n\n");
 	i = 0;
 	while (i < state->champ_count)
 	{
-		printf("i = %i, pointer = %p\n", i, state->champ[i]);
+		//printf("i = %i, pointer = %p\n", i, state->champ[i]);
 		ft_putstr("Player ");
 		ft_putstr(ft_itoabase((i + 1), 10));
 		ft_putstr("\t");
 		ft_putstr(state->champ[i]->champ_name);
-		ft_putchar(' ');
+		ft_putstr(",\nComment: ");
 		ft_putstr(state->champ[i]->champ_comment);
-		ft_putstr("\n");
+		ft_putstr("\n\n");
 		i++;
 	}
 	ft_putstr("\n");

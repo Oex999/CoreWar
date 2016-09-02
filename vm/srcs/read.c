@@ -15,18 +15,23 @@ void             parse_champ_data(t_state *state, char *argv, int champ_no)
 			(MEM_SIZE * 5) / state->champ_count * champ_no - 1);
 	ft_strcpy(state->champ[champ_no - 1]->champ_name, (char *)&buff[4]);
 	ft_strcpy(state->champ[champ_no - 1]->champ_comment, 
-			(char *)&buff[4 + PROG_NAME_LENGTH + 1]); //Doesn't Work
-	deploy_champion(state->champ[champ_no - 1]->pc, buff);
+			(char *)&buff[4 + PROG_NAME_LENGTH + 8]);
+	deploy_champion(state->champ[champ_no - 1]->pc, 
+			buff, 16 + PROG_NAME_LENGTH + COMMENT_LENGTH);
 }
 
-void			deploy_champion(t_address *pc, unsigned char *buff)
+void			deploy_champion(t_address *pc, unsigned char *buff, long int index)
 {
-	long int	index;
-
-	(void)pc;
-	(void)buff;
-	index = 0;
+	t_address		*current;
 	
+	printf("first byte read for instructions %x\n", buff[index]);
+	current = pc;
+	while (buff[index] != '\0')
+	{
+		index = read_operation1(current, buff, index);
+		index = read_operation2(current, buff, index);
+		current = current->next;
+	}
 }
 
 void            buffer_champion(unsigned char *buff, int fd)
@@ -34,9 +39,9 @@ void            buffer_champion(unsigned char *buff, int fd)
 	long int	size;
 //	int			temp;
     
-//	size = -1;
-//    while (++size <= 4000)
-//		buff[size] = '\0';
+	size = -1;
+    while (++size <= 4000)
+		buff[size] = '\0';
 	size = -1;
 	while (read(fd, &buff[++size], 1) == 1);
 	size = -1;
