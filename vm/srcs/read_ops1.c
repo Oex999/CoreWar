@@ -3,6 +3,8 @@
 
 #include <math.h> // DEBUG MUTHFUCKA!
 
+/* opcode 01............*/
+
 int			read_live(t_address *current, unsigned char *buff, long int index)
 {
 	int		temp;
@@ -25,6 +27,7 @@ int			read_live(t_address *current, unsigned char *buff, long int index)
 	return (index);
 }
 
+/* opcode 02............*/
 /*
 int			read_ld(t_address *current, unsigned char *buff, long int index)
 {
@@ -53,7 +56,7 @@ int			read_ld(t_address *current, unsigned char *buff, long int index)
 	temp = 0;
 	current->operation = buff[index];
 	index++;
-	if ((buff[index] & 144) == 144)
+	if ((buff[index] & 0x90) == 0x90)
 	{
 		while (++counter <= 1) 
 		{
@@ -106,3 +109,28 @@ int			read_ld(t_address *current, unsigned char *buff, long int index)
 	}
 	return (index);
 }
+
+/*
+
+int			read_st(t_address *current, unsigned char *buff, long int index)
+{
+    int		temp;
+    int		counter;
+}
+
+ opcode 04.
+
+int			read_add(t_address *current, unsigned char *buff, long int index)
+{
+    int		temp;
+    int		counter;
+}
+
+ opcode 05............
+
+int			read_sub(t_address *current, unsigned char *buff, long int index)
+{
+    int		temp;
+    int		counter;
+}
+ */

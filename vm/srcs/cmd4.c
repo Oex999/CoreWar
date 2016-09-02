@@ -21,7 +21,7 @@ t_address       *seek_address(t_state *state, t_address *mem, int address)
 	{
     	while (ptr->address != address % MEM_SIZE * 5)
 		{
-			printf("Seeking Address %i from %i\n", address % MEM_SIZE * 5, ptr->address);
+			//printf("Seeking Address %i from %i\n", address % MEM_SIZE * 5, ptr->address);
 			ptr = ptr->next;
 		}
 	}

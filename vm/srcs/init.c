@@ -51,8 +51,11 @@ void			create_process(t_state *state, int champ_no, char *file_name)
 		//pointer->next->registries = malloc(sizeof(long int *) * REG_NUMBER);
 		init_process(pointer->next, champ_no);
 		printf("\t\tChecking if filename NULL for cor file parse = %s\n", file_name);
-		if (ft_strcmp(file_name, "NULL") != 0)
+		if (ft_strcmp(file_name, "NULL") != 0)//..................check this
+        {
+            printf("calling parse_champ_data for champ_no %i and file name %s...\n", champ_no, file_name);
 			parse_champ_data(state, file_name, champ_no);
+        }
 	}
 	else
 	{
@@ -61,8 +64,11 @@ void			create_process(t_state *state, int champ_no, char *file_name)
 		printf("New Process at %p\n", state->champ[champ_no - 1]);
 		init_process(state->champ[champ_no - 1], champ_no);
 		printf("\t\tChecking if filename NULL for cor file parse = %s\n", file_name);
-		if (ft_strcmp(file_name, "NULL") != 0)
-			parse_champ_data(state, file_name, champ_no);
+		if (ft_strcmp(file_name, "NULL") != 0)//................check this
+        {
+			printf("calling parse_hamp_data for champ_no %i and file name %s...\n", champ_no, file_name);
+            parse_champ_data(state, file_name, champ_no);
+        }
 	}
 }
 

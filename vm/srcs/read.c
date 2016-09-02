@@ -24,13 +24,16 @@ void			deploy_champion(t_address *pc, unsigned char *buff, long int index)
 {
 	t_address		*current;
 	
-	printf("first byte read for instructions %x\n", buff[index]);
+    printf("index at start of deploy_champion = %li...\n", index);
+	printf("first byte read for instructions %0x\n", buff[index]);
 	current = pc;
-	while (buff[index] != '\0')
-	{
+	//while (buff[index] != '\0')
+	while (index <= MEM_SIZE)
+    {
 		index = read_operation1(current, buff, index);
-		index = read_operation2(current, buff, index);
+        index = read_operation2(current, buff, index);
 		current = current->next;
+        index++;
 	}
 }
 
@@ -62,7 +65,7 @@ void			check_magic(t_state *state, unsigned char *buff)
 	ft_strcat(str, ft_itoabase(buff[1], 16));
 	ft_strcat(str, ft_itoabase(buff[2], 16));
 	ft_strcat(str, ft_itoabase(buff[3], 16));
-	printf("file magic = %s\n", str);
+	printf("\n\nfile magic = %s\n", str);
 	if (ft_strcmp(str, magic = ft_itoabase(COREWAR_EXEC_MAGIC, 16)) != 0)
 		error_exit(state, "Error: Champion Header Incorrect\n");
 	free(str);

@@ -168,4 +168,7 @@ int         read_operation2(t_address *current, unsigned char *buff, long int in
 int			read_live(t_address *current, unsigned char *buff, long int index);
 int			read_ld(t_address *current, unsigned char *buff, long int index);
 
+/*read_ops3.c*/
+int			read_sti(t_address *current, unsigned char *buff, long int index);
+
 #endif

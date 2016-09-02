@@ -23,6 +23,9 @@ SRC= $(SP)corewar.c\
 	 $(SP)ft_reverse_bytes.c\
 	 $(SP)parse_operations.c\
 	 $(SP)read_ops1.c\
+	 $(SP)read_ops2.c\
+	 $(SP)read_ops3.c\
+	 $(SP)read_ops4.c\
 
 
 all: $(NAME)
