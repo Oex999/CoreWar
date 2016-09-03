@@ -4,41 +4,41 @@ void			start_op1(t_process *process)
 {
 	if (process->current_op.operation == 0)
 		;
-	else if (process->current_op.operation == 1)
+	else if (process->current_op.operation == 0x01)
 		set_op(process, 10);
-	else if (process->current_op.operation == 2)
+	else if (process->current_op.operation == 0x02)
 		set_op(process, 5);
-	else if (process->current_op.operation == 3)
+	else if (process->current_op.operation == 0x03)
 		set_op(process, 5);
-	else if (process->current_op.operation == 4)
+	else if (process->current_op.operation == 0x04)
 		set_op(process, 10);
-	else if (process->current_op.operation == 5)
+	else if (process->current_op.operation == 0x05)
 		set_op(process, 10);
-	else if (process->current_op.operation == 6)
+	else if (process->current_op.operation == 0x06)
 		set_op(process, 6);
-	else if (process->current_op.operation == 7)
+	else if (process->current_op.operation == 0x07)
 		set_op(process, 6);
 }
 
 void			start_op2(t_process *process)
 {
-	if (process->current_op.operation == 8)
+	if (process->current_op.operation == 0x08)
 		set_op(process, 6);
-	else if (process->current_op.operation == 9)
+	else if (process->current_op.operation == 0x09)
 		set_op(process, 20);
-	else if (process->current_op.operation == 10)
+	else if (process->current_op.operation == 0x0a)
 		set_op(process, 25);
-	else if (process->current_op.operation == 11)
+	else if (process->current_op.operation == 0x0b)
 		set_op(process, 25);
-	else if (process->current_op.operation == 12)
+	else if (process->current_op.operation == 0x0c)
 		set_op(process, 800);
-	else if (process->current_op.operation == 13)
+	else if (process->current_op.operation == 0x0d)
 		set_op(process, 10);
-	else if (process->current_op.operation == 14)
+	else if (process->current_op.operation == 0x0e)
 		set_op(process, 50);
-	else if (process->current_op.operation == 15)
+	else if (process->current_op.operation == 0x0f)
 		set_op(process, 1000);
-	else if (process->current_op.operation == 16)
+	else if (process->current_op.operation == 0x10)
 		set_op(process, 2);
 }
 

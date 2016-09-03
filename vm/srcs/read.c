@@ -27,11 +27,12 @@ void			deploy_champion(t_address *pc, unsigned char *buff, long int index)
     printf("index at start of deploy_champion = %li...\n", index);
 	printf("first byte read for instructions %0x\n", buff[index]);
 	current = pc;
-	//while (buff[index] != '\0')
-	while (index <= MEM_SIZE)
+	while (buff[index] != '\0')
     {
-		index = read_operation1(current, buff, index);
-        index = read_operation2(current, buff, index);
+		//index = read_operation1(current, buff, index);
+        //index = read_operation2(current, buff, index);
+        index = read_operation1(buff, index);
+        index = read_operation2(buff, index);
 		current = current->next;
         index++;
 	}

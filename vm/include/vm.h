@@ -161,8 +161,10 @@ void        deploy_champion(t_address *pc, unsigned  char *buff, long int index)
 void		ft_reverse_bytes(void *mem, size_t size);
 
 /*parse_operations.c*/
-int         read_operation1(t_address *current, unsigned char *buff, long int index);
-int         read_operation2(t_address *current, unsigned char *buff, long int index);
+//int         read_operation1(t_address *current, unsigned char *buff, long int index);
+//int         read_operation2(t_address *current, unsigned char *buff, long int index);
+int         read_operation1(unsigned char *buff, long int index);
+int         read_operation2(unsigned char *buff, long int index);
 
 /*read_op1.c*/
 int			read_live(t_address *current, unsigned char *buff, long int index);

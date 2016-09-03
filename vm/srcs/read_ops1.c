@@ -13,7 +13,9 @@ int			read_live(t_address *current, unsigned char *buff, long int index)
 	counter = 0;
 	temp = 0;
 	current->operation = buff[index];
+    printf("Operation found in read_live = %x...\n", current->operation);
 	index++;
+    printf("after index++, buff[index] now = %x...\n", buff[index]);
 	while (counter <= 1)
 	{
 		printf("temp = %i\n", temp);
