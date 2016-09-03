@@ -1,27 +1,27 @@
-#include <vm.h>
+ #include <vm.h>
 
 void			sti(t_state *state, t_process *process)
 {
-    if ((ACB & 168) == 168) //REG REG
+    if ((ACB & 0x50) == 0x50) //REG REG
 		edit_field(state, PC, (REG[ARG2] + REG[ARG3]) % IDX_MOD, REG[ARG1]);
-    else if ((ACB & 164) == 164) //REG DIR
+    else if ((ACB & 0x5C) == 0x5C) //REG DIR
 		edit_field(state, PC, (REG[ARG2] + ARG3) % IDX_MOD, REG[ARG1]);
-    else if ((ACB & 172) == 172) //REG IND
+    else if ((ACB & 0x5C) == 0x5C) //REG IND
 		edit_field(state, PC, 
 				(REG[ARG2] + return_field(state, PC, ARG3)) % IDX_MOD, REG[ARG1]);
-    else if ((ACB & 152) == 152) //DIR REG
+    else if ((ACB & 0x60) == 0x60) //DIR REG
 		edit_field(state, PC, (ARG2 + REG[ARG3]) % IDX_MOD, REG[ARG1]);
-    else if ((ACB & 148) == 148) //DIR DIR
+    else if ((ACB & 0x6C) == 0x6C) //DIR DIR
 		edit_field(state, PC, (ARG2 + ARG3) % IDX_MOD, REG[ARG1]);
-    else if ((ACB & 156) == 156) //DIR IND
+    else if ((ACB & 0x6C) == 0x6C) //DIR IND
 		edit_field(state, PC, 
 				(ARG2 + return_field(state, PC, ARG3)) % IDX_MOD, REG[ARG1]);
-    else if ((ACB & 184) == 184)  //IND REG
+    else if ((ACB & 0x70) == 0x70)  //IND REG
 		edit_field(state, PC, 
 				(return_field(state, PC, ARG2) + REG[ARG3]) % IDX_MOD, REG[ARG1]);
-    else if ((ACB & 180) == 180) //IND DIR
+    else if ((ACB & 0x7C) == 0x7C) //IND DIR
 		edit_field(state, PC, (return_field(state, PC, ARG2) + ARG3) % IDX_MOD, REG[ARG1]);
-    else if ((ACB & 188) == 188) //IND IND
+    else if ((ACB & 0x7C) == 0x7C) //IND IND
 		edit_field(state, PC, 
 				(return_field(state, PC, ARG2) + return_field(state, PC, ARG3))
 			   	% IDX_MOD, REG[ARG1]);
@@ -44,39 +44,39 @@ void			cfork(t_state *state, t_process *process)
 void			lld(t_state *state, t_process *process)
 {
     process->carry = 1;
-    if ((ACB & 160) == 160) //REG REG
+    if ((ACB & 0x50) == 0x50) //REG REG
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + REG[ARG2]));
-    else if ((ACB & 96) == 96) //DIR REG
+    else if ((ACB & 0x90) == 0x90) //DIR REG
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + ARG2));
-    else if ((ACB & 224) == 224) //IND REG
+    else if ((ACB & 0xD0) == 0xD0) //IND REG
         REG[ARG3] = return_field(state, PC,
                 (REG[ARG1] + return_field(state, PC, ARG2)));
     else
         process->carry = 0;
 }	
 
-void			lldi(t_state *state, t_process *process)
+void			lldi(t_state *state, t_process *process)		//hex conv from latest dec conv
 {
 	process->carry = 1;
-    if ((ACB & 80) == 80) //REG REG
+    if ((ACB & 0x50) == 0x50) //REG REG
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + REG[ARG2]));
-    else if ((ACB & 208) == 208) //REG DIR
+    else if ((ACB & 0xD0) == 0xD0) //REG DIR
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + ARG2));
-    else if ((ACB & 144) == 144) //REG IND
+    else if ((ACB & 0x90) == 0x90) //REG IND
         REG[ARG3] = return_field(state, PC,
                 (REG[ARG1] + return_field(state, PC, ARG2)));
-    else if ((ACB & 112) == 112) //DIR REG
+    else if ((ACB & 0x70) == 0x70) //DIR REG
         REG[ARG3] = return_field(state, PC, (ARG1 + REG[ARG2]));
-    else if ((ACB & 240) == 240) //DIR DIR
+    else if ((ACB & 0xF0) == 0xF0) //DIR DIR
         REG[ARG3] = return_field(state, PC, (ARG1 + ARG2));
-    else if ((ACB & 176) == 176) //DIR IND
+    else if ((ACB & 0xB0) == 0xB0) //DIR IND
         REG[ARG3] = return_field(state, PC, (ARG1 + return_field(state, PC, ARG2)));
-    else if ((ACB & 96) == 96)  //IND REG
+    else if ((ACB & 0x90) == 0x90)  //IND REG
         REG[ARG3] = return_field(state, PC,
                 (return_field(state, PC, ARG1) + REG[ARG2]));
-    else if ((ACB & 224) == 224) //IND DIR
+    else if ((ACB & 0xD0) == 0xD0) //IND DIR
         REG[ARG3] = return_field(state, PC, (return_field(state, PC, ARG1) + ARG2));
-    else if ((ACB & 160) == 160) //IND IND
+    else if ((ACB & 0x50) == 0x50) //IND IND
         REG[ARG3] = return_field(state, PC,
                 return_field(state, PC, ARG1) +
                 return_field(state, PC, ARG1));

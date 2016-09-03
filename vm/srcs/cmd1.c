@@ -7,10 +7,11 @@ void			live(t_state *state, t_process *process)
 		state->live_champs[ARG1 - 1] = 1;
 }
 
-void			ld(t_state *state, t_process *process)
+void			ld(t_state *state, t_process *process)		//still to do
 {
 	process->carry = 1;
-	if ((ACB & 160) == 160) //REG REG
+
+    if ((ACB & 160) == 160) //REG REG
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + REG[ARG2]) % IDX_MOD);
     else if ((ACB & 96) == 96) //DIR REG
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + ARG2) % IDX_MOD);
@@ -30,7 +31,7 @@ void		 	st(t_process *process)
 	
     if (ARG1 < 17 && ARG1 > 0)
 	{
-		if ((ACB & 176) == 176)
+		if ((ACB & 0x70) == 0x70)
         {
             indirect = PC;
             while (indirect->address != (PC->address + 
@@ -47,7 +48,7 @@ void		 	st(t_process *process)
             if (ARG2 % 5 == 4)
                 indirect->arg3 = REG[ARG1];
         }
-        if ((ACB & 160) == 160)
+        if ((ACB & 0x50) == 0x50)
             if (ARG2 < 17 && ARG2 > 0)
                 REG[ARG2] = REG[ARG1];
 	}
@@ -57,7 +58,7 @@ void		 	st(t_process *process)
 
 void			add(t_process *process)
 {
-    if ((ACB & 168) == 168)
+    if ((ACB & 0x50) == 0x50)
     {
         if (ARG1 < 17 && ARG1 > 0)
             if (ARG2 < 17 && ARG2 > 0)
@@ -73,7 +74,7 @@ void			add(t_process *process)
 
 void			sub(t_process *process)
 {
-    if ((ACB & 168) == 168)
+    if ((ACB & 0x50) == 0x50)
     {
         if (ARG1 < 17 && ARG1 > 0)
             if (ARG2 < 17 && ARG2 > 0)

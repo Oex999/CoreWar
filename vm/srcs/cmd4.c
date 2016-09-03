@@ -1,10 +1,10 @@
 #include <vm.h>
 
-void	    	aff(t_process *process)
+void	    	aff(t_process *process)		//ACB value unclear
 {
 	char		c;
 
-	if ((ACB & 128) == 128)
+	if ((ACB & 0x40) == 0x40)
 		if (ARG1 / 16 < 16 && ARG1 / 16 > -1)
 		{
 			c = REG[ARG1] % 256;
