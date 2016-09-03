@@ -96,6 +96,9 @@ char        *ft_itoabase(int value, int base);
 /*ft_puthex.c ---TO BE ADDED TO LIBFT LATER*/
 void        ft_puthex(int value, int base);
 
+/*ft_pow.c ---TO BE ADDED TO LIBFT LATER*/
+long int	ft_pow(int base, int power);
+
 /*parsing.c*/
 void        parse_user_input(t_state *state, char **argv, int count);
 int         parse_cycles_to_die(t_state *state, char **argv, int count);

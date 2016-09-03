@@ -7,15 +7,15 @@ void			live(t_state *state, t_process *process)
 		state->live_champs[ARG1 - 1] = 1;
 }
 
-void			ld(t_state *state, t_process *process)		//still to do
+void			ld(t_state *state, t_process *process)		//clash for DIR REG ACBs
 {
 	process->carry = 1;
 
-    if ((ACB & 160) == 160) //REG REG
+    if ((ACB & 0x50) == 0x50) //REG REG
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + REG[ARG2]) % IDX_MOD);
-    else if ((ACB & 96) == 96) //DIR REG
+    else if ((ACB & 0x90) == 0x90) //DIR REG
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + ARG2) % IDX_MOD);
-    else if ((ACB & 224) == 224) //IND REG
+    else if ((ACB & 0xD0) == 0xD0) //IND REG
         REG[ARG3] = return_field(state, PC,
                 (REG[ARG1] + return_field(state, PC, ARG2)) % IDX_MOD);
 	else

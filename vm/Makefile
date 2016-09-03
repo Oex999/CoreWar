@@ -26,6 +26,7 @@ SRC= $(SP)corewar.c\
 	 $(SP)read_ops2.c\
 	 $(SP)read_ops3.c\
 	 $(SP)read_ops4.c\
+	 $(SP)ft_pow.c
 
 
 all: $(NAME)
