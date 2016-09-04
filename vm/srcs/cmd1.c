@@ -14,7 +14,10 @@ void			ld(t_state *state, t_process *process)		//clash for DIR REG ACBs
     if ((ACB & 0x50) == 0x50) //REG REG
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + REG[ARG2]) % IDX_MOD);
     else if ((ACB & 0x90) == 0x90) //DIR REG
+    {
+        printf("made it this far...");
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + ARG2) % IDX_MOD);
+    }
     else if ((ACB & 0xD0) == 0xD0) //IND REG
         REG[ARG3] = return_field(state, PC,
                 (REG[ARG1] + return_field(state, PC, ARG2)) % IDX_MOD);

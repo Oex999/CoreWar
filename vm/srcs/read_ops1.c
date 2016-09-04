@@ -7,7 +7,8 @@
 
 int			read_live(t_address *current, unsigned char *buff, long int index)
 {
-	int		temp;
+	
+    int		temp;
 	int		counter;
 
 	counter = 0;
@@ -25,6 +26,7 @@ int			read_live(t_address *current, unsigned char *buff, long int index)
 		printf("Index = %li\n", index);
 		printf("counter = %i\n", counter);
 	}
+    printf("temp in live = %i...\n", temp);
 	current->arg1 = temp;
 	return (index);
 }

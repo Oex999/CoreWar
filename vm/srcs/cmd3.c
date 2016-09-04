@@ -31,6 +31,7 @@ void			cfork(t_state *state, t_process *process)
 {
     t_process	*new;
 
+    puts("in cfork...");
 	create_process(state, process->champ_no, "NULL");
 	new = process;
 	while (new->next)

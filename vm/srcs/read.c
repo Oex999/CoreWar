@@ -31,11 +31,12 @@ void			deploy_champion(t_address *pc, unsigned char *buff, long int index)
     {
 		//index = read_operation1(current, buff, index);
         //index = read_operation2(current, buff, index);
-        index = read_operation1(buff, index);
-        index = read_operation2(buff, index);
+        index = read_operation1(current, buff, index);
+        index = read_operation2(current, buff, index);
 		current = current->next;
         index++;
 	}
+    printf("finished doing the reading...\'n");
 }
 
 void            buffer_champion(unsigned char *buff, int fd)
