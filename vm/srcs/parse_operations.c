@@ -2,7 +2,6 @@
 
 int			read_operation1(t_address *current, unsigned char *buff, long int index)
 {
-    printf("This is the start of read_operation1...\n");
     //t_process *process = NULL;
     //t_state *state = NULL;
     //unsigned int acb;
@@ -21,7 +20,7 @@ int			read_operation1(t_address *current, unsigned char *buff, long int index)
         printf("LD FOUND:...\n");
 		//index += read_ld(current, buff, index);
         current->operation = buff[index];
-        printf("current op in ST = %i...\n", current->operation);
+        printf("current op in LD = %i...\n", current->operation);
         current->arg1 = buff[index + 2] + buff[index + 3] + buff[index + 4] + buff[index + 5];
         current->arg2 = buff[index + 6];
         printf("arg1 in LD = %i...\n", current->arg1);
@@ -78,7 +77,6 @@ int			read_operation1(t_address *current, unsigned char *buff, long int index)
 
 int			read_operation2(t_address *current, unsigned char *buff, long int index)
 {
-    printf("This is the start of read_operation2...\n");
     //t_state *state = NULL;
 	//printf("current at address %i, buff indexed at %x with index %li\n", current->address, buff[index], index);
     //unsigned int acb;
@@ -89,17 +87,32 @@ int			read_operation2(t_address *current, unsigned char *buff, long int index)
     if (buff[index] == 0x08 && buff[index + 1] == 0x64) //8
     {
         //index += read_sti(current, buff, index);
-        index += 7;
+        
         printf("XOR FOUND:...\n");
+        current->operation = buff[index];
+        printf("current op in XOR = %i...\n", current->operation);
+        current->arg1 = buff[index + 2];
+        current->arg2 = buff[index + 3] + buff[index + 4];
+        current->arg3 = buff[index + 5];
+        printf("arg1 in XOR = %x...\n", current->arg1);
+        printf("arg2 in XOR = %x...\n", current->arg2);
+        printf("arg3 in XOR = %x...\n", current->arg3);
+        index += 7;
     }
     
 	//if (buff[index] == 09)
 	//	index += read_zjmp(current, buff, index);
     if (buff[index] == 0x09) //9
     {
-        //index += read_sti(current, buff, index);
-        index += 2;
         printf("ZJMP FOUND:...\n");
+        current->operation = buff[index];
+        printf("current op in ZJMP = %i...\n", current->operation);
+        current->arg1 = buff[index + 1];
+        current->arg2 = buff[index + 2];
+        printf("arg1 in ZJMP = %i...\n", current->arg1);
+        printf("arg2 in ZJMP = %i...\n", current->arg2);
+        index += 2;
+        
     }
 
 	//if (buff[index] == 0a) //10
@@ -117,15 +130,34 @@ int			read_operation2(t_address *current, unsigned char *buff, long int index)
     {
         if (buff[index + 1] == 0x68)
         {
-            //index += read_sti(current, buff, index);
+            printf("STI FOUND:...");
+            current->operation = buff[index];
+            printf("current op in STI = %i...\n", current->operation);
+            current->arg1 = buff[index + 2];
+            current->arg2 = buff[index + 3] + buff[index + 4];
+            current->arg3 = buff[index + 5] + buff[index + 6];
+            printf("arg1 in STI = %x...\n", current->arg1);
+            printf("arg2 in STI = %x...\n", current->arg2);
+            printf("arg3 in STI = %x...\n", current->arg3);
+
             index += 5;
-            printf("STI FOUND:...buff[index = %x\n", buff[index]);
+            index++;
+            
         }
         else if (buff[index + 1] == 0x64)
         {
             //index += read_sti(current, buff, index);
+            printf("STI FOUND:...");
+            current->operation = buff[index];
+            printf("current op in STI = %i...\n", current->operation);
+            current->arg1 = buff[index + 2];
+            current->arg2 = buff[index + 3] + buff[index + 4];
+            current->arg3 = buff[index + 5];
+            printf("arg1 in STI = %x...\n", current->arg1);
+            printf("arg2 in STI = %x...\n", current->arg2);
+            printf("arg3 in STI = %x...\n", current->arg3);
             index += 4;
-            printf("STI FOUND:...buff[index = %x\n", buff[index]);
+            printf("STI FOUND:...");
         }
     }
     

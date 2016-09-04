@@ -36,7 +36,7 @@ void			deploy_champion(t_address *pc, unsigned char *buff, long int index)
 		current = current->next;
         index++;
 	}
-    printf("finished doing the reading...\'n");
+    printf("finished doing the reading...\n\n");
 }
 
 void            buffer_champion(unsigned char *buff, int fd)
