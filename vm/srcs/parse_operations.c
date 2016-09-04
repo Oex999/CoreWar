@@ -1,193 +1,132 @@
 #include <vm.h>
 
-int			read_operation1(t_address *current, unsigned char *buff, long int index)
+int			read_operation1(t_address *current, unsigned char *buff, long int i)
 {
-    //t_process *process = NULL;
-    //t_state *state = NULL;
-    //unsigned int acb;
-    //acb = buff[index + 1];
-    //printf("acb in read_ops1 = %x...\n", acb);
-	//printf("current at address %i, buff indexed at %x = with index %li\n", current->address, buff[index], index);
-	if (buff[index] == 0x01)
+	if (buff[i] == 0x01)
     {
-        index += 4;
-        printf("LIVE FOUND:...\n");
+        current->operation = buff[i];
+        current->arg1 = buff[i + 1] + buff[i + 2] + buff[i + 3] + buff[i + 4];
+        i += 4;
 		//index += read_live(current, buff, index);
     }
     
-	if (buff[index] == 0x02 && buff[index + 1] == 0x90)
+	if (buff[i] == 0x02 && buff[i + 1] == 0x90)
     {
-        printf("LD FOUND:...\n");
 		//index += read_ld(current, buff, index);
-        current->operation = buff[index];
-        printf("current op in LD = %i...\n", current->operation);
-        current->arg1 = buff[index + 2] + buff[index + 3] + buff[index + 4] + buff[index + 5];
-        current->arg2 = buff[index + 6];
-        printf("arg1 in LD = %i...\n", current->arg1);
-        printf("arg2 in LD = %x...\n", current->arg2);
-        index += 6;
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
+        current->arg1 = buff[i + 2] + buff[i + 3] + buff[i + 4] + buff[i + 5];
+        current->arg2 = buff[i + 6];
+        i += 6;
         
     }
 
-    if (buff[index] == 0x03 && buff[index + 1] == 0x70)
+    if (buff[i] == 0x03 && buff[i + 1] == 0x70)
     {
-        printf("ST FOUND:...\n");
-        current->operation = buff[index];
-        printf("current op in ST = %i...\n", current->operation);
-        current->arg1 = buff[index + 2];
-        current->arg2 = buff[index + 3] + buff[index + 4];
-        printf("arg1 in ST = %x...\n", current->arg1);
-        printf("arg2 in ST = %x...\n", current->arg2);
-        index += 4;
-        
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
+        current->arg1 = buff[i + 2];
+        current->arg2 = buff[i + 3] + buff[i + 4];
+        i += 4;
         //index += read_st(current, buff, index);
     }
     
-	if (buff[index] == 0x04 && buff[index + 1] == 0x54)
+	if (buff[i] == 0x04 && buff[i + 1] == 0x54)
     {
-        index += 5;
-        printf("ADD FOUND:...\n");
-        current->operation = buff[index];
-        printf("current op in ST = %i...\n", current->operation);
-        current->arg1 = buff[index + 2];
-        current->arg2 = buff[index + 3];
-        current->arg3 = buff[index + 4];
-        printf("arg1 in ADD = %x...\n", current->arg1);
-        printf("arg2 in ADD = %x...\n", current->arg2);
-        printf("arg3 in ADD = %x...\n", current->arg3);
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
+        current->arg1 = buff[i + 2];
+        current->arg2 = buff[i + 3];
+        current->arg3 = buff[i + 4];
+        i += 5;
 		//index += read_add(current, buff, index);
     }
-//	if (buff[index] == 05)
-//		index += read_sub(current, buff, index);
-    
-    if (buff[index] == 0x05 && buff[index + 1] == 0x54)
+
+    if (buff[i] == 0x05 && buff[i + 1] == 0x54)
     {
-        index += 5;
-        printf("SUB FOUND:...\n");
-        //index += read_add(current, buff, index);
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
+        current->arg1 = buff[i + 2];
+        current->arg2 = buff[i + 3];
+        current->arg3 = buff[i + 4];
+        i += 5;
     }
+    
 //	if (buff[index] == 06)
 //		index += read_and(current, buff, index);
 //	if (buff[index] == 07)
 //		index += read_or(current, buff, index);*/
-	return (index);
+	return (i);
 }
 
 
 
-int			read_operation2(t_address *current, unsigned char *buff, long int index)
+int			read_operation2(t_address *current, unsigned char *buff, long int i)
 {
-    //t_state *state = NULL;
-	//printf("current at address %i, buff indexed at %x with index %li\n", current->address, buff[index], index);
-    //unsigned int acb;
-    //acb = buff[index + 1];
-    //printf("acb in read_ops2 = %x...\n", acb);
-	//if (buff[index] == 08)
-	//	index += read_xor(current, buff, index);
-    if (buff[index] == 0x08 && buff[index + 1] == 0x64) //8
+    if (buff[i] == 0x08 && buff[i + 1] == 0x64) //8
     {
         //index += read_sti(current, buff, index);
-        
-        printf("XOR FOUND:...\n");
-        current->operation = buff[index];
-        printf("current op in XOR = %i...\n", current->operation);
-        current->arg1 = buff[index + 2];
-        current->arg2 = buff[index + 3] + buff[index + 4];
-        current->arg3 = buff[index + 5];
-        printf("arg1 in XOR = %x...\n", current->arg1);
-        printf("arg2 in XOR = %x...\n", current->arg2);
-        printf("arg3 in XOR = %x...\n", current->arg3);
-        index += 7;
-    }
-    
-	//if (buff[index] == 09)
-	//	index += read_zjmp(current, buff, index);
-    if (buff[index] == 0x09) //9
-    {
-        printf("ZJMP FOUND:...\n");
-        current->operation = buff[index];
-        printf("current op in ZJMP = %i...\n", current->operation);
-        current->arg1 = buff[index + 1];
-        current->arg2 = buff[index + 2];
-        printf("arg1 in ZJMP = %i...\n", current->arg1);
-        printf("arg2 in ZJMP = %i...\n", current->arg2);
-        index += 2;
-        
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
+        current->arg1 = buff[i + 2];
+        current->arg2 = buff[i + 3] + buff[i + 4];
+        current->arg3 = buff[i + 5];
+        i += 7;
     }
 
-	//if (buff[index] == 0a) //10
-	//	index += read_ldi(current, buff, index);
-    
-    if (buff[index] == 0x0a && buff[index + 1] == 0x94) //10
+    if (buff[i] == 0x09) //9
+    {
+        current->operation = buff[i];
+        current->arg1 = buff[i + 1];
+        current->arg2 = buff[i + 2];
+        i += 2;
+    }
+
+    if (buff[i] == 0x0a && buff[i + 1] == 0x94) //10 ///////dododooooooo
     {
         //index += read_ldi(current, buff, index);
-        index += 6;
+        i += 6;
         printf("LDI FOUND:...\n");
     }
     
     
-    if (buff[index] == 0x0b) //11
+    if (buff[i] == 0x0b) //11
     {
-        if (buff[index + 1] == 0x68)
+        if (buff[i + 1] == 0x68)
         {
-            printf("STI FOUND:...");
-            current->operation = buff[index];
-            printf("current op in STI = %i...\n", current->operation);
-            current->arg1 = buff[index + 2];
-            current->arg2 = buff[index + 3] + buff[index + 4];
-            current->arg3 = buff[index + 5] + buff[index + 6];
-            printf("arg1 in STI = %x...\n", current->arg1);
-            printf("arg2 in STI = %x...\n", current->arg2);
-            printf("arg3 in STI = %x...\n", current->arg3);
-
-            index += 5;
-            index++;
-            
+            current->operation = buff[i];
+            current->acb = buff[i + 1];
+            current->arg1 = buff[i + 2];
+            current->arg2 = buff[i + 3] + buff[i + 4];
+            current->arg3 = buff[i + 5] + buff[i + 6];
+            i += 5;
+            i++;
         }
-        else if (buff[index + 1] == 0x64)
+        else if (buff[i + 1] == 0x64)
         {
-            //index += read_sti(current, buff, index);
-            printf("STI FOUND:...");
-            current->operation = buff[index];
-            printf("current op in STI = %i...\n", current->operation);
-            current->arg1 = buff[index + 2];
-            current->arg2 = buff[index + 3] + buff[index + 4];
-            current->arg3 = buff[index + 5];
-            printf("arg1 in STI = %x...\n", current->arg1);
-            printf("arg2 in STI = %x...\n", current->arg2);
-            printf("arg3 in STI = %x...\n", current->arg3);
-            index += 4;
-            printf("STI FOUND:...");
+            current->operation = buff[i];
+            current->acb = buff[i + 1];
+            current->arg1 = buff[i + 2];
+            current->arg2 = buff[i + 3] + buff[i + 4];
+            current->arg3 = buff[i + 5];
+            i += 4;
         }
     }
     
-	//if (buff[index] == 0c) //12
-	//	index += read_fork(current, buff, index);
-    
-    if (buff[index] == 0x0c) //12
+    if (buff[i] == 0x0c) //12
     {
-        current->operation = buff[index];
-        printf("current op in fork = %i...\n", current->operation);
-        current->arg1 = buff[index + 1] + buff[index + 2];
-        printf("arg1 in fork = %i...\n", current->arg1);
-        //index += read_fork(current, buff, index);
-        puts("starting Fork parsing");
-        //ft_putnbr(sizeof( process->current_op.operation));
-        //state->champ[0]->current_op.operation = buff[index];
-
-        //ARG1 = buff[index + 1] + buff[index + 2];
-        //cfork(state, process);
-        index += 2;
-        printf("FORK FOUND:...\n");
+        current->operation = buff[i];
+        current->arg1 = buff[i + 1] + buff[i + 2];
+        i += 2;
     }
     
 	//if (buff[index] == 0d) //13
 	//	index += read_lld(current, buff, index);
     
-    if (buff[index] == 0x0d) //13
+    if (buff[i] == 0x0d) //13
     {
         //index += read_lld(current, buff, index);
-        index += 2;
+        i += 2;
         printf("LLD FOUND:...\n");
     }
 
@@ -198,14 +137,14 @@ int			read_operation2(t_address *current, unsigned char *buff, long int index)
 	//if (buff[index] == 10) //16
 	//	index += read_aff(current, buff, index);
     
-    if (buff[index] == 0x10) //16
+    if (buff[i] == 0x10) //16
     {
         //index += read_aff(current, buff, index);
-        index += 1;
+        i += 1;
         printf("AFF FOUND:...\n");
     }
 
-	return (index);
+	return (i);
 }
 
 

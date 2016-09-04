@@ -5,12 +5,10 @@ void             parse_champ_data(t_state *state, char *argv, int champ_no)
 	int             fd;
 	unsigned char	buff[4000];
 
-	printf("Parsing Champ Data\n");	
 	if ((fd = open(argv, O_RDONLY)) == -1)
 		error_exit(state, "Error: Could not open file\n");
 	buffer_champion(buff, fd);
 	check_magic(state, buff);
-	printf("Champ PC points to address %i\n", (MEM_SIZE * 5) / state->champ_count * champ_no - 1);	
 	state->champ[champ_no - 1]->pc = seek_address(state, state->begin, 
 			(MEM_SIZE * 5) / state->champ_count * champ_no - 1);
 	ft_strcpy(state->champ[champ_no - 1]->champ_name, (char *)&buff[4]);
@@ -24,25 +22,19 @@ void			deploy_champion(t_address *pc, unsigned char *buff, long int index)
 {
 	t_address		*current;
 	
-    printf("index at start of deploy_champion = %li...\n", index);
-	printf("first byte read for instructions %0x\n", buff[index]);
 	current = pc;
 	while (buff[index] != '\0')
     {
-		//index = read_operation1(current, buff, index);
-        //index = read_operation2(current, buff, index);
         index = read_operation1(current, buff, index);
         index = read_operation2(current, buff, index);
 		current = current->next;
         index++;
 	}
-    printf("finished doing the reading...\n\n");
 }
 
 void            buffer_champion(unsigned char *buff, int fd)
 {
 	long int	size;
-//	int			temp;
     
 	size = -1;
     while (++size <= 4000)
@@ -67,7 +59,6 @@ void			check_magic(t_state *state, unsigned char *buff)
 	ft_strcat(str, ft_itoabase(buff[1], 16));
 	ft_strcat(str, ft_itoabase(buff[2], 16));
 	ft_strcat(str, ft_itoabase(buff[3], 16));
-	printf("\n\nfile magic = %s\n", str);
 	if (ft_strcmp(str, magic = ft_itoabase(COREWAR_EXEC_MAGIC, 16)) != 0)
 		error_exit(state, "Error: Champion Header Incorrect\n");
 	free(str);

@@ -73,8 +73,5 @@ void			check_nbr_live(t_state *state)
 		}
 	}
 	if (found > 0)
-	{
-		printf("Reducing Cycles To Die: NBR_LIVE reported\n");
 		state->cycles_to_die -= CYCLE_DELTA;
-	}
 }

@@ -9,7 +9,6 @@ int				main(int argc, char **argv)
 	{
         i = argc - 1;
 		init_state(&state);
-        printf("Initial state.cycles_to_die set to %i\n\n", state.cycles_to_die);//debuggery
         parse_user_input(&state, argv, i);
 		play_game(&state);
 	}

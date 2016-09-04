@@ -17,15 +17,11 @@ void			init_state(t_state *state)
 
 void			init_mem(t_state *state, t_address *current, int mem)
 {
-	//printf("Initializing mem %i\n", mem);
 	current->operation = 0;
 	current->acb = 0;
 	current->arg1 = 0;
 	current->arg2 = 0;
 	current->arg3 = 0;
-//	current->address = malloc(sizeof(char) * 255);
-//	current->address = ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16);
-//	ft_strcpy(current->address, ft_itoabase(((mem - MEM_SIZE - 1) * -1), 16));
 	current->address = mem;
 	if (mem <= 1)
 		current->next = state->begin;
@@ -40,42 +36,27 @@ void			create_process(t_state *state, int champ_no, char *file_name)
 {
 	t_process	*pointer;
 
-	printf("\n\nstate->champs[%i] = %p\n", champ_no - 1, state->champ[champ_no - 1]);
 	if (state->champ[champ_no - 1] != NULL)
 	{
-		printf("Creating Successive Process For Champion %i\n", champ_no);
 		pointer = state->champ[champ_no - 1];
 		while (pointer->next != NULL)
 			pointer = pointer->next;
 		pointer->next = malloc(sizeof(t_process));
-		//pointer->next->registries = malloc(sizeof(long int *) * REG_NUMBER);
 		init_process(pointer->next, champ_no);
-		printf("\t\tChecking if filename NULL for cor file parse = %s\n", file_name);
-		if (ft_strcmp(file_name, "NULL") != 0)//..................check this
-        {
-            printf("calling parse_champ_data for champ_no %i and file name %s...\n", champ_no, file_name);
+		if (ft_strcmp(file_name, "NULL") != 0)
 			parse_champ_data(state, file_name, champ_no);
-        }
 	}
 	else
 	{
-		printf("Creating First Process For Champion %i\n", champ_no);
 		state->champ[champ_no - 1] = malloc(sizeof(t_process));
-		printf("New Process at %p\n", state->champ[champ_no - 1]);
 		init_process(state->champ[champ_no - 1], champ_no);
-		printf("\t\tChecking if filename NULL for cor file parse = %s\n", file_name);
-		if (ft_strcmp(file_name, "NULL") != 0)//................check this
-        {
-			printf("calling parse_hamp_data for champ_no %i and file name %s...\n", champ_no, file_name);
+		if (ft_strcmp(file_name, "NULL") != 0)
             parse_champ_data(state, file_name, champ_no);
-        }
 	}
 }
 
 void			init_process(t_process *process, int champ_no)
 {
-	//printf("init_process for champion %i\n", champion_no);
-	//printf("t_process %p \n", process);
 	process->champ_name = malloc(sizeof(char) * PROG_NAME_LENGTH + 2);
 	process->champ_name[PROG_NAME_LENGTH + 1] = '\0';
 	process->champ_comment = malloc(sizeof(char) * COMMENT_LENGTH + 2);
@@ -89,17 +70,13 @@ void			init_process(t_process *process, int champ_no)
 	process->next = NULL;
 	process->champ_no = champ_no;
 	process->registries = malloc(sizeof(int *) * REG_NUMBER);
-	//printf("Champion number = %i\n", process->champion_no);
-	//printf("Registries Malloced at %p\n", process->registries);
-	init_reg(process);	
-	//printf("Registries Initialized at %p\n", process->registries);
+	init_reg(process);
 }
 
 void			init_reg(t_process *process)
 {
 	int			index;
 
-	//printf("Initializing Registries for Process at %p\n", process);
 	index = -1;
 	while(++index != 16)
 	{
@@ -107,8 +84,6 @@ void			init_reg(t_process *process)
 			process->registries[index] = process->champ_no;
 		else
 			process->registries[index] = 0;
-		//printf("Registry index %i initialized to %i\n",
-		//		index, process->registries[index]);
 	}
 }
 

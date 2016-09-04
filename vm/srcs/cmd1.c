@@ -7,26 +7,20 @@ void			live(t_state *state, t_process *process)
 		state->live_champs[ARG1 - 1] = 1;
 }
 
-void			ld(t_state *state, t_process *process)		//clash for DIR REG ACBs
+void			ld(t_state *state, t_process *process)
 {
 	process->carry = 1;
 
-    if ((ACB & 0x50) == 0x50) //REG REG
+    if ((ACB & 0x50) == 0x50)
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + REG[ARG2]) % IDX_MOD);
-    else if ((ACB & 0x90) == 0x90) //DIR REG
-    {
-        printf("made it this far...");
+    else if ((ACB & 0x90) == 0x90)
         REG[ARG3] = return_field(state, PC, (REG[ARG1] + ARG2) % IDX_MOD);
-    }
-    else if ((ACB & 0xD0) == 0xD0) //IND REG
+    else if ((ACB & 0xD0) == 0xD0)
         REG[ARG3] = return_field(state, PC,
                 (REG[ARG1] + return_field(state, PC, ARG2)) % IDX_MOD);
 	else
 		process->carry = 0;
 }
-
-/*112 120 124 - acb implies a registry, indirect, any
-    80  84  92 - acb implies a registry, registry, any*/
 
 void		 	st(t_process *process)
 {
@@ -56,8 +50,6 @@ void		 	st(t_process *process)
                 REG[ARG2] = REG[ARG1];
 	}
 }
-
-/*3 registry coding byte = 84*/
 
 void			add(t_process *process)
 {
