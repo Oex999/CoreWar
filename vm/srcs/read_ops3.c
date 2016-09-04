@@ -1,81 +1,57 @@
 #include <vm.h>
-#include <math.h> // DEBUG MUTHFUCKA!
-/* opcode 11............
 
-int			read_sti(t_address *current, unsigned char *buff, long int index)
+int			read_sti(t_address *current, unsigned char *buff, long int i)
 {
-    int		temp;
-    int		counter;
-    
-    //counter = -1;
-    counter = 0;
-    temp = 0;
-    current->operation = buff[index];
-    printf("current->operation in read_sti = %x...\n", current->operation);
-    //index++;
-    printf("buf[index] in read_sti = %x...\n", buff[index]);
-    if ((buff[index] & 0x68) == 0x68)
+    if (buff[i + 1] == 0x68)
     {
-        while (++counter <= 1)
-        {
-            printf("buff = %x\n", buff[index]);
-            printf("temp = %i\n", temp);
-            temp += buff[index] * (pow(16, 4 - counter));		//pow used for testing
-            index++;
-            printf("Index = %li\n", index);
-            printf("counter = %i\n", counter);
-        }
-         
-        while 
-        
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
+        current->arg1 = buff[i + 2];
+        current->arg2 = buff[i + 3] + buff[i + 4];
+        current->arg3 = buff[i + 5] + buff[i + 6];
+        i += 5;
+        i++;
     }
-    index++;
-    counter = -1;
-    temp = 0;
-    while (++counter <= 1)
+    else if (buff[i + 1] == 0x64)
     {
-        printf("buff = %i\n", buff[index]);
-        printf("temp = %i\n", temp);
-        temp += buff[index] * (pow(16, 4 - counter));		//pow used for testing
-        index++;
-        printf("Index = %li\n", index);
-        printf("counter = %i\n", counter);
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
+        current->arg1 = buff[i + 2];
+        current->arg2 = buff[i + 3] + buff[i + 4];
+        current->arg3 = buff[i + 5];
+        i += 4;
     }
-         
-        
-    return (index);
+    return (i);
 }
 
-
- opcode 12............
-
-int			read_fork(t_address *current, unsigned char *buff, long int index)
+int			read_fork(t_address *current, unsigned char *buff, long int i)
 {
-    int		temp;
-    int		counter;
+    current->operation = buff[i];
+    current->arg1 = buff[i + 1] + buff[i + 2];
+    i += 2;
+    return (i);
 }
- 
 
- opcode 13............
-
-int			read_lld(t_address *current, unsigned char *buff, long int index)
+int			read_lld(t_address *current, unsigned char *buff, long int i)
 {
-    int		temp;
-    int		counter;
+    current->operation = buff[i];
+    current->arg1 = buff[i + 1] + buff[i + 2];
+    i += 2;
+    return (i);
 }
- opcode 14............
 
-int			read_lldi(t_address *current, unsigned char *buff, long int index)
+int			read_lldi(t_address *current, unsigned char *buff, long int i)//fix
 {
-    int		temp;
-    int		counter;
+    current->operation = buff[i];
+    current->arg1 = buff[i + 1] + buff[i + 2];
+    i += 2;
+    return (i);
 }
 
- opcode 15............
-
-int			read_lfork(t_address *current, unsigned char *buff, long int index)
+int			read_lfork(t_address *current, unsigned char *buff, long int i) //fix
 {
-    int		temp;
-    int		counter;
+    current->operation = buff[i];
+    current->arg1 = buff[i + 1] + buff[i + 2];
+    i += 2;
+    return (i);
 }
- */

@@ -155,7 +155,7 @@ int         return_field(t_state *state, t_address *address, int field);
 void        edit_field(t_state *state, t_address *address, int field, int new_value);
 
 /*read.c*/
-void		parse_champ_data(t_state *state, char *argv, int champ_no); // testing
+void		parse_champ_data(t_state *state, char *argv, int champ_no);
 void		check_magic(t_state *state, unsigned char *buff);
 void        buffer_champion(unsigned char *buff, int fd);
 void        deploy_champion(t_address *pc, unsigned  char *buff, long int index);
@@ -164,16 +164,31 @@ void        deploy_champion(t_address *pc, unsigned  char *buff, long int index)
 void		ft_reverse_bytes(void *mem, size_t size);
 
 /*parse_operations.c*/
-//int         read_operation1(t_address *current, unsigned char *buff, long int index);
-//int         read_operation2(t_address *current, unsigned char *buff, long int index);
 int         read_operation1(t_address *current, unsigned char *buff, long int index);
 int         read_operation2(t_address *current, unsigned char *buff, long int index);
 
 /*read_op1.c*/
 int			read_live(t_address *current, unsigned char *buff, long int index);
 int			read_ld(t_address *current, unsigned char *buff, long int index);
+int			read_st(t_address *current, unsigned char *buff, long int index);
+int			read_add(t_address *current, unsigned char *buff, long int index);
+int			read_sub(t_address *current, unsigned char *buff, long int index);
+
+/*read_ops2.c*/
+int			read_and(t_address *current, unsigned char *buff, long int index);
+int			read_or(t_address *current, unsigned char *buff, long int index);
+int			read_xor(t_address *current, unsigned char *buff, long int index);
+int			read_zjmp(t_address *current, unsigned char *buff, long int index);
+int			read_ldi(t_address *current, unsigned char *buff, long int index);
 
 /*read_ops3.c*/
 int			read_sti(t_address *current, unsigned char *buff, long int index);
+int			read_fork(t_address *current, unsigned char *buff, long int index);
+int			read_lld(t_address *current, unsigned char *buff, long int index);
+int			read_lldi(t_address *current, unsigned char *buff, long int index);
+int			read_lfork(t_address *current, unsigned char *buff, long int index);
+
+/*read_ops4.c*/
+int			read_aff(t_address *current, unsigned char *buff, long int index);
 
 #endif

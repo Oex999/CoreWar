@@ -1,140 +1,67 @@
 #include <vm.h>
 
-
-#include <math.h> // DEBUG MUTHFUCKA!
-
-/* opcode 01............*/
-
-int			read_live(t_address *current, unsigned char *buff, long int index)
+int			read_live(t_address *current, unsigned char *buff, long int i)
 {
-	
-    int		temp;
-	int		counter;
-
-	counter = 0;
-	temp = 0;
-	current->operation = buff[index];
-    printf("Operation found in read_live = %x...\n", current->operation);
-	index++;
-    printf("after index++, buff[index] now = %x...\n", buff[index]);
-	while (counter <= 1)
-	{
-		printf("temp = %i\n", temp);
-		temp += buff[index] * (pow(16, 4 - counter));		//pow used for testing
-		index++;
-		counter++;
-		printf("Index = %li\n", index);
-		printf("counter = %i\n", counter);
-	}
-    printf("temp in live = %i...\n", temp);
-	current->arg1 = temp;
-	return (index);
+    current->operation = buff[i];
+    current->arg1 = buff[i + 1] + buff[i + 2] + buff[i + 3] + buff[i + 4];
+    i += 4;
+	return (i);
 }
 
-/* opcode 02............*/
-/*
-int			read_ld(t_address *current, unsigned char *buff, long int index)
+int			read_ld(t_address *current, unsigned char *buff, long int i)
 {
-    int		temp;
-    int		counter;
-    
-    counter = -1;
-    temp = 0;
-    current->operation = buff[index];
-    index++;
-    if ((buff[index] & 90) == 90)
-        ld_reg(buff, index);
-    else if ((buff[index] & 144) == 144)
-        ld_dir();
-    else if ((buff[index] & 208) == 208)
-        ld_ind();
-}
- */
+    if (buff[i] == 0x02 && buff[i + 1] == 0x90)
+    {
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
+        current->arg1 = buff[i + 2] + buff[i + 3] + buff[i + 4] + buff[i + 5];
+        current->arg2 = buff[i + 6];
+        i += 6;
+    }
+    else if (buff[i] == 0x02 && buff[i + 1] == 0x90)
+    {
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
 
-int			read_ld(t_address *current, unsigned char *buff, long int index)
-{
-	int		temp;
-	int		counter;
+    }
+    else if (buff[i] == 0x02 && buff[i + 1] == 0x90)
+    {
+        current->operation = buff[i];
+        current->acb = buff[i + 1];
 
-	counter = -1;
-	temp = 0;
-	current->operation = buff[index];
-	index++;
-	if ((buff[index] & 0x90) == 0x90)
-	{
-		while (++counter <= 1) 
-		{
-			printf("buff = %i\n", buff[index]);
-			printf("temp = %i\n", temp);
-			temp += buff[index] * (pow(16, 4 - counter));		//pow used for testing
-			index++;
-			printf("Index = %li\n", index);
-			printf("counter = %i\n", counter);
-		}
-
-	}
-	else if ((buff[index] & 208) == 208)
-	{
-		while (++counter <= IND_SIZE)
-		{
-			printf("buff = %i\n", buff[index]);
-			printf("temp = %i\n", temp);
-			temp += buff[index] * (pow(16, 4 - counter));		//pow used for testing
-			index++;
-			printf("Index = %li\n", index);
-			printf("counter = %i\n", counter);
-		}
-
-	}
-	else if ((buff[index] & 80) == 80)
-	{
-		while (++counter <= DIR_SIZE)
-		{
-			printf("buff = %i\n", buff[index]);
-			printf("temp = %i\n", temp);
-			temp += buff[index] * (pow(16, 4 - counter));		//pow used for testing
-			index++;
-			printf("Index = %li\n", index);
-			printf("counter = %i\n", counter);
-		}
-
-	}
-	index++;
-	counter = -1;
-	temp = 0;
-	while (++counter <= 1)
-	{
-		printf("buff = %i\n", buff[index]);
-		printf("temp = %i\n", temp);
-		temp += buff[index] * (pow(16, 4 - counter));		//pow used for testing
-		index++;
-		printf("Index = %li\n", index);
-		printf("counter = %i\n", counter);
-	}
-	return (index);
+    }
+    return (i);
 }
 
-/*
-
-int			read_st(t_address *current, unsigned char *buff, long int index)
+int			read_st(t_address *current, unsigned char *buff, long int i)
 {
-    int		temp;
-    int		counter;
+    current->operation = buff[i];
+    current->acb = buff[i + 1];
+    current->arg1 = buff[i + 2];
+    current->arg2 = buff[i + 3] + buff[i + 4];
+    i += 4;
+    return (i);
 }
 
- opcode 04.
-
-int			read_add(t_address *current, unsigned char *buff, long int index)
+int			read_add(t_address *current, unsigned char *buff, long int i)
 {
-    int		temp;
-    int		counter;
+    current->operation = buff[i];
+    current->acb = buff[i + 1];
+    current->arg1 = buff[i + 2];
+    current->arg2 = buff[i + 3];
+    current->arg3 = buff[i + 4];
+    i += 5;
+    return (i);
 }
 
- opcode 05............
-
-int			read_sub(t_address *current, unsigned char *buff, long int index)
+int			read_sub(t_address *current, unsigned char *buff, long int i)
 {
-    int		temp;
-    int		counter;
+    current->operation = buff[i];
+    current->acb = buff[i + 1];
+    current->arg1 = buff[i + 2];
+    current->arg2 = buff[i + 3];
+    current->arg3 = buff[i + 4];
+    i += 5;
+    return (i);
 }
- */
+
