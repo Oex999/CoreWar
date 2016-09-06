@@ -6,17 +6,17 @@
 /*   By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 07:33:26 by ghavenga          #+#    #+#             */
-/*   Updated: 2016/08/27 08:05:07 by ghavenga         ###   ########.fr       */
+/*   Updated: 2016/09/06 13:25:36 by bsaunder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 #include <stdlib.h>
 
-char		*get_str(char *ptr)
+char			*get_str(char *ptr)
 {
-	int		i;
-	char	*str;
+	int			i;
+	char		*str;
 
 	i = 0;
 	while (ptr[i] != '\0')

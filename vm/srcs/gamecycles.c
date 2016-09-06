@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gamecycles.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsaunder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/06 13:58:40 by bsaunder          #+#    #+#             */
+/*   Updated: 2016/09/06 14:02:26 by bsaunder         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <vm.h>
 
 void				play_game(t_state *state)
@@ -9,7 +21,7 @@ void				play_game(t_state *state)
 
 	modified_ctd = 1;
 	cycle = 0;
-	cycles_left = state->dump -	1;
+	cycles_left = state->dump - 1;
 	checks_done = 0;
 	printf("\n\t\t\x1b[35mStarting game\x1b[0m\n\n");
 	declare_champs(state);
@@ -40,9 +52,9 @@ void				play_game(t_state *state)
 	check_for_winner(state);
 }
 
-void			declare_champs(t_state *state)
+void				declare_champs(t_state *state)
 {
-	int			i;
+	int				i;
 
 	ft_putstr("Declaring Champions!\n\n");
 	i = 0;
@@ -60,11 +72,11 @@ void			declare_champs(t_state *state)
 	ft_putstr("\n");
 }
 
-void			prune_champs(t_state *state)
+void				prune_champs(t_state *state)
 {
-	t_process	*temp;
-	t_process	*iter;
-	int			i;
+	t_process		*temp;
+	t_process		*iter;
+	int				i;
 
 	i = -1;
 	while (++i < 4)
@@ -84,17 +96,17 @@ void			prune_champs(t_state *state)
 			}
 			if (temp == state->champ[i] && temp->alive < 1)
 			{
-				printf("Champions First Process Did Not Report Live\n"); // debuggery
+				printf("Champions First Process Did Not Report Live\n");
 				state->champ[i] = state->champ[i]->next;
 				free_process(temp);
 			}
 		}
 }
 
-void			dump_memory(t_state *state)
-{	
-	t_address	*mem;
-	int			done;
+void				dump_memory(t_state *state)
+{
+	t_address		*mem;
+	int				done;
 
 	mem = state->begin;
 	done = 0;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gamechamps.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsaunder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/06 13:43:58 by bsaunder          #+#    #+#             */
+/*   Updated: 2016/09/06 14:03:56 by bsaunder         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <vm.h>
 
 void			check_for_winner(t_state *state)
@@ -24,8 +36,7 @@ void			check_for_winner(t_state *state)
 		error_exit(state, "\x1b[35mWon!\n\x1b[0m");
 	}
 	if (living > 1 && state->cycles_to_die > CYCLE_TO_DIE)
-		error_exit(state, 
-				"\x1b[35mDraw - Multiple champ Still ALive\n\x1b[0m");
+		error_exit(state, "\x1b[35mDraw - Multiple champ Still ALive\n\x1b[0m");
 }
 
 void			run_champs(t_state *state)

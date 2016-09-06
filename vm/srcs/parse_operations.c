@@ -13,7 +13,6 @@ int			read_operation1(t_address *current, unsigned char *buff, long int i)
 		i += read_add(current, buff, i);
     if (buff[i] == 0x05 && buff[i + 1] == 0x54)
            i += read_add(current, buff, i);
-  , index);*/
 	return (i);
 }
 
@@ -25,8 +24,8 @@ int			read_operation2(t_address *current, unsigned char *buff, long int i)
         i += read_sti(current, buff, i);
     if (buff[i] == 0x09)
         i += read_zjmp(current, buff, i);
-    if (buff[i] == 0x0a && buff[i + 1] == 0x94)    {
-              i += 6;
+    if (buff[i] == 0x0a && buff[i + 1] == 0x94)
+        i += 6;
     if (buff[i] == 0x0b)
          i += read_sti(current, buff, i);
     if (buff[i] == 0x0c)
@@ -36,8 +35,6 @@ int			read_operation2(t_address *current, unsigned char *buff, long int i)
     if (buff[i] == 0x0d)
         i += read_lld(current, buff, i);
     if (buff[i] == 0x10)
-        index += read_aff(current, buff, index);
+        i += read_aff(current, buff, i);
 	return (i);
 }
-
-

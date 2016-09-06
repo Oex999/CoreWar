@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsaunder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/06 13:22:09 by bsaunder          #+#    #+#             */
+/*   Updated: 2016/09/06 13:24:26 by bsaunder         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <vm.h>
 
 void			free_state(t_state *state)
 {
 	int			k;
-	
-	printf("\n\t\t\x1b[36mFreeing State\x1b[0m\n\n");
+
+	ft_putstr("Freeing State\n\n");
 	free_mem(state->begin, MEM_SIZE);
 	k = state->champ_count;
 	while (k > 0)
@@ -34,10 +46,6 @@ void			free_reg(t_process *process)
 	int			index;
 
 	index = -1;
-	while (++index != 16)
-	{
-		//free(process->registries[index]);
-	}
 	free(process->registries);
 }
 

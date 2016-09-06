@@ -43,7 +43,7 @@ int			read_st(t_address *current, unsigned char *buff, long int i)
     return (i);
 }
 
-int			read_add(t_address *current, unsigned char *buff, long int i)
+int			read_add(t_address *current, unsigned char *buff, long int i)//done
 {
     current->operation = buff[i];
     current->acb = buff[i + 1];
@@ -54,7 +54,7 @@ int			read_add(t_address *current, unsigned char *buff, long int i)
     return (i);
 }
 
-int			read_sub(t_address *current, unsigned char *buff, long int i)
+int			read_sub(t_address *current, unsigned char *buff, long int i)//done
 {
     current->operation = buff[i];
     current->acb = buff[i + 1];

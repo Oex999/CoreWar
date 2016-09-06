@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsaunder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/06 14:02:31 by bsaunder          #+#    #+#             */
+/*   Updated: 2016/09/06 14:02:43 by bsaunder         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <vm.h>
 
 void			init_state(t_state *state)
 {
-    state->cycles_to_die = 0;
+	state->cycles_to_die = 0;
 	state->champ_count = 0;
 	state->dump = 0;
 	state->live_champs = malloc(sizeof(char) * 5);
@@ -51,7 +63,7 @@ void			create_process(t_state *state, int champ_no, char *file_name)
 		state->champ[champ_no - 1] = malloc(sizeof(t_process));
 		init_process(state->champ[champ_no - 1], champ_no);
 		if (ft_strcmp(file_name, "NULL") != 0)
-            parse_champ_data(state, file_name, champ_no);
+			parse_champ_data(state, file_name, champ_no);
 	}
 }
 
@@ -86,4 +98,3 @@ void			init_reg(t_process *process)
 			process->registries[index] = 0;
 	}
 }
-

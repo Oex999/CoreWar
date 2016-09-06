@@ -1,23 +1,18 @@
 #include <vm.h>
-#include <math.h> // DEBUG MUTHFUCKA!
-/* opcode 06............
-
+/*
 int			read_and(t_address *current, unsigned char *buff, long int index)
 {
     int		temp;
     int		counter;
 }
-
- opcode 07............
  
 int			read_or(t_address *current, unsigned char *buff, long int index)
 {
     int		temp;
     int		counter;
 }
+ */
 
- opcode 08............
-*/
 
 int			read_xor(t_address *current, unsigned char *buff, long int i)
 {
