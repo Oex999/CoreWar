@@ -3,6 +3,7 @@
 int			read_live(t_address *current, unsigned char *buff, long int i)
 {
     current->operation = buff[i];
+    printf("OPCODE = %x\n", current->operation);
     current->arg1 = buff[i + 1] + buff[i + 2] + buff[i + 3] + buff[i + 4];
     i += 4;
 	return (i);
@@ -13,6 +14,7 @@ int			read_ld(t_address *current, unsigned char *buff, long int i)
     if (buff[i] == 0x02 && buff[i + 1] == 0x90)
     {
         current->operation = buff[i];
+        printf("OPCODE = %x\n", current->operation);
         current->acb = buff[i + 1];
         current->arg1 = buff[i + 2] + buff[i + 3] + buff[i + 4] + buff[i + 5];
         current->arg2 = buff[i + 6];
@@ -21,14 +23,17 @@ int			read_ld(t_address *current, unsigned char *buff, long int i)
     else if (buff[i] == 0x02 && buff[i + 1] == 0x90)
     {
         current->operation = buff[i];
+        printf("OPCODE = %x\n", current->operation);
         current->acb = buff[i + 1];
+        printf("ACB = %x\n", current->acb);
 
     }
     else if (buff[i] == 0x02 && buff[i + 1] == 0x90)
     {
         current->operation = buff[i];
+        printf("OPCODE = %x\n", current->operation);
         current->acb = buff[i + 1];
-
+        printf("ACB = %x\n", current->acb);
     }
     return (i);
 }
@@ -36,17 +41,22 @@ int			read_ld(t_address *current, unsigned char *buff, long int i)
 int			read_st(t_address *current, unsigned char *buff, long int i)
 {
     current->operation = buff[i];
+    printf("OPCODE = %x\n", current->operation);
     current->acb = buff[i + 1];
+    printf("ACB = %x\n", current->acb);
     current->arg1 = buff[i + 2];
     current->arg2 = buff[i + 3] + buff[i + 4];
     i += 4;
+    printf("buff[i] in st is now %x...\n", buff[i]);
     return (i);
 }
 
-int			read_add(t_address *current, unsigned char *buff, long int i)//done
+int			read_add(t_address *current, unsigned char *buff, long int i)
 {
     current->operation = buff[i];
+    printf("OPCODE = %x\n", current->operation);
     current->acb = buff[i + 1];
+    printf("ACB = %x\n", current->acb);
     current->arg1 = buff[i + 2];
     current->arg2 = buff[i + 3];
     current->arg3 = buff[i + 4];
@@ -54,10 +64,12 @@ int			read_add(t_address *current, unsigned char *buff, long int i)//done
     return (i);
 }
 
-int			read_sub(t_address *current, unsigned char *buff, long int i)//done
+int			read_sub(t_address *current, unsigned char *buff, long int i)
 {
     current->operation = buff[i];
+    printf("OPCODE = %x\n", current->operation);
     current->acb = buff[i + 1];
+    printf("ACB = %x\n", current->acb);
     current->arg1 = buff[i + 2];
     current->arg2 = buff[i + 3];
     current->arg3 = buff[i + 4];
