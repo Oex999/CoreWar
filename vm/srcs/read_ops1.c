@@ -19,9 +19,10 @@ int			read_ld(t_address *current, unsigned char *buff, long int i)
         current->acb = buff[i + 1];
         current->arg1 = buff[i + 2];
         current->arg2 = buff[i + 3];
-        i += 4;
+        i += 6;
+        printf("buff[i] after ld = %x...\n", buff[i]);
     }
-    else if (buff[i] == 0x02 && buff[i + 1] == 0x90)
+    /*else if (buff[i] == 0x02 && buff[i + 1] == 0x90)
     {
         current->operation = buff[i];
         printf("OPCODE = %x\n", current->operation);
@@ -36,6 +37,8 @@ int			read_ld(t_address *current, unsigned char *buff, long int i)
         current->acb = buff[i + 1];
         printf("ACB = %x\n", current->acb);
     }
+     */
+    
     return (i);
 }
 

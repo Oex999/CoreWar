@@ -95,8 +95,13 @@ int			read_operation2(t_address *current, unsigned char *buff, long int i)
     }
     else if (buff[i] == 0x0f)
     {
-        printf("found lfork...");
-        i = read_lfork(current, buff, i);
+        if (buff[i + 1] == 0x09)
+            i++;
+        else
+        {
+            printf("found lfork...");
+            i = read_lfork(current, buff, i);
+        }
         return (i);
     }
     else if (buff[i] == 0x10)

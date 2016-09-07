@@ -61,9 +61,14 @@ int			read_lldi(t_address *current, unsigned char *buff, long int i)//fix
 
 int			read_lfork(t_address *current, unsigned char *buff, long int i) //fix
 {
-    current->operation = buff[i];
-    printf("OPCODE = %x\n", current->operation);
-    current->arg1 = buff[i + 1] + buff[i + 2];
-    i += 2;
+    if (buff[i + 1] == 0x09)
+        i++;
+    else
+    {
+        current->operation = buff[i];
+        printf("OPCODE = %x\n", current->operation);
+        current->arg1 = buff[i + 1] + buff[i + 2];
+        i += 2;
+    }
     return (i);
 }

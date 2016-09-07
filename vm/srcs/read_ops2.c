@@ -54,11 +54,12 @@ int			read_ldi(t_address *current, unsigned char *buff, long int i)
 {
     current->operation = buff[i];
     printf("OPCODE = %x\n", current->operation);
+    printf("buff @@ i + 1 = %x\n", buff[i + 1]);
     current->acb = buff[i + 1];
     printf("ACB = %x\n", current->acb);
     current->arg1 = buff[i + 2] + buff[i + 3];
     current->arg2 = buff[i + 4] + buff[i + 5];
     current->arg3 = buff[i + 6];
-    i += 6;
+    i += 5;
     return (i);
 }
