@@ -27,14 +27,10 @@ void			deploy_champion(t_address *pc, unsigned char *buff, long int index)
     {
         printf("\ncurrent index in string = %li...\n", index);
         printf("\nstarting checks for opcode and acd...\n");
-        printf("\ncurrent position in string = %x...\n", buff[index]);
         index = read_operation1(current, buff, index);
-        printf("index = %li after read_op1\n", index);
         index = read_operation2(current, buff, index);
-        printf("index = %li after read_op1\n", index);
 		current = current->next;
-        index++;
-        printf("\ncurrent index in string = %li...\n", index);
+        index++;;
 	}
 }
 
